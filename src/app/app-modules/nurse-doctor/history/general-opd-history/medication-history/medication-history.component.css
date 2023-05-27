@@ -1,0 +1,15 @@
+.select-full-width {
+    width: 100%;
+}
+
+.input-full-width {
+    width: 100%;
+}
+
+.mat-form-field {
+    line-height: unset;
+}
+
+button#previousANCMedicationHistory .mat-icon.material-icons {
+    color: #52575C !important;
+}

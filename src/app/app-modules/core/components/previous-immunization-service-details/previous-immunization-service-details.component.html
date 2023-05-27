@@ -1,0 +1,62 @@
+<div>
+  <div class="title info">
+    <h4>{{ input.title }}</h4>
+    <button class="pull-right close-btn" (click)="closeDialog()" md-icon-button>
+      <md-icon class="md-24">close</md-icon>
+    </button>
+  </div>
+
+  <section class="message">
+    <md-input-container>
+      <input autocomplete="off" mdInput placeholder="{{currentLanguageSet?.common?.inTableSearch}}" #filterTerm (keyup)="filterPreviousData(filterTerm.value)">
+      <md-icon mdSuffix>search</md-icon>
+    </md-input-container>
+    <section class="table table-responsive enableScroll">
+      <div class="table-responsive m-t-10">
+        <table aria-describedby="FamilyTaggingDetails" class="table table-striped" [md2Data]="filteredDataList" #md2="md2DataTable" [rowsPerPage]="5" [activePage]="1">
+          <thead>
+            <tr>
+              <th id="sno">{{currentLanguageSet?.coreComponents?.sno}}</th>
+              <th id="date">{{currentLanguageSet?.dateOfVisit}}</th>
+              <th id="immunizationServiceType">{{currentLanguageSet?.typeOfImmunizationServices}}</th>
+              <th id="currentImmunizationService">{{currentLanguageSet?.pastImmunizationService}}</th>
+              <th id="vaccineName">{{currentLanguageSet?.vaccineName}}</th>
+              <th id="vaccineDose">{{currentLanguageSet?.vaccineDose}}</th>
+              <th id="vaccineBatchNo">{{currentLanguageSet?.route}}</th>
+              <th id="vaccineRoute">{{currentLanguageSet?.batchNo}}</th>
+              <th id="vaccineSiteOfInjection">{{currentLanguageSet?.siteOfInjection}}</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="filteredDataList?.length == 0">
+              <td colspan="10" class="norecord">{{currentLanguageSet?.casesheet?.noRecordFound}}</td>
+            </tr>
+            <tr *ngFor="let item of md2.data">
+              <td data-title="sno">{{filteredDataList.indexOf(item)+1}}</td>
+              <td data-title="Date of Visit">{{ item?.dateOfVisit}} </td>
+              <td data-title="Type of Immunization Services">{{ item?.immunizationServicesType}} </td>
+              <td data-title="Past Immunization Service">{{ item?.currentImmunizationService}} </td>
+              <td data-title="Vaccine Name">{{ item?.vaccineName}} </td>
+              <td data-title="Dose">{{ item?.vaccineDose}} </td>
+              <td data-title="Route">{{ item?.route}} </td>
+              <td data-title="Batch/Lot No">{{ item?.batchNo}} </td>
+              <td data-title="Site Of Injection">{{ item?.siteOfInjection}} </td>
+
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="10" style="text-align:right">
+                <md2-pagination class="colorpagination"></md2-pagination>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+    </section>
+
+  </section>
+
+</div>

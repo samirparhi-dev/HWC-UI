@@ -1,0 +1,29 @@
+.mat-expansion-panel-header {
+    background: rgba(37, 55, 70, 0.2);
+  }
+  
+.alignment {
+    padding-left: 0px;
+    margin-top: 20px;
+  }
+
+.dropdown-height {
+    height: 70px;
+  }
+
+.input-full-width {
+    width: 100%;
+}
+
+.placeholderLength {
+  position: relative;
+    width: 100%;
+    color: rgba(0,0,0,.87);
+    border: 0;
+    outline: 0;
+    background: 0 0;
+}
+
+.input-full-width-location {
+  width: 350px;
+}

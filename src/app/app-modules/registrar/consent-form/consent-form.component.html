@@ -1,0 +1,33 @@
+<section id="searchDialog" class="container-fluid box">
+    <div class="row title info background-overall">
+        <h4>{{currentLanguageSet?.beneficaryConsent}} </h4>
+        <button md-icon-button class="pull-right close-btn" (click)="closeConsent('1')">
+            <md-icon class="md-24">close</md-icon>
+       </button>
+    </div>
+    <md-dialog-content>
+        <section class="row m-t-20">
+      <div class="col-xs-12 " >
+         आपको बेहतर सेवा प्रदान करने के लिए, हम आपकी
+
+        व्यक्तिगत जानकारी का अनुरोध करते हैं। आपके द्वारा प्रदान की जाने वाली
+
+        जानकारी को गोपनीय रखा जाएगा और इसका उपयोग केवल अनुसंधान और विश्लेषण के लिए
+        
+        किया जाएगा।
+      </div>
+      </section>
+      <section class="row m-t-20">
+      <div class="col-xs-12 ">
+         To provide you with better service, we would
+        request your personal information. The information that you will provide
+        will be kept confidential and will only be used for research and analysis.
+      </div>
+    </section>
+    
+    </md-dialog-content>
+    <md-dialog-actions  class="padding15 margin15 pull-right">
+        <button class="full-width-login background-overall" type="button" (click)="acceptConsent('1')">Accept</button>
+    </md-dialog-actions>
+    <div class="clearfix"></div>
+</section>

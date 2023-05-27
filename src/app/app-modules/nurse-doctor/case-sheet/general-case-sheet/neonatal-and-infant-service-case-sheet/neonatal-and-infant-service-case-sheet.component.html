@@ -1,0 +1,268 @@
+<!--Birth and Immunization history starts-->
+<div class="container">
+  <div class="row col-xs-12">
+    <h2 class="text-center">
+      Birth & Immunization History
+    </h2>
+    <hr />
+  </div>
+
+  <!--Infant Birth Details starts-->
+  <div class="row m-t-10">
+    <div class="col-xs-12">
+      <fieldset>
+        <legend>{{currentLanguageSet?.infantBirthDetails}}:</legend>
+        <table class="table table-no-border casesheet-table" aria-describedby="infantBirthDetailsTable">
+          <tbody>
+            <tr *ngIf="visitCategory?.toLowerCase() == 'childhood & adolescent healthcare services'">
+              <th id="birthDate">
+                {{currentLanguageSet?.birthDate}}:
+              </th>
+              <td>
+                  {{ infantBirthDeatilsCasesheet?.dateOfBirth }}
+              </td>
+
+              <th id="birthTime">
+                {{currentLanguageSet?.birthTime}}:
+              </th>
+              <td>
+                {{ birthTime | date : 'shortTime' }}
+              </td>
+            </tr>
+              <tr>
+                <th id="deliveryPlaceID">
+                  {{currentLanguageSet?.placeOfDelivery}}:
+                </th>
+                <td>
+                    {{ infantBirthDeatilsCasesheet?.deliveryPlace }}
+                </td>
+
+                <th id="deliveryConductedByID">
+                  {{currentLanguageSet?.deliveryConductedBy}}:
+                </th>
+                <td>
+                  {{ infantBirthDeatilsCasesheet?.deliveryConductedBy }}
+                </td>
+              </tr>
+
+              <tr>
+                <th id="deliveryTypeID">
+                  {{currentLanguageSet?.typeOfDelivery}}:
+                </th>
+                <td>
+                  {{ infantBirthDeatilsCasesheet?.deliveryType }}
+                </td>
+
+                <th id="birthWeightOfNewborn">
+                  {{currentLanguageSet?.birthWeightOfNewBorn}}:
+                </th>
+                <td>
+                  {{ infantBirthDeatilsCasesheet?.birthWeightOfNewborn }}
+                </td>
+              </tr>
+
+              <tr>
+                <th id="birthComplicationID" *ngIf="visitCategory?.toLowerCase() == 'neonatal and infant health care services'">
+                  {{currentLanguageSet?.complicationAtBirth}}:
+                </th>
+                <td *ngIf="visitCategory?.toLowerCase() == 'neonatal and infant health care services'">
+                  {{ infantBirthDeatilsCasesheet?.birthComplication }}
+                </td>
+
+                <th id="gestationID">
+                  {{currentLanguageSet?.gestation}}:
+                </th>
+                <td>
+                  {{ infantBirthDeatilsCasesheet?.gestation }}
+                </td>
+                
+                <th id="dateOfUpdatingBirthDetails" *ngIf="visitCategory?.toLowerCase() == 'childhood & adolescent healthcare services'">
+                  {{currentLanguageSet?.dateOfUpdatingBirthDetails}}:
+                </th>
+                <td *ngIf="visitCategory?.toLowerCase() == 'childhood & adolescent healthcare services'">
+                    {{ infantBirthDeatilsCasesheet?.dateOfUpdatingBirthDetails }}
+                </td>
+
+              </tr>
+
+              <tr>
+                <th id="congenitalAnomaliesList" *ngIf="visitCategory?.toLowerCase() == 'neonatal and infant health care services'">
+                  {{currentLanguageSet?.congentialAnomalies}}:
+                </th>
+                <td *ngIf="visitCategory?.toLowerCase() == 'neonatal and infant health care services'">
+                  {{ infantBirthDeatilsCasesheet?.congenitalAnomaliesList }}
+                </td>
+
+                <th id="otherDeliveryPlace" *ngIf="otherDelPlace">
+                  {{currentLanguageSet?.otherDeliveryPlace}}:
+                </th>
+                <td *ngIf="otherDelPlace">
+                    {{ infantBirthDeatilsCasesheet?.otherDeliveryPlace }}
+                </td>
+
+                <th id="otherDeliveryComplication" *ngIf="otherDelComplication">
+                  {{currentLanguageSet?.otherDeliveryComplication}}:
+                </th>
+                <td *ngIf="otherDelComplication">
+                  {{ infantBirthDeatilsCasesheet?.otherDeliveryComplication }}
+                </td>
+              </tr>
+          </tbody>
+        </table>
+      </fieldset>
+    </div>
+  </div>
+  <!--Infant Birth Details ends-->
+
+    <!--Form Immunization History starts-->
+    <div class="row m-t-10">
+      <div class="col-xs-12">
+        <fieldset>
+          <legend>{{currentLanguageSet?.formImmunizationHistory}}:</legend>
+          <table class="table1 table-no-border casesheet-table" aria-describedby="formImmunizationHistoryTable">
+          <tbody>
+            <ng-container
+              *ngFor="let immunization of vaccinetaken; let i=index;"
+            >
+              <tr>
+                <th id="defaultReceivingAge">
+                  <h4><strong>{{ immunization.defaultReceivingAge }}: </strong></h4>
+                </th>
+              </tr>
+              <tr>
+                <th id="vaccine">
+                  Vaccine Name:
+                </th>
+                <td>{{ immunization.vaccine !== '' ? immunization.vaccine : 'NA' }}</td>
+
+                <th id="vaccinationReceivedAt">
+                  Vaccination Recevied At:
+                </th>
+                <td>{{ immunization.vaccinationReceivedAt !== undefined ? immunization.vaccinationReceivedAt : 'NA' }}</td>
+              </tr>
+            </ng-container>
+          </tbody>  
+          </table>
+        </fieldset>
+      </div>
+    </div>
+    <!--Form Immunization History ends-->
+</div>
+<!--Birth and Immunization history ends-->
+
+<!--Immunization Services starts-->
+<div class="container">
+  <div class="row col-xs-12">
+    <h2 class="text-center">
+      Immunization Services
+    </h2>
+    <hr />
+  </div>
+  <div class="row m-t-10">
+    <div class="col-xs-12">
+      <fieldset>
+      <legend>{{currentLanguageSet?.immunizationService}}:</legend>
+        <table class="table table-no-border casesheet-table" aria-describedby="immunizationServicesTable">
+          <tbody>
+              <tr>
+                <th id="dateOfVisit">
+                  {{currentLanguageSet?.dateOfVisit}}:
+                </th>
+                <td>
+                    {{ immunizationServicesCasesheet?.dateOfVisit }}
+                </td>
+
+                <th id="immunizationServicesTypeID">
+                  {{currentLanguageSet?.typeOfImmunizationServices}}:
+                </th>
+                <td>
+                    {{ immunizationServicesCasesheet?.immunizationServicesType }}
+                </td>
+
+                <th id="currentImmunizationServiceID">
+                  {{currentLanguageSet?.currentImmunizationService}}:
+                </th>
+                <td>
+                    {{ immunizationServicesCasesheet?.currentImmunizationService }}
+                </td>
+              </tr>
+
+              <h4 *ngIf="enableImmunizationServiceVaccine"><strong>{{ immunizationServicesCasesheet?.currentImmunizationService }}: </strong></h4>
+            <ng-container *ngFor="let vaccine of serviceVaccinetaken">
+              <tr>
+                <th id="vaccineName">
+                  Vaccine Name:
+                </th>
+                <td>{{ vaccine.vaccine }}</td>
+                <th id="vaccineDose">
+                  Vaccine Dose:
+                </th>
+                <td>{{ vaccine.vaccineDose }}</td>
+                <th id="siteOfInjection">
+                  Site Of Injection:
+                </th>
+                <td>{{ vaccine.siteOfInjection }}</td>
+              </tr>
+              <tr>
+                <th id="route">
+                  Route:
+                </th>
+                <td>{{ vaccine.route }}</td>
+                <th id="batchNo">
+                  Batch No:
+                </th>
+                <td>{{ vaccine.batchNo }}</td>
+              </tr>
+              <hr>
+            </ng-container>
+          </tbody>
+          </table>
+      </fieldset>
+    </div>
+  </div>
+  <app-child-and-adolescent-oral-vitamin-a-case-sheet *ngIf="beneficiaryAge <= 5 && visitCategory?.toLowerCase() == 'childhood & adolescent healthcare services'" [printPagePreviewSelect]="printPagePreviewSelect" [data]="caseSheetData" [previous]='previous' ></app-child-and-adolescent-oral-vitamin-a-case-sheet>
+</div>
+<!--Immunization Services ends-->
+
+<!--Follow up For Immunization starts-->
+<div class="container">
+  <div class="row col-xs-12">
+    <h2 class="text-center">
+      Follow up For Immunization
+    </h2>
+    <hr />
+    <div class="col-xs-12">
+      <table class="table table-no-border casesheet-table" aria-describedby="folloupImmunizationTable">
+        <tbody>
+            <tr>
+              <th id="dueDateForNextImmunization">
+                {{currentLanguageSet?.dueDateNextImmunization}}:
+              </th>
+              <td>
+                  {{ followUpImmunizationCasesheet?.dueDateForNextImmunization }}
+              </td>
+            </tr>
+
+            <tr>
+              <th id="nextDueVaccines">
+                {{currentLanguageSet?.nextDueVaccine}}:
+              </th>
+              <td>
+                  {{ followUpImmunizationCasesheet?.nextDueVaccines }}
+              </td>
+            </tr>
+
+            <tr>
+              <th id="locationOfNextImmunization">
+                {{currentLanguageSet?.locationOfNextImmunization}}:
+              </th>
+              <td>
+                  {{ followUpImmunizationCasesheet?.locationOfNextImmunization }}
+              </td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<!--Follow up For Immunization ends-->

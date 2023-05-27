@@ -1,0 +1,478 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import 'css/custom.css';
+@import 'css/layout.css';
+.mat-select-placeholder {
+  /* white-space: nowrap; */
+  /* text-overflow: ellipsis; */
+  /* overflow: hidden; */
+}
+
+.mat-form-field-placeholder {
+  /* text-overflow: unset !important; */
+  /* white-space: unset !important; */
+}
+
+.mat-input-placeholder,
+.mat-select-placeholder,
+.md2-datepicker-placeholder {
+  color: #999 !important;
+}
+
+.mat-select-placeholder .ng-trigger .ng-trigger-transformPlaceholder .mat-floating-placeholder {
+  color: #999 !important;
+}
+
+[disabled] .mat-select-placeholder .ng-trigger .ng-trigger-transformPlaceholder .mat-floating-placeholder .mat-input-placeholder,
+[aria-disabled=true] .mat-select-placeholder,
+.mat-input-placeholder {
+  color: #999 !important;
+}
+
+.odd {
+  background-color: #E1EAFF !important;
+  border-bottom: 1px solid #ddd;
+}
+
+.action-btn-container {
+  padding: 10px;
+}
+
+.box {
+  height: 60px;
+}
+
+.multi-row-select {
+  padding: 5px 0px;
+}
+
+.no-row {
+  margin: 0 !important;
+}
+
+.cdk-overlay-container .cdk-global-overlay-wrapper .cdk-overlay-pane .mat-dialog-container {
+  padding: 0px;
+  overflow: hidden;
+  /* max-width: unset; */
+}
+
+.cdk-overlay-container .cdk-global-overlay-wrapper .cdk-overlay-pane.preview-casesheet .mat-dialog-container {
+  max-width: unset;
+}
+
+.cdk-overlay-container .cdk-global-overlay-wrapper .cdk-overlay-pane .mat-snack-bar-container {
+  max-width: 240px !important;
+  min-width: 180px !important;
+}
+
+.cdk-overlay-container .cdk-global-overlay-wrapper #cdk-overlay-0 {
+  margin-bottom: 6px !important;
+}
+
+#cdk-overlay-0 .btn-green {
+  background: green !important;
+}
+
+.btn-green:disabled {
+  background: grey !important;
+  cursor: not-allowed;
+}
+
+.mat-form-field {
+  line-height: unset;
+}
+
+md2-datepicker {
+  top: -7px;
+}
+
+hr {
+  -moz-border-bottom-colors: none;
+  -moz-border-image: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  border-color: #EEEEEE -moz-use-text-color #FFFFFF;
+  border-style: solid none;
+  border-width: 1px 0;
+  margin: 18px 0;
+}
+
+@media only screen and (max-width: 768px) {
+  .registrar-menu.mat-menu-panel {
+    max-width: none;
+    width: 100vw;
+    margin-top: 10px;
+  }
+  .cdk-overlay-container .cdk-global-overlay-wrapper .cdk-overlay-pane.fit-screen {
+    width: 100%;
+    height: 100%;
+  }
+  .cdk-overlay-container .cdk-global-overlay-wrapper .cdk-overlay-pane .mat-dialog-container {
+    padding: 0px;
+    max-width: 98vw;
+    max-height: 95vh;
+  }
+  .vw100 {
+    width: 100vw !important;
+  }
+}
+
+/* .mat-form-field.readonly .mat-form-field-underline .mat-input-underline .mat-form-field-ripple .mat-input-ripple { */
+  /* background-image: -webkit-gradient(linear, left top, right top, from(rgba(16, 121, 249, 0.909)), color-stop(33%, rgba(16, 121, 249, 0.909)), color-stop(0%, transparent)); */
+  /* background-image: linear-gradient(to right, rgba(16, 121, 249, 0.909) 0%, rgba(16, 121, 249, 0.909) 33%, transparent 0%); */
+  /* background-color: #336CFB !important;
+  border-bottom: #336CFB !important;
+  box-shadow: #336CFB !important;
+  border: 1px solid rgba(16, 121, 249, 0.909);
+  background-size: 4px 1px;
+  background-repeat: repeat-x; */
+  /* background-color: unset; */
+/* } */
+
+
+/* .mat-form-field.readonly .mat-form-field-underline {
+  border-bottom: #336CFB !important;
+  background-size: 4px 1px;
+  background-repeat: repeat-x;
+  background-color: unset;
+} */
+
+.sw {
+  float: left;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+}
+
+.search {
+  flex: 1 1 auto;
+  order: 2;
+  outline: none;
+  border: none;
+  border-radius: 0;
+  background: #fff;
+  padding: 8px;
+  font-family: 'Roboto', sans-serif;
+  height: 40px;
+  transition: all 0.05s ease-in-out;
+  -webkit-appearance: none;
+}
+
+.go {
+  flex: 1 1 auto;
+  order: 3;
+  max-width: 50px;
+  display: inline-block;
+  border: none;
+  background: #fff;
+  color: blue;
+  padding-top: 6px;
+  height: 40px;
+  transition: all 0.05s ease-in-out;
+  outline: none;
+}
+
+.m-b-40 {
+  margin-bottom: 40px;
+}
+
+.mat-tab-label {
+  opacity: unset !important;
+}
+
+
+/* 
+.mat-horizontal-content-container {
+  padding: 0px !important;
+} */
+
+.cdk-overlay-container .cdk-global-overlay-wrapper .cdk-overlay-pane.fit-screen {
+  width: 98% !important;
+  height: 88% !important;
+}
+
+.cdk-overlay-container .cdk-global-overlay-wrapper .cdk-overlay-pane.fit-screen .mat-dialog-container {
+  max-width: unset;
+}
+
+.cdk-overlay-container .cdk-global-overlay-wrapper .backdrop {
+  background: darkslategray;
+  filter: blur(8px);
+}
+
+.cdk-overlay-container {
+  position: fixed;
+  z-index: 999999 !important;
+}
+
+.cdk-global-overlay-wrapper {
+  display: flex;
+  position: absolute;
+  z-index: 9999999 !important;
+}
+
+.cdk-overlay-pane {
+  position: absolute;
+  pointer-events: auto;
+  box-sizing: border-box;
+  z-index: 9999999 !important;
+}
+
+.cdk-overlay-backdrop {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999999 !important;
+  pointer-events: auto;
+  transition: opacity 400ms cubic-bezier(0.25, 0.8, 0.25, 1);
+  opacity: 0;
+}
+.mdIcon-button-style {
+  background-color: red; 
+  color: white; 
+  border-radius: 5px;
+}
+
+.background-overall {
+  background-color: #336CFB !important;
+  border: 0px;
+  color: #ffffff !important;
+}
+
+.button-reset {
+  background-color: #C21F1F !important;
+  border: 0px;
+  color: #ffffff !important;
+}
+
+.mat-form-field-underline {
+  background-color: #336CFB !important;
+  background-size: 4px 1px;
+  background-repeat: repeat-x;
+  background-color: unset;
+  position: absolute;
+  height: 2px;
+  width: 100%;
+}
+
+.mat-select-underline {
+  background-color: #336CFB !important;
+  background-color: unset;
+  position: absolute;
+  height: 2px;
+  width: 100%;
+}
+
+.mat-expansion-panel-header.mat-expanded,
+.mat-expansion-panel-header.mat-expanded:hover,
+.mat-expansion-panel-header.mat-expanded:focus {
+  background: #336CFB !important;
+  border: 0px;
+  color: #ffffff;
+}
+
+.mat-dialog-container {
+  background: white !important;
+  /* color: rgba(0, 0, 0, 0.87); */
+}
+
+.mat-expansion-panel-header-description, .mat-expansion-indicator::after {
+  color: #ffffff;
+}
+
+.mat-expanded md-icon {
+  color: #ffffff !important;
+}
+
+.mat-expanded .mat-expansion-indicator::after {
+  color: #ffffff !important;
+}
+.mat-select-placeholder {
+  position: relative;
+  padding: 0 2px;
+  transform-origin: left top;
+  flex-grow: 1;
+  /* line-height: 55px; */
+  padding-bottom: 10px;
+}
+
+.mat-expansion-panel-header {
+  background: #ffffff !important;
+  border: 0px;
+  color: grey;
+}
+
+.mat-select-value {
+  color: #52575C !important;
+}
+
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  background-color: #336CFB !important;
+}
+
+.mat-tab-label {
+  color: #52575C !important;
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+  z-index: 3;
+  color: #ffffff !important;
+  cursor: default;
+  background-color: #336CFB !important;
+  border-color: #336CFB !important;
+}
+
+.pagination>li>a, .pagination>li>span {
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  margin-left: -1px;
+  line-height: 1.42857143;
+  color: #336CFB !important;
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+.button-ok {
+  background-color: #336CFB !important;
+  border: 0px;
+  color: #ffffff;
+}
+
+.mat-step-header .mat-step-icon {
+  background-color: #336CFB !important;
+  color: white;
+}
+
+.mat-step-header .mat-step-icon-not-touched {
+  background-color: rgba(0, 0, 0, 0.38);
+  color: white;
+}
+
+.mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary {
+  background-color: #336CFB !important;
+  border-radius: 30px;
+  color: white !important;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+}
+
+.first-visit-marker {
+  background: #336CFB !important;
+}
+
+.visitStatus.first-visit::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 1px;
+  width: 4px;
+  background: #336CFB !important;
+}
+
+.mat-radio-button.mat-primary.mat-radio-checked .mat-radio-outer-circle {
+  border-color: #336CFB !important;
+}
+
+.mat-radio-button.mat-primary .mat-radio-inner-circle {
+  background-color: #336CFB !important;
+}
+
+.mat-expansion-panel-header-title.mat-expanded,
+.mat-expansion-panel-header-title.mat-expanded:hover,
+.mat-expansion-panel-header-title.mat-expanded:focus {
+  background: #336CFB !important;
+  border: 0px;
+  color: #ffffff;
+}
+
+.mat-expansion-panel-header-title {
+  border: 0px;
+  color: #ffffff;
+}
+
+.mat-button:hover .mat-button-focus-overlay {
+  opacity: 0 !important;
+}
+
+.text-field-color {
+  color: #52575C !important;
+}
+
+.mat-checkbox-layout .mat-checkbox-label {
+  line-height: 24px;
+  color: #52575C !important;
+}
+
+.button-preview {
+  background-color: #336CFB !important;
+  border: 0px;
+  color: #ffffff;
+}
+
+body .mat-menu-content .active {
+  border-radius: 0px;
+}
+
+.mat-expansion-panel-header h4 {
+  font-weight: bold;
+  color: #52575C !important;
+}
+
+body md-icon.search-btn.cursorPointer.mat-icon.material-icons.ng-star-inserted {
+  color: #52575C !important;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+  background-color: #E1EAFF;
+}
+
+.mat-primary .mat-pseudo-checkbox-checked, .mat-primary .mat-pseudo-checkbox-indeterminate {
+  background-color: #336CFB !important;
+}
+
+.button-green {
+  background-color: green !important;
+  border: 0px;
+  color: #ffffff;
+}
+
+.mat-select-disabled .mat-select-underline {
+  background-color: transparent !important;
+  background-position: 0 bottom;
+}
+
+.mat-select-disabled .mat-select-value, .mat-select-arrow, .mat-select-trigger {
+  color: rgba(0, 0, 0, 0.42) !important;
+}
+
+
+.button-overall-disabled[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.md2-pagination {
+  display: block;
+  color: #336CFB !important;
+  user-select: none;
+}
+
+.colorpagination li.active {
+  background-color: #336CFB !important;
+  color: white;
+  border-color: #336CFB !important;
+  cursor: default;
+}
+
+.mat-form-field-underline.mat-disabled {
+  background-position: 0;
+  background-color: transparent !important;
+}

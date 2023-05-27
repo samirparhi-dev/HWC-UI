@@ -1,0 +1,44 @@
+<div class="container-fluid">
+  <button
+    md-mini-fab
+    class="example-fab"
+    color="primary"
+    (click)="sideNavModeChange(sidenav)"
+  >
+    <md-icon>account_box</md-icon>
+  </button>
+
+  
+  <!-- <div class="overlay" *ngIf="showProgressBar">
+    <div class="overlay-content">
+      <md-spinner></md-spinner>
+    </div>
+  </div> -->
+
+  
+  
+  <md-sidenav-container class="example-sidenav-fab-container">
+    <md-sidenav #sidenav mode="side" opened="true">
+      <div class="example-scrolling-content sidenav">
+        <app-referred-104-beneficiary-details></app-referred-104-beneficiary-details>
+
+      </div>
+    </md-sidenav>
+    <div [ngClass]="sidenav._opened == true ? 'example-scrolling-content content' : 'example-scrolling-content contentNav'">
+      <md-horizontal-stepper
+          linear="false">
+      <md-step selected label="Clinical Decision Support System (CDSS) Screen">
+        <ng-template mdStepLabel>Clinical Decision Support System (CDSS) Screen</ng-template>
+  
+        <app-referred-104-cdss-details
+        >
+        </app-referred-104-cdss-details>
+      </md-step>
+      </md-horizontal-stepper>
+    </div>
+<!-- code to be added -->
+    </md-sidenav-container>
+
+    <!-- <h1>this is referred 104 workarea</h1> -->
+    
+</div>

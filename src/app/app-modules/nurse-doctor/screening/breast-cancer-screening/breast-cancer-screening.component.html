@@ -1,0 +1,95 @@
+<md-card class="m-t-10 m-b-5">
+  <div
+    class="row"
+    [formGroup]="breastCancerScreeningForm"
+    [hidden]="hideBreastForm"
+  >
+    <div
+      class="pull-right"
+      [hidden]="hideRemoveFunctionalityInDoctorIfSuspected"
+    >
+      <button md-icon-button (click)="hideBreastScreeningForm()">
+        <md-icon mdTooltip="Remove" class="md-24 mdIcon-button-style"
+          >close</md-icon
+        >
+      </button>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+      <h5>
+        <strong>{{ currentLanguageSet?.breastCancer }}</strong>
+      </h5>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 pull-right">
+      <md-checkbox
+        [disabled]="disableCheckbox"
+        [checked]="breastCancerSuspected"
+        (change)="markAsUnsuspected($event.checked)"
+      ></md-checkbox>
+      <label style="color: grey; margin-bottom: 15px"
+        >Mark as suspected</label
+      >
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <label
+        *ngIf="breastCancerSuspected"
+        style="color: red; margin-bottom: 15px"
+        >* {{ currentLanguageSet?.breastCancerScreeningSuspected }}</label
+      >
+    </div>
+    <div class="row m-t-10">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box">
+          <md-select
+            class="input-full-width"
+            placeholder="{{ currentLanguageSet?.inspectionOfBreasts }}"
+            formControlName="inspectionBreastsId"
+            (change)="setNameBasedOnSelectedID()"
+            required
+          >
+            <md-option
+              *ngFor="let inspectionOfBreast of inspectionOfBreasts"
+              [value]="inspectionOfBreast.id"
+            >
+              {{ inspectionOfBreast.name }}
+            </md-option>
+          </md-select>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4  box">
+          <md-select
+            class="input-full-width"
+            placeholder="{{ currentLanguageSet?.palpationOfBreasts }}"
+            formControlName="palpationBreastsId"
+            (change)="setNameBasedOnSelectedID()"
+            required
+          >
+            <md-option class="mat-option"
+              *ngFor="let palpationOfBreast of palpationOfBreasts"
+              [value]="palpationOfBreast.id"
+            >
+              {{ palpationOfBreast.name }}
+            </md-option>
+          </md-select>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box">
+          <md-select
+            class="input-full-width"
+            placeholder="{{ currentLanguageSet?.palpationOfLymphNodes }}"
+            formControlName="palpationLymphNodesId"
+            (change)="setNameBasedOnSelectedID()"
+            required
+          >
+            <md-option
+              *ngFor="let palpationOfLymphNode of palpationOfLymphNodes"
+              [value]="palpationOfLymphNode.id"
+            >
+              {{ palpationOfLymphNode.name }}
+            </md-option>
+          </md-select>
+        </div>
+      </div>
+    </div>
+  </div>
+</md-card>

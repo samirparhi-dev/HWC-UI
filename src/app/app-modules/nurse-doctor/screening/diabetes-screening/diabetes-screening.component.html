@@ -1,0 +1,121 @@
+<md-card class="m-t-10 m-b-5">
+  <form [formGroup]="diabetesScreeningForm">
+    <div
+      class="pull-right"
+      [hidden]="hideRemoveFunctionalityInDoctorIfSuspected"
+    >
+      <button md-icon-button>
+        <md-icon mdTooltip="Remove" class="md-24 mdIcon-button-style" (click)="hideDiabetesForm()"
+          >close</md-icon
+        >
+      </button>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <h5>
+          <strong>{{ currentLanguageSet?.diabetes }}</strong>
+        </h5>
+
+        <div>
+          <label
+            *ngIf="isDiabetesSuspected"
+            style="color: red; margin-bottom: 15px"
+            >* {{ currentLanguageSet?.screeningIsPositive }}</label
+          >
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 pull-right">
+        <md-checkbox
+          [disabled]="disableCheckbox"
+          [checked]="isDiabetesSuspected"
+          (change)="markAsUnsuspected($event.checked)"
+        ></md-checkbox>
+        <label style="color: grey; margin-bottom: 15px"
+          >Mark as suspected</label
+        >
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 box">
+        <md-select
+          class="input-full-width"
+          formControlName="bloodGlucoseTypeID"
+          placeholder="{{ currentLanguageSet?.bloodGlucoseSampleType }}"
+          (change)="resetDiabeticValues()"
+          required
+        >
+          <md-option
+            *ngFor="let sampleType of bloodGlucoseSampleTypes"
+            [value]="sampleType.id"
+          >
+            {{ sampleType.name }}
+          </md-option>
+        </md-select>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 box">
+        <md-form-field class="input-full-width">
+          <input
+            autocomplete="off"
+            mdInput
+            defaultNull
+            placeholder="{{ currentLanguageSet?.bloodGlucoseMgDl }}"
+            allowText="number"
+            name="bloodGlucose"
+            id="testValue"
+            formControlName="bloodGlucose"
+            maxlength="3"
+            allowMin="10"
+            allowMax="600"
+            (blur)="checkingDiabeticStatus()"
+            required
+            [ngClass]="{
+              abnormal:
+              bloodGlucose > 140 }"
+          />
+          <button
+            tooltip="{{ currentLanguageSet?.common?.startTest }}"
+            mdSuffix
+            (click)="openIOTRBSModel()"
+          >
+            <span class="glyphicon glyphicon-scale"></span>
+          </button>
+          <md-error *ngIf="disableFindStatuButton === true">
+            <p>*Range: 10-600 mg/dl</p>
+          </md-error>
+        </md-form-field>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 box">
+        <md-form-field class="input-full-width">
+          <input
+            autocomplete="off"
+            mdInput
+            allowText="textAreaValidator"
+            defaultNull
+            mdTextareaAutosize
+            maxlength="300"
+            name="bloodGlucoseRemarks"
+            formControlName="bloodGlucoseRemarks"
+            placeholder="{{ currentLanguageSet?.testRemarks }}"
+          />
+        </md-form-field>
+      </div>
+      <div
+        class="col-xs-12 col-sm-6 col-md-3 col-lg-3"
+        *ngIf="hideStatusButton === false"
+      >
+        <button
+          md-raised-button
+          class="full-width-status button-status-disabled"
+          (click)="getDiabetes()"
+          [disabled]="disableFindStatuButton"
+          color="primary"
+        >
+          Find Status
+        </button>
+      </div>
+    </div>
+  </form>
+</md-card>

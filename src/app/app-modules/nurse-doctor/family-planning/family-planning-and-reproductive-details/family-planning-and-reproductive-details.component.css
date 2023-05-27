@@ -1,0 +1,52 @@
+h5 {
+    font-weight: bold;
+}
+
+.mat-expansion-panel-header {
+    background: rgba(37, 55, 70, 0.2);
+}
+
+.textarea-full-width {
+    width: 100%;
+}
+
+.input-full-width {
+    width: 100%;
+}
+
+.select-full-width {
+    width: 100%;
+}
+
+.control-label {
+    font-weight: normal;
+}
+
+.mat-form-field {
+    line-height: unset;
+}
+
+.box {
+    height: 70px;
+}
+
+.radio-button {
+    margin: 10px;
+    margin-right: 25px;
+}
+
+.dropdownHeight {
+    display: block;
+    line-height: 28px;
+    padding: 10px 15px;
+    text-align: left;
+    text-decoration: none;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    height: inherit;
+    white-space: inherit;
+    overflow: visible;
+    text-overflow: unset;
+    width: 350px;
+}

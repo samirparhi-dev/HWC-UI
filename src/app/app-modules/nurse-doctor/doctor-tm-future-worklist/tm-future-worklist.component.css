@@ -1,0 +1,136 @@
+.input-full-width {
+  width: 100%;
+}
+
+md2-pagination {
+  text-align: right;
+}
+
+md-input-container {
+  width: 60%;
+}
+
+md-card {
+  min-height: 400px;
+  padding: 15px;
+}
+
+:host /deep/ .pagination {
+  margin: 0;
+}
+
+@media (max-width: 481px) {
+  md-input-container {
+    width: 100%;
+  }
+  #caseSheetButton {
+    width: 100%;
+  }
+}
+
+ul {
+  list-style: none;
+  padding: 0px;
+}
+
+ul li {
+  display: inline-block;
+  padding: 0 8px;
+}
+
+ul li div,
+ul li p {
+  display: inline-block;
+}
+
+ul li div {
+  height: 15px;
+  width: 15px;
+}
+
+.marker-s-f-t-c {
+  background: #336CFB;
+}
+
+.action {
+  text-align: center;
+}
+
+.visitStatus {
+  position: relative;
+  text-align: center;
+}
+
+.norecord {
+  text-align: center;
+}
+
+.no-padding {
+  padding: 0 !important;
+}
+
+.centered {
+  justify-content: center;
+  display: flex;
+}
+
+.visitStatus.s-f-t-c::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 1px;
+  width: 4px;
+  background: #336CFB !important;
+}
+
+.totalCount,
+.description {
+  padding-top: 15px;
+}
+
+.full-width-login {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 35px;
+  border-radius: 16px;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 8px;
+  max-width: 110px;
+}
+
+.box {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 50px;
+}
+
+table {
+  width: 100%;
+  color: #52575C !important;
+}
+
+button[disabled].full-width-login-schedule {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 35px;
+  border-radius: 16px;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 8px;
+  max-width: 110px;
+  opacity: 0.5;
+}
+
+.full-width-refresh {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 35px;
+    border-radius: 16px;
+    font-size: 15px;
+    font-weight: bold;
+    max-width: 110px;
+}

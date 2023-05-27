@@ -1,0 +1,88 @@
+<div class="row m-t-20" [formGroup]="oralVitaminAForm" *ngIf="beneficiaryAge <= 5 && this.visitCategory.trim().toLowerCase() == 'childhood & adolescent healthcare services'">
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 div-height">
+    <md2-datepicker
+      [openOnFocus]="true"
+      class="full-width"
+      name="dateOfVisit"
+      formControlName="dateOfVisit"
+      placeholder="{{ currentLanguageSet?.dateOfVisit }}"
+      [max]="today"
+      (change)="onValueChange()"
+    >
+    </md2-datepicker>
+  </div>
+
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 div-height">
+    <md-select
+      class="full-width"
+      name="oralVitaminAStatus"
+      formControlName="oralVitaminAStatus"
+      placeholder="{{currentLanguageSet?.oralVitaminA}}"
+      (change)="setVaccineDetails(oralVitaminAStatus)"
+    >
+    <md-option
+      *ngFor="let status of vaccineStatus"
+      [value]="status"
+    >
+    {{ status }}
+  </md-option>
+    </md-select>
+  </div>
+
+  <ng-template [ngIf]="oralVitaminAForm.value.oralVitaminAStatus === 'Given'">
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 div-height">
+      <md-select
+      class="full-width"
+      placeholder="{{currentLanguageSet?.noOfOralVitaminADose}}"
+      name="noOfOralVitaminADose"
+      formControlName="noOfOralVitaminADoseID"
+      (change)="getNoOfOralVitaminADose()"
+      >
+        <md-option
+          *ngFor="let vitaminDose of oralVitaminADoses"
+          [value]="vitaminDose.id"
+        >
+        {{ vitaminDose.name }}
+        </md-option>
+      </md-select>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 div-height">
+      <md-select
+        class="full-width"
+        placeholder="{{currentLanguageSet?.dose}}"
+        name="dose"
+        formControlName="dose"
+      >
+      <md-option value="2 ml (2 lakh IU)">2 ml (2 lakh IU)</md-option>
+      </md-select>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 div-height">
+      <md-form-field class="full-width">
+        <input
+          autocomplete="off"
+          type="text"
+          mdInput
+          allowText = "usernameValidator"
+          maxlength="50"
+          formControlName="batchNo"
+          placeholder="{{ currentLanguageSet?.batchNo }}"
+          (change)="onValueChange()"
+        />
+      </md-form-field>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 div-height">
+      <md-select
+        class="full-width"
+        placeholder="{{ currentLanguageSet?.route }}"
+        name="route"
+        formControlName="route"
+      >
+      <md-option value="Oral">Oral</md-option>
+      </md-select>
+    </div>
+  </ng-template>
+
+</div>

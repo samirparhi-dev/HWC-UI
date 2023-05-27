@@ -1,0 +1,104 @@
+h5{
+    font-weight: bold;
+}
+
+.mat-expansion-panel-header{
+    background: rgba(37,55,70,0.2);
+}
+
+.mat-form-field {
+    line-height: unset;
+}
+
+.input-full-width {
+    width: 100%;
+}
+
+.mat-horizontal-content-container{
+    padding: 0px;
+}
+
+.box {
+    height: 60px;
+}
+
+.align {
+    margin-top: 15px;
+  }
+
+
+  .table {
+    margin-bottom: 0px;
+}
+
+.table-no-border tr, th, .table-no-border tr td, .table-no-border thead tr th, .table-no-border tbody tr th, .table-no-border tbody tr td {
+    border: none;
+}
+
+/* .family-table tr th, .family-table tr td, .family-table thead tr th, .family-table tbody tr th, .family-table tbody tr td {
+    width: 25%;
+    padding-left:1px;
+
+} */
+
+
+.alignTable{
+    width: 25%;
+    padding-left:1px;
+}
+
+
+.alignTableFollow{
+    width: 15%;
+    padding-left:1px;
+}
+
+
+.alignTableSide{
+    width: 10%;
+    padding-left:1px;
+}
+
+.text-field-disabled[disabled] {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+.dropdownValue:hover{
+    overflow: visible;
+}
+.dropdownValue {
+  text-overflow: ellipsis;
+}
+  .dropdownValueSubVisitCategory {
+    display: block;
+    line-height: 28px;
+    padding: 10px 15px;
+    text-align: left;
+    text-decoration: none;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    height: inherit;
+    white-space: inherit;
+    overflow: visible;
+    text-overflow: unset;
+    width: 400px;
+  }
+
+.dropdownHeight {
+    display: block;
+    line-height: 28px;
+    padding: 10px 15px;
+    text-align: left;
+    text-decoration: none;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    height: inherit;
+    white-space: inherit;
+    overflow: visible;
+    text-overflow: unset;
+    width: 350px;
+}
+
+  

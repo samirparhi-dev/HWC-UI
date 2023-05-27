@@ -1,0 +1,108 @@
+<md-icon class="mdicon mat-icon material-icons pull-right cursorPointer" mdTooltip="{{currentLanguageSet?.close}}" role="img" aria-hidden="true" (click)="close()">
+  clear</md-icon>
+
+<h4 md-dialog-title class="f-s-b m-l-15" *ngIf="page1">{{currentLanguageSet?.symptoms}}</h4>
+<h4 md-dialog-title class="f-s-b m-b-5 m-l-15" *ngIf="page2">{{currentLanguageSet?.symptomResults}}</h4>
+<h4 md-dialog-title class="f-s-b m-l-15" *ngIf="formattedResult!=null && page3">{{currentLanguageSet?.diseases}}</h4>
+
+<md-dialog-content  *ngIf="page1" class="captialize">
+  <div class="col-xs-12 col-sm-12" id='Questions'>
+    <div *ngIf="questions!=null">
+      <ul class="list-unstyled list-inline" *ngFor="let c of questions.Questions; let i = index; trackBy: trackByFn1">
+        <li>
+          <md-radio-button value="1" (change)="getNextSet(c.isEmergency,i)" value="{{i}}"></md-radio-button>
+          <span>{{c.question}}
+            <sup *ngIf="c.isEmergency" style="color:red">[Emergency]</sup>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</md-dialog-content>
+<md-dialog-actions *ngIf="page1">
+  <button [hidden]="true"></button>
+</md-dialog-actions>
+<md-dialog-content *ngIf="page2">
+  <div class="container-fluid" id='result'>
+    <div class="row" *ngIf="result!=null">
+      <md-tab-group>
+        <md-tab *ngFor="let c of result; let i = index; trackBy: trackByFn1" label="{{c.Disease}}">
+          <div class="col-xs-12 col-sm-12">
+            <ul class="questionSet1 list-unstyled">
+              <li *ngFor="let symp of c.Symptoms ; let j = index trackBy: trackByFn " class="m-t-5 m-b-5">
+                <md-button-toggle (click)="toggle(c,j+1)" value="{{i+1+'.'+(j+1)}}" name="symptoms">
+                  {{symp}}
+                </md-button-toggle>
+              </li>
+            </ul>
+          </div>
+        </md-tab>
+      </md-tab-group>
+    </div>
+  </div>
+</md-dialog-content>
+<md-dialog-actions class="row m-t-20" style="margin-bottom:30px;" *ngIf="result!=null && page2">
+  <div class="col-sm-12 step-btn" style="text-align: right">
+    <button md-raised-button color="primary" class="button-reset-disabled" (click)="changePage('1')">{{currentLanguageSet?.common?.back}}</button>
+    <button md-raised-button color="accent" style="border-radius: 40px;" class="btn-green button-submit-disabled" (click)='getresult()'>{{currentLanguageSet?.common?.result}}</button>
+</div>
+</md-dialog-actions>
+
+<md-dialog-content *ngIf="formattedResult!=null && page3">
+  <form #table="ngForm" autocomplete="off">
+    <div class="container-fluid">
+      <div class="row table-responsive">
+        <table class="table " [md2Data]="formattedResult1" #md2="md2DataTable" style="border:1px" aria-describedby="callRecordings">
+          <thead>
+            <tr>
+              <th id ="cdssSave" style="width:10%">{{currentLanguageSet?.coreComponents?.save}}</th>
+              <th id ="cdssDisease">{{currentLanguageSet?.disease}}</th>
+              <th id ="cdssCount">{{currentLanguageSet?.count}}</th>
+              <th id ="cdssInformation">{{currentLanguageSet?.information}}</th>
+              <th id ="cdssDoDont">{{currentLanguageSet?.dosDont}}</th>
+              <th id ="cdssSelfCare">{{currentLanguageSet?.selfcare}}</th>
+              <th id ="cdssAction">{{currentLanguageSet?.action}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let i of md2.data; let in=index ">
+              <td>
+                <md-checkbox color="primary" class="m-l-10" name={{i.Disease}} (click)="getDiseaseName(i.Disease,in, i.Action[0],i.Symptoms,i.selected)">
+                </md-checkbox>
+              </td>
+              <td>{{i.Disease}}</td>
+              <td>{{i.percentage}}</td>
+              <td>
+                <ul class="list-unstyled">
+                  <li *ngFor="let do of i.Information ">{{do}}</li>
+                </ul>
+              </td>
+              <td>
+                <ul class="list-unstyled">
+                  <li *ngFor="let do of i.DoDonts ">{{do}}</li>
+                </ul>
+              </td>
+              <td>
+                <ul class="list-unstyled">
+                  <li *ngFor="let do of i.SelfCare ">{{do}}</li>
+                </ul>
+              </td>
+              <td>
+                <ul class="list-unstyled">
+                  <li *ngFor="let do of i.Action ">{{do}}</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </form>
+</md-dialog-content>
+<md-dialog-actions class="row m-t-20" style="margin-bottom:30px;" *ngIf="formattedResult!=null && page3">
+  <div class="col-sm-12 step-btn" style="text-align: right">
+    <button md-raised-button color="primary" class="button-reset-disabled" (click)="resetCount();changePage('2');table.reset();">{{currentLanguageSet?.common?.back}}</button>
+    <button [disabled]="diseasess.length==0" style="border-radius: 40px;" class="btn-green button-submit-disabled" color="accent" md-raised-button (click)="saveData(diseasess)">{{currentLanguageSet?.coreComponents?.save}}</button>
+</div>
+</md-dialog-actions>
+

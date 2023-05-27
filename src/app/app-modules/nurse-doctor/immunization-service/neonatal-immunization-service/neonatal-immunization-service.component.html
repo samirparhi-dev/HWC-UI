@@ -1,0 +1,225 @@
+<div class="row m-t-20" [formGroup]="immunizationServicesForm">
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 div-height">
+    <md2-datepicker
+      [openOnFocus]="true"
+      class="full-width"
+      name="dateOfVisit"
+      formControlName="dateOfVisit"
+      placeholder="{{ currentLanguageSet?.dateOfVisit }}"
+      [max]="today"
+    >
+    </md2-datepicker>
+  </div>
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 div-height">
+    <md-select
+      class="full-width"
+      placeholder="{{ currentLanguageSet?.typeOfImmunizationServices }}"
+      name="immunizationServicesTypeID"
+      formControlName="immunizationServicesTypeID"
+      (change)="
+        setImmunizationServiceType(
+          immunizationServicesForm.controls.immunizationServicesTypeID.value
+        )
+      "
+    >
+      <md-option
+        *ngFor="let service of typeOfImmunizationServiceList"
+        [value]="service.id"
+      >
+        {{ service.name }}
+      </md-option>
+    </md-select>
+  </div>
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 div-height">
+    <md-select
+      class="full-width"
+      placeholder="{{ currentLanguageSet?.currentImmunizationService }}"
+      name="currentImmunizationServiceID"
+      formControlName="currentImmunizationServiceID"
+      (change)="
+        setCurrentImmunizationService(
+          immunizationServicesForm.controls.currentImmunizationServiceID
+            .value
+        );
+        getVaccineListOnSelectedService(
+          immunizationServicesForm.controls.currentImmunizationServiceID
+            .value, immunizationServicesForm.controls.currentImmunizationService.value
+        )
+      "
+    >
+      <md-option
+        *ngFor="let currentService of filteredImmunizationServiceList"
+        [value]="currentService.id"
+      >
+        {{ currentService.name }}
+      </md-option>
+    </md-select>
+  </div>
+</div>
+<md-card
+  *ngIf="enableVaccineDetails"
+  [formGroup]="immunizationServicesForm"
+>
+  <ng-container formArrayName="vaccines">
+    <div
+      *ngFor="
+        let vaccine of immunizationServicesForm.controls['vaccines'][
+          'controls'
+        ];
+        let i = index
+      "
+    >
+      <ng-container [formGroupName]="i">
+        <div class="row">
+          <md-card-header>
+            <md-card-title>
+              <h5>
+                <strong>{{ vaccineList[i]?.vaccine }}</strong>
+                <!-- <strong *ngIf="immunizationServicesForm.controls.currentImmunizationService
+                .value?.toLowerCase() !== 'missing vaccine(s)'">{{ vaccineList[i]?.vaccine }}</strong> -->
+                <!-- <strong *ngIf="immunizationServicesForm.controls.currentImmunizationService
+                .value?.toLowerCase() === 'missing vaccine(s)'">Missing vaccine(s)</strong> -->
+              </h5>
+            </md-card-title>
+          </md-card-header>
+        </div>
+        <md-card-content>
+          <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 div-height">
+              <md-select
+                class="full-width"
+                placeholder="{{ currentLanguageSet?.currentVaccineStatus }}"
+                name="status"
+                formControlName="status"
+                (change)="
+                  setVaccineName(
+                    vaccine.value.status,
+                    i
+                  )
+                "
+              >
+                <md-option
+                  *ngFor="let status of vaccineStatus"
+                  [value]="status"
+                >
+                  {{ status }}
+                </md-option>
+              </md-select>
+            </div>
+            
+            <!-- <div class="col-xs-12 col-sm-6 col-md-3 col-lg-4 div-height" *ngIf="immunizationServicesForm.controls.currentImmunizationService
+            .value?.toLowerCase() === 'missing vaccine(s)'">
+              <md-select
+                class="full-width"
+                placeholder="{{ currentLanguageSet?.vaccine }}"
+                name="status"
+                formControlName="status"
+                (change)="
+                  setMissingVaccineName(vaccine.value.status, i)
+                "
+              >
+                <md-option
+                  *ngFor="let status of missingVaccineList"
+                  [value]="status"
+                >
+                  {{ status }}
+                </md-option>
+              </md-select>
+            </div> -->
+            <div
+              class="col-xs-12 col-sm-6 col-md-3 col-lg-3 div-height"
+              *ngIf=" (
+                (vaccine.value.status !== undefined &&
+                vaccine.value.status !== null &&
+                vaccine.value.status.toLowerCase() === 'given') || enableFieldsToCaptureMissedVaccineDetails)
+              "
+            >
+              <md-select
+                class="full-width"
+                placeholder="{{ currentLanguageSet?.vaccineDose }}"
+                name="vaccineDose"
+                formControlName="vaccineDose"
+                [id]="'vaccineDose'+ i"
+              >
+                <md-option
+                  *ngFor="let dose of vaccineList[i]?.dose"
+                  [value]="dose.dose"
+                >
+                  {{ dose.dose }}
+                </md-option>
+              </md-select>
+            </div>
+            <div
+              class="col-xs-12 col-sm-6 col-md-3 col-lg-3 div-height"
+              *ngIf="  (
+                (vaccine.value.status !== undefined &&
+                vaccine.value.status !== null &&
+                vaccine.value.status.toLowerCase() === 'given') || enableFieldsToCaptureMissedVaccineDetails)
+              "
+            >
+              <md-form-field class="full-width">
+                <input
+                  autocomplete="off"
+                  type="text"
+                  mdInput
+                  allowText = "usernameValidator"
+                  maxlength="50"
+                  formControlName="batchNo"
+                  placeholder="{{ currentLanguageSet?.batchNo }}"
+                />
+              </md-form-field>
+            </div>
+
+            <div
+              class="col-xs-12 col-sm-6 col-md-3 col-lg-3 div-height"
+              *ngIf="  (
+                (vaccine.value.status !== undefined &&
+                vaccine.value.status !== null &&
+                vaccine.value.status.toLowerCase() === 'given') || enableFieldsToCaptureMissedVaccineDetails)
+              "
+            >
+              <md-select
+                class="full-width"
+                placeholder="{{ currentLanguageSet?.route }}"
+                name="route"
+                formControlName="route"
+                [id]="'route'+ i"
+              >
+                <md-option
+                  *ngFor="let item of vaccineList[i]?.route"
+                  [value]="item.route"
+                >
+                  {{ item.route }}
+                </md-option>
+              </md-select>
+            </div>
+            <div class="clearfix"></div>
+            <div
+              class="col-xs-12 col-sm-6 col-md-3 col-lg-3 div-height"
+              *ngIf=" (vaccineList[i]?.siteOfInjection?.length > 0 && (
+                (vaccine.value.status !== undefined &&
+                vaccine.value.status !== null &&
+                vaccine.value.status.toLowerCase() === 'given') || enableFieldsToCaptureMissedVaccineDetails))
+              "
+            >
+              <md-select
+                class="full-width"
+                placeholder="{{ currentLanguageSet?.siteOfInjection }}"
+                name="siteOfInjection"
+                formControlName="siteOfInjection"
+                [id]="'siteOfInjection'+ i"
+              >
+                <md-option
+                  *ngFor="let injection of vaccineList[i]?.siteOfInjection"
+                  [value]="injection.siteofinjection"
+                >
+                  {{ injection.siteofinjection }}
+                </md-option>
+              </md-select>
+            </div>
+          </div> 
+        </md-card-content>
+      </ng-container>
+    </div>
+  </ng-container>
+</md-card>

@@ -1,0 +1,21 @@
+.option1 { 
+    display: inline-block; /* show on the same line */
+  } 
+
+  .option2 { 
+    padding-right: 20px; /* small gap on the right of each header */ 
+  } 
+
+  .box{
+    height: 60px;
+}
+ .answer{
+   min-width: 200px;
+ }
+ .radioButton{
+   padding-left: 20%;
+ }
+.onHover:hover{
+  font-size: 20px;
+  font-weight: 500px;
+}

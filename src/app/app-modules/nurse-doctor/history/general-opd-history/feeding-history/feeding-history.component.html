@@ -1,0 +1,133 @@
+<!-- {{ feedingHistoryForm.value | json }} -->
+<div class="row m-t-10" [formGroup]="feedingHistoryForm">
+  <div class="col-xs-12 text-right">
+    <label class="font-history-label m-t-10">{{
+      currentLanguageSet?.historyData?.Feedinghistorydetails
+        ?.previousfeedinghistory
+    }}</label>
+    <button
+      type="button"
+      md-icon-button
+      mdTooltip="{{ currentLanguageSet?.DurationData?.previousDetails }}"
+      id="previousFeedingHistory"
+      class="pull-right"
+      color="primary"
+      (click)="getPreviousFeedingHistory()"
+    >
+      <md-icon class="md-18">history</md-icon>
+    </button>
+  </div>
+  <div>
+    <div class="box col-xs-12 col-sm-6 col-md-6 col-lg-6">
+      <md-select
+        class="select-full-width"
+        name="typeOfFeedsDuringFirst6Months"
+        formControlName="typeOfFeed"
+        placeholder="{{
+          currentLanguageSet?.historyData?.opd_NCD_PNCHistory?.feeding
+            ?.typeofFeeds
+        }}"
+      >
+        <md-option
+          *ngFor="let feedsAge of masterData?.feedTypes"
+          [value]="feedsAge.value"
+          >{{ feedsAge.value }}</md-option
+        >
+      </md-select>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="box col-xs-12 col-sm-6 col-md-6 col-lg-6" *ngIf="age > 6">
+      <md-select
+        class="select-full-width"
+        name="ageAtWeaningFeedIntroduced"
+        formControlName="compFeedStartAge"
+        placeholder="{{
+          currentLanguageSet?.historyData?.opd_NCD_PNCHistory?.feeding
+            ?.ageatweaning
+        }}"
+        (change)="resetNoOfCompFeedPerDay()"
+      >
+        <md-option
+          *ngFor="let feedType of masterData?.compFeedAges"
+          [value]="feedType.value"
+          >{{ feedType.value }}</md-option
+        >
+      </md-select>
+    </div>
+
+    <div
+      class="box col-xs-12 col-sm-6 col-md-6 col-lg-6"
+      *ngIf="compFeedStartAge"
+    >
+      <md-select
+        class="select-full-width"
+        name="complimentaryFoodNumber"
+        formControlName="noOfCompFeedPerDay"
+        placeholder="{{
+          currentLanguageSet?.historyData?.opd_NCD_PNCHistory?.feeding
+            ?.numberofComplimentaryfoodservings
+        }}"
+      >
+        <md-option
+          *ngFor="let feedsNumber of masterData?.compFeedServings"
+          [value]="feedsNumber.value"
+          >{{ feedsNumber.value }}</md-option
+        >
+      </md-select>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="box col-xs-12 col-sm-6 col-md-3 col-lg-3">
+      <label class="control-label" for="foodIntoleranceStatus">{{
+        currentLanguageSet?.historyData?.opd_NCD_PNCHistory?.feeding
+          ?.foodIntoleranceStatus
+      }}</label>
+      <div class="clearfix"></div>
+      <md-radio-group
+        name="foodIntoleranceStatus"
+        formControlName="foodIntoleranceStatus"
+        (change)="resetTypeofFoodIntolerance()"
+      >
+        <md-radio-button color="primary" [value]="true">{{
+          currentLanguageSet?.common?.yes
+        }}</md-radio-button>
+        <md-radio-button color="primary" [value]="false" class="radio-btn">{{
+          currentLanguageSet?.common?.no
+        }}</md-radio-button>
+      </md-radio-group>
+    </div>
+    <div
+      class="box col-xs-12 col-sm-6 col-md-3 col-lg-3"
+      *ngIf="foodIntoleranceStatus == true || foodIntoleranceStatus == 1"
+    >
+    <md-select multiple class="select-full-width" formControlName = "typeOfFoodIntolerances" name="typeOfFoodIntolerances"
+        placeholder="{{
+          currentLanguageSet?.historyData?.opd_NCD_PNCHistory?.feeding
+            ?.typeofFoodIntolerance
+        }}"
+        (change)="checkForOthersOption(feedingHistoryForm.controls.typeOfFoodIntolerances.value)"
+      >
+        <md-option *ngFor="let foodType of foodIntoleranceTypes" [value]="foodType.intoleranceStatus">
+          {{ foodType.intoleranceStatus }}
+        </md-option>
+      </md-select>
+    </div>
+    <div class="box col-xs-12 col-sm-6 col-md-3 col-lg-3" *ngIf="enableOthersTextField">
+      <md-form-field class="input-full-width">
+        <input
+          autocomplete="off"
+          mdInput
+          defaultNull
+          maxlength="50"
+          placeholder="{{ currentLanguageSet?.others }}"
+          allowText="alphaspace"
+          formControlName="otherFoodIntolerance"
+          name="otherFoodIntolerance"
+        />
+      </md-form-field>
+    </div>
+  </div>
+</div>

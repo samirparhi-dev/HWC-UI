@@ -1,0 +1,219 @@
+<section [formGroup]="neonatalVitalsForm">
+  <md-accordion>
+    <md-expansion-panel expanded="true">
+      <md-expansion-panel-header>
+        <h5>
+          {{
+            currentLanguageSet?.vitalsDetails?.vitalsDataANC_OPD_NCD_PNC?.vitals
+          }}
+        </h5>
+      </md-expansion-panel-header>
+      <div class="row m-t-10" >
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+          <md-form-field class="input-full-width">
+            <input
+              autocomplete="off"
+              mdInput
+              defaultNull
+              placeholder="
+            {{
+                currentLanguageSet?.vitalsDetails
+                  ?.AnthropometryDataANC_OPD_NCD_PNC?.height
+              }}"
+              allowText="decimal"
+              id="height_cm"
+              name="height_cm"
+              formControlName="height_cm"
+              (change)="checkHeight(height_cm)"
+              defaultNull
+              allowMax="190"
+            />
+          </md-form-field>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+          <md-form-field class="input-full-width">
+            <input
+              autocomplete="off"
+              mdInput
+              defaultNull
+              placeholder="
+            {{
+                currentLanguageSet?.vitalsDetails
+                  ?.AnthropometryDataANC_OPD_NCD_PNC?.weight
+              }}"
+              (change)="checkWeight(weight_Kg)"
+              allowText="decimal"
+              name="weight_Kg"
+              id="weight_Kg"
+              formControlName="weight_Kg"
+              allowMax="99"
+            />
+            <button
+              tooltip="{{ currentLanguageSet?.common?.startTest }}"
+              mdSuffix
+              (click)="openIOTWeightModel()"
+            >
+              <span class="glyphicon glyphicon-scale"></span>
+            </button>
+          </md-form-field>
+        </div>
+
+        <div class="clearfix"></div>
+
+          <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+            <md-form-field class="input-full-width">
+              <input
+              autocomplete="off"
+              mdInput
+              defaultNull
+              placeholder="
+            {{
+              currentLanguageSet?.vitalsDetails
+              ?.AnthropometryDataANC_OPD_NCD_PNC?.headCircumference
+              }}"
+              allowText="decimal"
+              (change)="checkHeadCircumference(headCircumference_cm)"
+              name="headCircumference_cm"
+              id="headCircumference_cm"
+              formControlName="headCircumference_cm"
+              allowMax="60"
+            />
+
+            </md-form-field>
+          </div>
+          
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+          <md-form-field class="input-full-width">
+            <input
+              autocomplete="off"
+              mdInput
+              defaultNull
+              placeholder="
+            {{
+                currentLanguageSet?.vitalsDetails?.vitalsDataANC_OPD_NCD_PNC
+                  ?.temperature
+              }}"
+              allowText="tempDecimal"
+              name="temperature"
+              id="temperature"
+              formControlName="temperature"
+              (change)="checkTemperature(temperature)"
+              allowMax="106"
+            />
+            <button
+              tooltip="{{ currentLanguageSet?.common?.startTest }}"
+              mdSuffix
+              (click)="openIOTTempModel()"
+            >
+              <span class="glyphicon glyphicon-scale"></span>
+            </button>
+          </md-form-field>
+        </div>
+
+        <!-- Audio Recording -->
+        <!-- <div>
+          <div class="col-xs-12 col-sm-12 m-t-10">
+            <h4 *ngIf="!enableLungAssessment"><strong>Lung Assessment</strong></h4>
+            <h4 *ngIf="enableLungAssessment"><strong>Lung Assessment *</strong></h4>
+
+            <div class="row col-xs-12 m-t-10 m-b-10">
+              <button
+                md-raised-button
+                class="font-regular start-button"
+                *ngIf="!isRecording && !blobUrl"
+                (click)="startRecording()"
+                [disabled]="disabledLungAssesment"
+              >
+                Start Recording
+              </button>
+              <div style="margin-top: 5px;" *ngIf="disabledLungAssesment">
+                <strong>*Lung Assessment can only be done for patient with age 18 years and above</strong>
+              </div>
+
+              <button
+                md-raised-button
+                color="warn"
+                class="font-regular"
+                *ngIf="isRecording && !blobUrl"
+                (click)="stopRecording()"
+              >
+                Stop Recording
+              </button>
+
+              <div class="m-t-5 m-b-20">
+                <button
+                  md-raised-button
+                  color="warn"
+                  class="font-regular"
+                  *ngIf="!isRecording && blobUrl"
+                  (click)="clearRecordedData()"
+                >
+                  Clear Recording
+                </button>
+
+                <button
+                  md-raised-button
+                  color="primary"
+                  class="font-regular"
+                  style="margin-left: 10px"
+                  *ngIf="!isRecording && blobUrl"
+                  (click)="startAssessment()"
+                >
+                  Start Assessment
+                </button>
+              </div>
+              <div class="col-xs-10 col-sm-10 col-lg-12">
+              <div *ngIf="isRecording && !blobUrl">{{ recordedTime }}</div>
+              <div>
+                <audio *ngIf="!isRecording && blobUrl" controls>
+                  <source [src]="blobUrl" type="audio/webm" />
+                </audio>
+              </div>
+
+              <div class="checkbox-group" *ngIf="!isRecording && blobUrl">
+                <strong>Any Observed Symptoms:</strong>
+                <div class="col-xs-12 col-sm-12 col-md-12 m-t-15">
+                  <md-checkbox color='primary' class="valueCheck"  name="frequentCoughChecked" (change)="onCheckboxChange('frequentCough', $event)"> Frequent Cough </md-checkbox>
+                  <md-checkbox color='primary' class="valueCheck"  name="sputumChecked" (change)="onCheckboxChange('sputum', $event)"> Sputum </md-checkbox>
+                  <md-checkbox color='primary' class="valueCheck"  name="coughAtNightChecked" (change)="onCheckboxChange('coughAtNight', $event)"> Cough At Night </md-checkbox>
+                  <md-checkbox color='primary' class="valueCheck"  name="wheezingChecked" (change)="onCheckboxChange('wheezing', $event)"> Wheezing </md-checkbox>
+                  <md-checkbox color='primary' class="valueCheck"  name="painInChestChecked" (change)="onCheckboxChange('painInChest', $event)"> Pain in Chest </md-checkbox>
+                  <md-checkbox color='primary' class="valueCheck"  name="shortnessOfBreathChecked" (change)="onCheckboxChange('shortnessOfBreath', $event)"> Shortness Of Breath </md-checkbox>                                
+                </div>
+                <div class="col-xs-12 m-t-15">
+                  <button md-raised-button class="pull-right" (click)="startAssessment()" color="primary">
+                    {{currentLanguageSet?.common?.submit}}
+                  </button>
+                </div>
+              </div>
+
+              <div *ngIf="enableResult"> 
+              <label style="text-decoration: underline; margin-top:10px">
+                <strong><em>Test Result : </em></strong>
+              </label>
+              <br/>
+
+              <label>
+                <strong>Severity:</strong> {{ (severity !== null && severity !== undefined) ? severity : "NA" }}
+              </label>
+              <br/>
+              <label>
+                <strong>Cough Severity Score:</strong> {{ (cough_severity_score  !== null && cough_severity_score !== undefined) ? cough_severity_score : "NA" }}
+              </label>
+              <br/>
+              <label>
+                <strong>Cough Pattern:</strong> {{ (cough_pattern !== null && cough_pattern !== undefined) ? cough_pattern : "NA" }}
+              </label>
+              <br/>
+              <label>
+                <strong>Record Time:</strong> {{ (record_duration !== null && record_duration !== undefined) ? record_duration + "sec" : "NA"}}
+              </label>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      </div>
+    </md-expansion-panel>
+  </md-accordion>
+</section>

@@ -1,0 +1,65 @@
+<!--Visit Details for Family Planning-->
+<div class="row m-t-10" *ngIf="visitDetailsCasesheet?.visitReason == 'Follow Up' || (ncdVisitDetails?.VisitReason == 'Follow Up' && visitCategory === 'NCD care')">
+    <div class="col-xs-12">
+        <fieldset>
+            <legend>Visit Details:</legend>
+                <table class="table table-no-border casesheet-table" aria-describedby="visitDetailsTbl">
+                    <tr *ngIf="visitDetailsCasesheet?.visitReason == 'Follow Up' && visitCategory === 'FP & Contraceptive Services'">
+                    <th id="visitReason">
+                        {{currentLanguageSet?.visitReason}}:
+                    </th>
+                    <td>{{ visitDetailsCasesheet?.visitReason }}</td>
+                    <td colspan="2"></td>
+                    </tr>
+
+                    <tr *ngIf="ncdVisitDetails?.VisitReason == 'Follow Up' && visitCategory === 'NCD care'">
+                        <th id="visitReason">
+                            {{currentLanguageSet?.visitReason}}:
+                        </th>
+                        <td>{{ ncdVisitDetails?.VisitReason }}</td>
+                        <td colspan="2"></td>
+                        </tr>
+
+                    <tr *ngIf="visitDetailsCasesheet?.visitReason == 'Follow Up' && visitCategory === 'FP & Contraceptive Services'">
+                    <th  id="followUpForFpMethod">
+                        {{ currentLanguageSet?.followUpFpMethod }}:
+                    </th>
+                    <td>
+                        {{ visitDetailsCasesheet?.followUpForFpMethod }}
+                    </td>
+
+                    <th id="sideEffects">
+                        {{ currentLanguageSet?.sideEffect }}:
+                    </th>
+                    <td>
+                        {{ visitDetailsCasesheet?.sideEffects }}
+                    </td>
+                    </tr>
+
+                    <tr *ngIf="visitDetailsCasesheet?.visitReason == 'Follow Up' && visitCategory === 'FP & Contraceptive Services'">
+                    <th id="otherFollowUpForFpMethod" *ngIf="enableOtherFollowFpMethod">
+                        {{ currentLanguageSet?.otherFollowUp }}:
+                    </th>
+                    <td *ngIf="enableOtherFollowFpMethod">
+                        {{ visitDetailsCasesheet?.otherFollowUpForFpMethod }}
+                    </td>
+
+                    <th id="otherSideEffects" *ngIf="enableOtherSideEffect">
+                        {{ currentLanguageSet?.otherSideEffect }}:
+                    </th>
+                    <td *ngIf="enableOtherSideEffect">
+                        {{ visitDetailsCasesheet?.otherSideEffects }}
+                    </td>
+                    </tr>
+
+                    <tr *ngIf="enableConfirmedDiseases && ncdVisitDetails?.VisitReason == 'Follow Up' && visitCategory === 'NCD care'">
+                        <th id="confirmedDiseases">
+                            {{currentLanguageSet?.existingNCDDisease}}:
+                        </th>
+                        <td>{{ previousConfirmedDiseasesList }}</td>
+                        </tr>
+                </table>
+        </fieldset>
+    </div>
+</div>
+<!-- End Of Visit Details for Family Planning-->

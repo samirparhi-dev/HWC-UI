@@ -1,0 +1,71 @@
+
+
+<div class="row m-t-20" [formGroup]="neonatalImmunizationHistoryForm">
+  <div class="col-xs-12 text-right">
+    <label class="font-history-label m-t-10">
+      {{currentLanguageSet?.previouslyCapturedImmunizationServices}}
+    </label>
+    <button
+      type="button"
+      md-icon-button
+      mdTooltip="{{currentLanguageSet?.DurationData?.previousDetails}}"
+      id="previousDevelopmentalHistory"
+      class="pull-right"
+      color="primary"
+      (click)="getPreviousImmunizationServicesHistory()"
+    >
+      <md-icon class="md-18">history</md-icon>
+    </button>
+  </div>
+<div formArrayName="immunizationList"> 
+  <ng-container *ngFor = "let immunization of  neonatalImmunizationHistoryForm.controls['immunizationList']['controls'];let i=index;">
+    <div class="col-xs-12">
+    <md-card  [formGroupName]="i" class="row m-t-10" >
+      <md-card-header>
+        <md-card-title>
+          <h5>
+            <strong> {{ immunization.value.defaultReceivingAge }} Vaccines</strong>
+          </h5>
+        </md-card-title>
+      </md-card-header>
+      <md-card-content style="padding: 0 24px 24px 24px;">
+
+          <ng-container formArrayName="vaccines">
+            <div
+              *ngFor="
+                let vaccines of immunization.controls['vaccines'].controls;
+                let j = index
+              "
+            >
+              <ng-container [formGroupName]="j" >
+               
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box">
+                  <md-select class="input-full-width"  [id]="'status' + j" name="status" formControlName="status" placeholder="{{vaccines.value.vaccine}}" (change)="enableReceivedAt(i)">
+                  <md-option *ngFor="let element of vaccineReceivedStatus" [value]="element.receivedStatus">
+                    {{element.name}}
+                  </md-option>
+                </md-select>
+              </div>
+               
+              </ng-container>
+            </div>
+
+          </ng-container>
+        
+          <div class="clearfix"></div>
+         
+          <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box" *ngIf="immunization.controls['enableVaccinationReceivedAt'].value === true">
+            <md-select class="input-full-width" (change)="setVaccineReceivedAt(i)" name='vaccinationReceivedAtID' formControlName="vaccinationReceivedAtID" placeholder="{{currentLanguageSet?.vaccinationReceivedAt}}">
+            <md-option *ngFor="let vaccineReceivedValues of vaccineReceivedList" [value]="vaccineReceivedValues.id">
+              {{vaccineReceivedValues.name}}
+            </md-option>
+          </md-select>
+        </div>
+     
+ 
+      </md-card-content>
+    </md-card>
+  </div>
+  </ng-container>
+</div>
+</div>

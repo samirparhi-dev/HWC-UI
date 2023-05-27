@@ -1,0 +1,91 @@
+<div class="row m-t-20" [formGroup]="IecCounsellingForm" >
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box">
+      <div class="form-group">
+        <md-select  
+          multiple class="select-full-width" 
+          placeholder="{{current_language_set?.counselledOn}}" 
+          id="counselledOn" 
+          name="counselledOn" 
+          formControlName="counselledOn"
+          (change)="counselledOnOther()"
+          >
+          <md-option *ngFor="let item of selectCounselling" 
+          [value]="item.name">
+              {{ item.name }} 
+          </md-option>
+        </md-select>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box" *ngIf="enableCounselledOnOther">
+      <div class="form-group">
+        <md-form-field class="input-full-width">
+          <input
+          autocomplete="off"
+          mdInput
+          allowText="alphaspace"
+          defaultNull
+          mdTextareaAutosize
+          id='otherCounselledOn'
+          name='otherCounselledOn'
+          formControlName="otherCounselledOn"
+          placeholder="{{current_language_set?.other}}"
+          (change)="onValueChange()"
+          >
+        </md-form-field>
+      </div>
+    </div>
+
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box">
+      <div class="form-group">
+        <md-select 
+          multiple class="select-full-width" 
+          placeholder="{{current_language_set?.typeOfContraceptiveOpted}}" 
+          id="typeOfContraceptiveOpted" 
+          name="typeOfContraceptiveOpted" 
+          formControlName="typeOfContraceptiveOpted"
+          (change)=
+          "resetOtherContraceptiveValues(IecCounsellingForm.controls.typeOfContraceptiveOpted.value);
+          typeOfContraceptiveOptedForOther()"
+          >
+          <ng-container 
+          *ngFor="let item of selectContraceptive"
+          >
+          <md-option
+              class="dropdownHeight"  
+              [value]="item.name"
+              [disabled]="
+              (( disableNoneOption !== null) && ((!disableNoneOption &&
+              item.name == 'None') ||
+                (disableNoneOption &&
+                item.name != 'None')))
+            "
+              >
+              {{ item.name }}
+            </md-option>
+          </ng-container>
+        </md-select>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box" 
+        *ngIf="enablecontraceptiveOptedForOther">
+      <div class="form-group">
+        <md-form-field class="input-full-width">
+          <input
+            autocomplete="off"
+            mdInput
+            allowText="alphaspace"
+            defaultNull
+            mdTextareaAutosize
+            id='otherTypeOfContraceptiveOpted'
+            name='otherTypeOfContraceptiveOpted'
+            formControlName="otherTypeOfContraceptiveOpted"
+            placeholder="{{current_language_set?.other}}"
+            (change)="onValueChange()"
+            >
+        </md-form-field>
+      </div>
+    </div>
+</div>

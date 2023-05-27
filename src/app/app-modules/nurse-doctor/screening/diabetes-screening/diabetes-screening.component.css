@@ -1,0 +1,75 @@
+h5 {
+    font-weight: bold;
+}
+
+.mat-expansion-panel-header {
+    background: rgba(37, 55, 70, 0.2);
+}
+
+ul {
+    list-style: none;
+    padding: 0px;
+}
+
+ul li {
+    display: inline-block;
+    padding: 0 8px;
+}
+
+ul li div i, ul li p {
+    display: inline-block;
+}
+
+ul li div i {
+    height: 15px;
+    width: 15px;
+}
+
+.input-full-width {
+    width: 100%;
+}
+
+.abnormal {
+    color: red
+}
+
+.marker {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.marker span {
+    margin-left: 5px;
+}
+
+md-expansion-panel {
+    margin: 0.5%;
+}
+
+.description {
+    padding-top: 15px;
+}
+
+.m-l--160 {
+    margin-left: -160px;
+}
+.box {
+    height: 60px;
+}
+
+.full-width-status {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 35px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    margin-left: 5px;
+  }
+  
+  .button-status-disabled[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }

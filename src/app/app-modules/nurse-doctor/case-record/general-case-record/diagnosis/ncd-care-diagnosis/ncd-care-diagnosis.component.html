@@ -1,0 +1,77 @@
+<!-- {{ generalDiagnosisForm.value | json }} -->
+<div class="m-t-10" [formGroup]="generalDiagnosisForm">
+  <div class="row">
+    <div class="col-xs-12 col-xs-6 box">
+      <md-select
+        class="input-full-width"
+        name="ncdScreeningCondition"
+        placeholder="{{ current_language_set?.casesheet?.ncdCondition }}"
+        multiple
+        (change)="changeNcdScreeningCondition($event.value,$event)"
+        [(ngModel)]="temp" [ngModelOptions]="{standalone: true}"
+      >
+        <md-option
+          *ngFor="let ncdCareCondition of ncdCareConditions"
+          [value]="ncdCareCondition.screeningCondition"
+        >
+          {{ ncdCareCondition.screeningCondition }}</md-option
+        >
+      </md-select>
+    </div>
+    <div class="col-xs-12" *ngIf="isNcdScreeningConditionOther">
+      <md-form-field class="input-full-width">
+        <textarea mdInput allowText="textAreaValidator" mdTextareaAutosize defaultNull name='ncdScreeningConditionOther' maxlength="20" formControlName="ncdScreeningConditionOther"  placeholder="
+        {{ current_language_set?.ncdConditionOther}}"
+        > </textarea>
+      </md-form-field>
+    </div>
+    <div class="col-xs-12 col-xs-6 box">
+      <md-select
+        class="input-full-width"
+        name="ncdCareType"
+        formControlName="ncdCareType"
+        placeholder="{{ current_language_set?.casesheet?.typeOfNcd }}"
+      >
+        <md-option
+          *ngFor="let ncdCareType of ncdCareTypes"
+          [value]="ncdCareType"
+        >
+          {{ ncdCareType.ncdCareType }}</md-option
+        >
+      </md-select>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+      <md-form-field class="input-full-width">
+        <textarea
+          mdInput allowText="textAreaValidator"
+          mdTextareaAutosize
+          defaultNull
+          name="ncdComplication"
+          maxlength="300"
+          formControlName="ncdComplication"
+          placeholder="{{ current_language_set?.casesheet?.ncdComplication }}"
+        >
+        </textarea>
+      </md-form-field>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+      <header class="mat-expansion-panel-header tabcolor">
+        <h4>{{ current_language_set?.DiagnosisDetails?.specialistdignosis }}</h4>
+      </header>
+      <md-form-field class="input-full-width">
+        <textarea
+          [readonly]="!specialist"
+          mdInput allowText="textAreaValidator"
+          defaultNull
+          mdTextareaAutosize
+          maxlength="300"
+          name="specialistAdvice"
+          formControlName="specialistDiagnosis"
+          
+        >
+        </textarea>
+      </md-form-field>
+    </div>
+
+  </div>
+</div>

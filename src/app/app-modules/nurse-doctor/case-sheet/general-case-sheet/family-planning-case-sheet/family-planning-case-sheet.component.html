@@ -1,0 +1,327 @@
+<div class="container">
+    <div class="row col-xs-12">
+      <h2 class="text-center">
+        {{ currentLanguageSet?.familyPlanning }}
+      </h2>
+      <hr />
+    </div>
+<!-- Family Planning and Reproductive Deatils -->
+    <div class="row m-t-10">
+        <div class="col-xs-12">
+            <fieldset>
+                <legend>Family Planning and Reproductive Details:</legend>
+                <table class="table table-no-border casesheet-table" aria-describedby="familyPlanningTable">
+                <tbody>
+                    <tr>
+                    <th id="fertilityStatus">
+                        {{ currentLanguageSet?.fertilityStatus }}:
+                    </th>
+                    <td>
+                        {{ familyPlanningAndReproductiveCasesheet?.fertilityStatus }}
+                    </td>
+                    <td colspan="2"></td>
+                    </tr>
+
+                    <tr>
+                        <th id="parity" *ngIf="enableFPDetails">
+                            {{ currentLanguageSet?.parity }}:
+                        </th>
+                        <td *ngIf="enableFPDetails">
+                            {{ familyPlanningAndReproductiveCasesheet?.parity }}
+                        </td>
+
+                        <th id="unitOfAge" *ngIf="enableFPDetails">
+                            {{ currentLanguageSet?.unitOfAge }}:
+                        </th>
+                        <td *ngIf="enableFPDetails">
+                            {{ familyPlanningAndReproductiveCasesheet?.unitOfAge }}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th id="totalNoOfChildrenBornFemale" *ngIf="enableFPDetails">
+                            {{ currentLanguageSet?.totalNoOfChildrenBornFemale }}:
+                        </th>
+                        <td *ngIf="enableFPDetails">
+                            {{ familyPlanningAndReproductiveCasesheet?.totalNoOfChildrenBornFemale }}
+                        </td>
+
+                        <th id="youngestChildGender" *ngIf="enableFPDetails">
+                            {{ currentLanguageSet?.youngestChildGender }}:
+                        </th>
+                        <td *ngIf="enableFPDetails">
+                            {{ familyPlanningAndReproductiveCasesheet?.youngestChildGender }}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th id="totalNoOfChildrenBornMale" *ngIf="enableFPDetails">
+                            {{ currentLanguageSet?.totalNoOfChildrenBornMale }}:
+                        </th>
+                        <td *ngIf="enableFPDetails">
+                            {{ familyPlanningAndReproductiveCasesheet?.totalNoOfChildrenBornMale }}
+                        </td>
+                        
+                        <th id="currentlyUsingFpMethod" *ngIf="enableFPDetails">
+                            {{ currentLanguageSet?.currentlyUsingFPMethod }}:
+                        </th>
+                        <td *ngIf="enableFPDetails">
+                            {{ familyPlanningAndReproductiveCasesheet?.currentlyUsingFpMethod }}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th id="totalNoOfChildrenBorn" *ngIf="enableFPDetails">
+                            {{ currentLanguageSet?.totalNoOfChildrenBorn }}:
+                        </th>
+                        <td *ngIf="enableFPDetails">
+                            {{ familyPlanningAndReproductiveCasesheet?.totalNoOfChildrenBorn }}
+                        </td>
+
+                        <th id="otherCurrentlyUsingFpMethod" *ngIf="enableFPDetails && otherCurrentFpMethod">
+                            {{ currentLanguageSet?.otherCurrentUsingFpMethod }}:
+                        </th>
+                        <td *ngIf="enableFPDetails && otherCurrentFpMethod">
+                            {{ familyPlanningAndReproductiveCasesheet?.otherCurrentlyUsingFpMethod }}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th id="numberOfLiveChildrenFemale" *ngIf="enableFPDetails">
+                            {{ currentLanguageSet?.numberOfLiveChildrenFemale}}:
+                        </th>
+                        <td *ngIf="enableFPDetails">
+                            {{ familyPlanningAndReproductiveCasesheet?.numberOfLiveChildrenFemale }}
+                        </td>
+
+                        <th id="dateOfSterilization" *ngIf="enableFPDetails && enableSterilization">
+                            {{ currentLanguageSet?.dateOfSterilization }}:
+                        </th>
+                        <td *ngIf="enableFPDetails && enableSterilization">
+                            {{ familyPlanningAndReproductiveCasesheet?.dateOfSterilization }}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th id="numberOfLiveChildrenMale" *ngIf="enableFPDetails">
+                            {{ currentLanguageSet?.numberOfLiveChildrenMale}}:
+                        </th>
+                        <td *ngIf="enableFPDetails">
+                            {{ familyPlanningAndReproductiveCasesheet?.numberOfLiveChildrenMale }}
+                        </td>
+
+                        <th id="placeOfSterilization" *ngIf="enableFPDetails && enableSterilization">
+                            {{ currentLanguageSet?.placeOfSterilization }}:
+                        </th>
+                        <td *ngIf="enableFPDetails && enableSterilization">
+                            {{ familyPlanningAndReproductiveCasesheet?.placeOfSterilization }}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th id="numberOfLiveChildren" *ngIf="enableFPDetails">
+                            {{ currentLanguageSet?.numberOfLiveChildren }}:
+                        </th>
+                        <td *ngIf="enableFPDetails">
+                            {{ familyPlanningAndReproductiveCasesheet?.numberOfLiveChildren }}
+                        </td>
+
+                        <th id="dosesTaken" *ngIf="enableFPDetails && enableDoses">
+                            {{ currentLanguageSet?.dosesTaken }}:
+                        </th>
+                        <td *ngIf="enableFPDetails && enableDoses">
+                            {{ familyPlanningAndReproductiveCasesheet?.dosesTaken }}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th id="ageOfYoungestChild" *ngIf="enableFPDetails">
+                            {{ currentLanguageSet?.ageOfYoungestChild }}:
+                        </th>
+                        <td *ngIf="enableFPDetails">
+                            {{ familyPlanningAndReproductiveCasesheet?.ageOfYoungestChild }}
+                        </td>
+
+                        <th id="dateOfLastDoseTaken" *ngIf="enableFPDetails && enableDoses">
+                            {{ currentLanguageSet?.dateOfLastDoseTaken }}:
+                        </th>
+                        <td *ngIf="enableFPDetails && enableDoses">
+                            {{ familyPlanningAndReproductiveCasesheet?.dateOfLastDoseTaken }}
+                        </td>
+                    </tr>
+                </tbody>
+                </table>
+            </fieldset>
+          </div>
+    </div>
+
+<!-- IEC and Counselling Details -->
+    <div class="row m-t-10">
+        <div class="col-xs-12">
+            <fieldset>
+                <legend>IEC And Counselling Details:</legend>
+                <table class="table table-no-border casesheet-table" aria-describedby="iecCounsellingTable">
+                    <tbody>
+                        <tr>
+                            <th id="counselledOn">
+                                {{ currentLanguageSet?.counselledOn }}:
+                            </th>
+                            <td>
+                                {{ iecCounsellingDetailsCasesheet?.counselledOn }}
+                            </td>
+
+                            <th id="typeOfContraceptiveOpted">
+                                {{ currentLanguageSet?.typeOfContraceptiveOpted }}:
+                            </th>
+                            <td>
+                                {{ iecCounsellingDetailsCasesheet?.typeOfContraceptiveOpted }}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th id="otherCounselledOn" *ngIf="enableOtherCounselled">
+                                {{ currentLanguageSet?.otherCounselled }}:
+                            </th>
+                            <td *ngIf="enableOtherCounselled">
+                                {{ iecCounsellingDetailsCasesheet?.otherCounselledOn }}
+                            </td>
+
+                            <th id="otherTypeOfContraceptiveOpted" *ngIf="enableOtherTypeOfContraceptive">
+                                {{ currentLanguageSet?.otherTypeOfContraceptive }}:
+                            </th>
+                            <td *ngIf="enableOtherTypeOfContraceptive">
+                                {{ iecCounsellingDetailsCasesheet?.otherTypeOfContraceptiveOpted }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+        </div>
+    </div>
+
+<!-- Dispensation Details -->
+    <div class="row m-t-10" *ngIf="enableFPDetails">
+        <div class="col-xs-12">
+            <fieldset>
+                <legend>Dispensation Details:</legend>
+                <table class="table table-no-border casesheet-table" aria-describedby="dispensationDetailsTable">
+                    <tbody>
+                        <tr>
+                            <th id="typeOfContraceptivePrescribed">
+                                {{ currentLanguageSet?.typeOfContraceptivePrescribed }}:
+                            </th>
+                            <td>
+                                {{ dispensationDetailsCasesheet?.typeOfContraceptivePrescribed }}
+                            </td>
+
+                            <th id="dateOfLastDoseTaken" *ngIf="enableDoseTaken">
+                                {{ currentLanguageSet?.lastDateDoseTaken }}:
+                            </th>
+                            <td *ngIf="enableDoseTaken">
+                                {{ dispensationDetailsCasesheet?.dateOfLastDoseTaken }}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th id="other" *ngIf="enableOtherContraceptivePrescribed">
+                                {{ currentLanguageSet?.otherTypeContraceptivePrescribed }}:
+                            </th>
+                            <td *ngIf="enableOtherContraceptivePrescribed">
+                                {{ dispensationDetailsCasesheet?.otherTypeOfContraceptivePrescribed}}
+                            </td>
+
+                            <th id="typeOfIUCDInserted" *ngIf="enableTypeOfIUCD">
+                                {{ currentLanguageSet?.typeOfIUCDInserted }}:
+                            </th>
+                            <td *ngIf="enableTypeOfIUCD">
+                                {{ dispensationDetailsCasesheet?.typeOfIUCDInserted }}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th id="quantityPrescribed">
+                                {{ currentLanguageSet?.quantityPrescribed }}:
+                            </th>
+                            <td>
+                                {{ dispensationDetailsCasesheet?.qtyPrescribed }}
+                            </td>
+
+                            <th id="dateOfIUCDInsertion" *ngIf="enableTypeOfIUCD">
+                                {{ currentLanguageSet?.dateOfIUCDInsertion }}:
+                            </th>
+                            <td *ngIf="enableTypeOfIUCD">
+                                {{ dispensationDetailsCasesheet?.dateOfIUCDInsertion }}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th id="nextVisitRefill">
+                                {{ currentLanguageSet?.nextVisitRefill }}:
+                            </th>
+                            <td>
+                                {{ dispensationDetailsCasesheet?.nextVisitForRefill }}
+                            </td>
+
+                            <th id="iucdInsertionDone" *ngIf="enableTypeOfIUCD">
+                                {{ currentLanguageSet?.iucdInsertionDone }}:
+                            </th>
+                            <td *ngIf="enableTypeOfIUCD">
+                                {{ dispensationDetailsCasesheet?.iucdInsertionDoneBy}}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th id="dosesTaken" *ngIf="enableDoseTaken">
+                                {{ currentLanguageSet?.doseTake }}:
+                            </th>
+                            <td *ngIf="enableDoseTaken">
+                                {{ dispensationDetailsCasesheet?.dosesTaken }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row col-xs-12">
+      <h2 class="text-center">{{currentLanguageSet?.revisitRefer}}</h2>
+      <hr />
+      <div class="col-xs-12">
+        <table class="table table-no-border casesheet-table" aria-describedby="RevisitReferTbl">
+            <tbody>
+                <tr>
+                  <th id="HHC">{{currentLanguageSet?.Referdetails?.higherhealthcarecenter}}:</th>
+                  <td>{{ referDetails?.referredToInstituteName }}</td>
+
+                  <th id="other" *ngIf="enableOtherInstitute">
+                    {{ currentLanguageSet?.otherReferredToInstituteName }}:
+                  </th>
+                  <td>
+                    {{ referDetails?.otherReferredToInstituteName }}
+                  </td>
+                </tr>
+
+                <tr>
+                      <th id="Referralreason">{{currentLanguageSet?.Referdetails?.referralReason}}:</th>
+                      <td>{{ referDetails?.referralReasonList }}</td>
+
+                      <th id="other" *ngIf="enableOtherReferral">
+                        {{ currentLanguageSet?.otherReferral }}:
+                      </th>
+                      <td>
+                        {{ referDetails?.otherReferralReason }}
+                      </td>
+                </tr>
+
+                <tr>
+                  <th id="Revisitdate">{{currentLanguageSet?.Referdetails?.revisitDate}}:</th>
+                  <td>{{ referDetails?.revisitDate }}</td>
+                </tr>
+              </tbody>
+        </table>
+      </div>
+    </div>
+</div>

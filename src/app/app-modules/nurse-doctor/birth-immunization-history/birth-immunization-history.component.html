@@ -1,0 +1,24 @@
+<md-accordion [formGroup]='patientBirthImmunizationHistoryForm'>
+  <md-expansion-panel expanded="true" *ngIf="beneficiaryAge <= 2">
+    <md-expansion-panel-header  *ngIf= "visitCategory.toLowerCase() == 'neonatal and infant health care services'">
+      <h5>{{currentLanguageSet?.infantBirthDetails}}</h5>
+    </md-expansion-panel-header>
+    <md-expansion-panel-header  *ngIf="visitCategory == 'Childhood & Adolescent Healthcare Services' ">
+      <h5>{{currentLanguageSet?.birthHistory}}</h5>
+    </md-expansion-panel-header>
+    <app-infant-birth-details
+    [mode]="mode" [visitCategory]="visitCategory" [infantBirthDetailsForm]="patientBirthImmunizationHistoryForm.controls.infantBirthDetailsForm"
+  ></app-infant-birth-details>
+  </md-expansion-panel>
+
+  <md-expansion-panel expanded="beneficiaryAge > 2 ? true : false"> 
+    <md-expansion-panel-header>
+      <h5>{{currentLanguageSet?.formImmunizationHistory}}</h5>
+    </md-expansion-panel-header>
+    <app-form-immunization-history
+    [mode]="mode"
+    [neonatalImmunizationHistoryForm]="patientBirthImmunizationHistoryForm.controls['immunizationHistory']"
+  ></app-form-immunization-history>
+  </md-expansion-panel>
+
+   </md-accordion> 

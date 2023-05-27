@@ -1,0 +1,290 @@
+<md-card class="m-t-10 m-b-5">
+  <div [formGroup]="hypertensionScreeningForm">
+    <div class="pull-right" [hidden]=" hideRemoveFunctionalityInDoctorIfSuspected">
+      <button md-icon-button>
+        <md-icon
+          mdTooltip="Remove"
+          class="md-24 mdIcon-button-style"
+          (click)="hideHypertensionForm()"
+          >close</md-icon
+        >
+      </button>
+        </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <h5>
+         <strong>{{ currentLanguageSet?.hypertension }}</strong>
+        </h5>
+
+        <div>
+          <label
+            *ngIf="isHypertensionSuspected"
+            style="color: red; margin-bottom: 15px"
+            >* {{ currentLanguageSet?.screeningIsPositive }}</label
+          >
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 pull-right">
+        <md-checkbox 
+          [disabled]="disableCheckbox"
+          [checked]="isHypertensionSuspected"
+          (change)="markAsUnsuspected($event.checked)"
+          ></md-checkbox>
+          <label style="color: grey; margin-bottom: 15px">Mark as suspected</label>
+      </div>
+    </div>
+    <div class="row m-t-5">
+      <div class="col-xs-12 col-sm-6 col-md-3 col-lg-4">
+        <md-form-field class="input-full-width">
+          <input
+            autocomplete="off"
+            mdInput
+            defaultNull
+            placeholder="{{ currentLanguageSet?.systolicBPOne }}"
+            required
+            allowText="number"
+            allowMax="320"
+            name="systolicBP_1stReading"
+            formControlName="systolicBP_1stReading"
+            (change)="checkSystolicBP(hypertensionScreeningForm.value.systolicBP_1stReading)"
+            (blur)="
+              checkSystolicGreater1(
+                systolicBP_1stReading,
+                diastolicBP_1stReading
+              )
+            "
+            [ngClass]="{
+              abnormal:
+                systolicBP_1stReading > 120 }"
+          />
+          <button
+            tooltip="{{ currentLanguageSet?.common?.startTest }}"
+            mdSuffix
+            (click)="openIOTBP1Model()"
+          >
+            <span class="glyphicon glyphicon-scale"></span>
+          </button>
+        </md-form-field>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-3 col-lg-4">
+        <md-form-field class="input-full-width">
+          <input
+            autocomplete="off"
+            mdInput
+            defaultNull
+            placeholder="{{ currentLanguageSet?.diastolicBPOne }}"
+            required
+            allowText="number"
+            allowMax="180"
+            name="diastolicBP_1stReading"
+            formControlName="diastolicBP_1stReading"
+            (change)="checkDiastolicBP(hypertensionScreeningForm.value.diastolicBP_1stReading)"
+            (blur)="
+              checkDiastolicLesser1(
+                systolicBP_1stReading,
+                diastolicBP_1stReading
+              )
+            "
+            [ngClass]="{
+              abnormal:
+              diastolicBP_1stReading > 80 }"
+          />
+          <button
+            tooltip="{{ currentLanguageSet?.common?.startTest }}"
+            mdSuffix
+            (click)="openIOTBP1Model()"
+          >
+            <span class="glyphicon glyphicon-scale"></span>
+          </button>
+        </md-form-field>
+      </div>
+    </div>
+
+    <div class="row m-t-5">
+      <div class="col-xs-12 col-sm-6 col-md-3 col-lg-4">
+        <md-form-field class="input-full-width">
+          <input
+            autocomplete="off"
+            mdInput
+            defaultNull
+            placeholder="{{ currentLanguageSet?.systolicBPTwo }}"
+            allowText="number"
+            allowMax="320"
+            name="systolicBP_2ndReading"
+            formControlName="systolicBP_2ndReading"
+            (change)="checkSystolicBP(hypertensionScreeningForm.value.systolicBP_2ndReading)"
+            (blur)="
+              checkSystolicGreater2(
+                systolicBP_2ndReading,
+                diastolicBP_2ndReading
+              )
+            "
+            [ngClass]="{
+              abnormal:
+              systolicBP_2ndReading > 120 }"
+          />
+          <button
+            tooltip="{{ currentLanguageSet?.common?.startTest }}"
+            mdSuffix
+            (click)="openIOTBP2Model()"
+          >
+            <span class="glyphicon glyphicon-scale"></span>
+          </button>
+        </md-form-field>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-3 col-lg-4">
+        <md-form-field class="input-full-width">
+          <input
+            autocomplete="off"
+            mdInput
+            defaultNull
+            placeholder="{{ currentLanguageSet?.diastolicBPTwo }}"
+            allowText="number"
+            allowMax="180"
+            name="diastolicBP_2ndReading"
+            formControlName="diastolicBP_2ndReading"
+            (change)="checkDiastolicBP(hypertensionScreeningForm.value.diastolicBP_2ndReading)"
+            (blur)="
+              checkDiastolicLesser2(
+                systolicBP_2ndReading,
+                diastolicBP_2ndReading
+              )
+            "
+            [ngClass]="{
+              abnormal:
+              diastolicBP_2ndReading > 80 }"
+          />
+          <button
+            tooltip="{{ currentLanguageSet?.common?.startTest }}"
+            mdSuffix
+            (click)="openIOTBP2Model()"
+          >
+            <span class="glyphicon glyphicon-scale"></span>
+          </button>
+        </md-form-field>
+      </div>
+    </div>
+
+    <div class="row m-t-5">
+      <div class="col-xs-12 col-sm-6 col-md-3 col-lg-4">
+        <md-form-field class="input-full-width">
+          <input
+            autocomplete="off"
+            mdInput
+            defaultNull
+            placeholder="{{ currentLanguageSet?.systolicBPThree }}"
+            allowText="number"
+            allowMax="320"
+            name="systolicBP_3rdReading"
+            formControlName="systolicBP_3rdReading"
+            (change)="checkSystolicBP(hypertensionScreeningForm.value.systolicBP_3rdReading)"
+            (blur)="
+              checkSystolicGreater3(
+                systolicBP_3rdReading,
+                diastolicBP_3rdReading
+              )
+            "
+            [ngClass]="{
+              abnormal:
+              systolicBP_3rdReading > 120 }"
+            
+          />
+          <button
+            tooltip="{{ currentLanguageSet?.common?.startTest }}"
+            mdSuffix
+            (click)="openIOTBP3Model()"
+          >
+            <span class="glyphicon glyphicon-scale"></span>
+          </button>
+        </md-form-field>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-3 col-lg-4">
+        <md-form-field class="input-full-width">
+          <input
+            autocomplete="off"
+            mdInput
+            defaultNull
+            placeholder="{{ currentLanguageSet?.diastolicBPThree }}"
+            allowText="number"
+            allowMax="180"
+            name="diastolicBP_3rdReading"
+            formControlName="diastolicBP_3rdReading"
+            (change)="checkDiastolicBP(hypertensionScreeningForm.value.diastolicBP_3rdReading)"
+            (blur)="
+              checkDiastolicLesser3(
+                systolicBP_3rdReading,
+                diastolicBP_3rdReading
+              )
+            "
+            [ngClass]="{
+              abnormal:
+              diastolicBP_3rdReading > 80 }"
+          />
+          <button
+            tooltip="{{ currentLanguageSet?.common?.startTest }}"
+            mdSuffix
+            (click)="openIOTBP3Model()"
+          >
+            <span class="glyphicon glyphicon-scale"></span>
+          </button>
+        </md-form-field>
+      </div>
+    </div>
+
+    <div class="row m-t-5">
+      <div class="col-xs-12 col-sm-6 col-md-3 col-lg-4 box">
+        <md-form-field class="input-full-width">
+          <input
+            mdInput
+            defaultNull
+            placeholder="{{ currentLanguageSet?.averageSystolic }}"
+            required
+            allowText="number"
+            allowMax="320"
+            name="averageSystolicBP"
+            formControlName="averageSystolicBP"
+            readonly
+            [ngClass]="{
+              abnormal:
+              averageSystolicBP > 120 }"
+          />
+        </md-form-field>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-3 col-lg-4 box">
+        <md-form-field class="input-full-width">
+          <input
+            mdInput
+            defaultNull
+            placeholder="{{ currentLanguageSet?.averageDiastolic }}"
+            required
+            allowText="number"
+            allowMax="180"
+            name="averageDiastolicBP"
+            formControlName="averageDiastolicBP"
+            readonly 
+            [ngClass]="{
+              abnormal:
+              averageDiastolicBP > 80 }"
+          />
+        </md-form-field>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3 col-lg-4" *ngIf="hideStatusButton === false">
+        <button
+          md-raised-button
+          class="full-width-status button-status-disabled"
+          (click)="checkBloodPressureStatus()"
+          [disabled]="disableStatusButton"
+          color="primary"
+        >
+          Find Status
+        </button>
+      </div>
+    </div>
+  </div>
+</md-card>

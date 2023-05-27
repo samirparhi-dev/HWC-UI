@@ -1,0 +1,11 @@
+<!-- {{ treatmentsOnSideEffects.value | json}} -->
+<div class="row m-t-10" [formGroup]="treatmentsOnSideEffectsForm">
+  <div class="col-xs-12 col-sm-12">
+    <md-form-field class="input-full-width">  
+      <textarea mdInput allowText="textAreaValidator" mdTextareaAutosize defaultNull name='treatmentsOnSideEffects' formControlName="treatmentsOnSideEffects"
+      placeholder="{{currentLanguageSet?.treatmentOnSideEffects}}"
+      maxlength="500"> </textarea>
+    </md-form-field>
+  </div>
+</div>
+

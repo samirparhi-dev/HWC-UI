@@ -1,0 +1,27 @@
+<div class="row m-t-20">
+  <div class="col-xs-12">
+      <md-accordion>
+        <md-expansion-panel expanded="true">
+          <md-expansion-panel-header>
+            <h5>{{current_language_set?.fpAndReproductive}}</h5>
+          </md-expansion-panel-header>
+            <app-family-planning-and-reproductive-details [familyPlanningMode]="familyPlanningMode" [familyPlanningAndReproductiveForm]="patientMedicalForm['controls'].familyPlanningForm['controls'].familyPlanningAndReproductiveForm"></app-family-planning-and-reproductive-details>
+        </md-expansion-panel>
+        
+      <md-expansion-panel>
+        <md-expansion-panel-header>
+          <h5> {{current_language_set?.iecCounsellingDetails}}</h5>
+        </md-expansion-panel-header>
+        <app-iec-and-counselling-details [familyPlanningMode]="familyPlanningMode" [IecCounsellingForm]="patientMedicalForm['controls'].familyPlanningForm['controls'].IecCounsellingForm"></app-iec-and-counselling-details>
+      </md-expansion-panel>
+
+      <md-expansion-panel *ngIf="enableDispenseForm">
+        <md-expansion-panel-header>
+          <h5>{{current_language_set?.dispensationDetails}}</h5>
+        </md-expansion-panel-header>
+        <app-dispensation-details [familyPlanningMode]="familyPlanningMode" [dispensationDetailsForm]="patientMedicalForm['controls'].familyPlanningForm['controls'].dispensationDetailsForm"></app-dispensation-details>
+      </md-expansion-panel>
+
+    </md-accordion>
+  </div>
+</div>

@@ -1,0 +1,75 @@
+<md-expansion-panel 
+  [formGroup]="followUpImmunizationForm" 
+  expanded="true" 
+  *ngIf="visitCategory.toLowerCase() == 'neonatal and infant health care services' || visitCategory.toLowerCase() == 'childhood & adolescent healthcare services' ">
+  <md-expansion-panel-header>
+    <h5><strong>{{currentLanguageSet?.followUpImmunization}}</strong> </h5>
+  </md-expansion-panel-header>
+  <div class="m-t-20">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-t-10">
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 alignment">
+        {{currentLanguageSet?.dueDateNextImmunization}}
+      </div>
+      <div
+        class="col-xs-6 col-sm-6 col-md-6 col-lg-6"
+        style="padding-left: 0px; width: 300px"
+      >
+        <md2-datepicker
+          [openOnFocus]="true"
+          name="dueDateForNextImmunization"
+          formControlName="dueDateForNextImmunization"
+          placeholder="{{currentLanguageSet?.dueDateNextImmunization}}"
+          [min]="futureDate"
+          ng-readonly="true"
+          class="placeholderLength"
+          >
+          {{ dueDateForNextImmunization }}
+        </md2-datepicker>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 alignment">
+        {{currentLanguageSet?.nextDueVaccine}}
+      </div>
+
+      <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+        <md-select
+        class="input-full-width"
+        placeholder="{{currentLanguageSet?.nextDueVaccine}}"
+        name="nextDueVaccines"
+        formControlName="nextDueVaccines"
+        (change)="onClickOfNextDueVaccine()"
+      >
+        <md-option
+          *ngFor="let vaccine of dueVaccines"
+          [value]="vaccine.name"
+          >{{ vaccine.name }}</md-option
+        >
+      </md-select>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-t-10">
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 alignment">
+        {{currentLanguageSet?.locationOfNextImmunization}}
+      </div>
+      
+      <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 dropdown-height" style="white-space: nowrap;">
+        <md-select
+        class="input-full-width-location"
+        placeholder="{{currentLanguageSet?.locationOfNextImmunization}}"
+        name="locationOfNextImmunization"
+        formControlName="locationOfNextImmunization"
+        (change)="onClickOfLocationOfNextImmunization()"
+      >
+        <md-option
+          *ngFor="let location of nextImmunizationSession"
+          [value]="location.name"
+          >{{ location.name }}</md-option
+        >
+      </md-select>
+      </div>
+    </div>
+  </div>
+</md-expansion-panel>

@@ -1,0 +1,170 @@
+<div class="row m-t-20" [formGroup]="dispensationDetailsForm">
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box">
+      <md-select
+        multiple
+        class="select-full-width"
+        name="typeOfContraceptivePrescribed"
+        formControlName="typeOfContraceptivePrescribed"
+        placeholder="{{ current_language_set?.typeOfContraceptivePrescribed }}"
+        (change)="populateDoseFieldForAntara();
+                  otherContrasepiveType();
+                  resettypeOfContraceptivePrescribed(dispensationDetailsForm.controls.typeOfContraceptivePrescribed.value);"
+      >
+        <ng-container *ngFor="let contraceptive of typeOfContraceptivesList">
+          <md-option
+            class="dropdownHeight"
+            [value]="contraceptive.name"
+            [disabled]="
+              disableNoneOption !== null &&
+              ((!disableNoneOption && contraceptive.name == 'None') ||
+                (disableNoneOption && contraceptive.name != 'None'))
+            "
+            (click)="populateIucdFields(contraceptive.name)"
+            
+          >
+            {{ contraceptive.name }}
+          </md-option>
+        </ng-container>
+      </md-select>
+    </div>
+
+    <div
+      class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box"
+      *ngIf="enableOtherContraceptiveTypeField"
+    >
+      <md-form-field class="input-full-width">
+        <input
+          autocomplete="off"
+          mdInput
+          placeholder="{{ current_language_set?.other }}"
+          allowText="alphaspace"
+          name="otherTypeOfContraceptivePrescribed"
+          formControlName="otherTypeOfContraceptivePrescribed"
+          maxlength="100"
+          (change)="onValueChange()"
+        />
+      </md-form-field>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box">
+      <md-form-field class="input-full-width">
+        <input
+          autocomplete="off"
+          mdInput
+          defaultNull
+          placeholder="{{ current_language_set?.quantityPrescribed }}"
+          [min]="1"
+          allowMax="100"
+          allowText="number"
+          name="qtyPrescribed"
+          formControlName="qtyPrescribed"
+          [disableFormControl]=" dispensationDetailsForm.value.typeOfContraceptivePrescribed == 'Vasectomy (Male sterilization)' || dispensationDetailsForm.value.typeOfContraceptivePrescribed == 'Tubectomy (Female Sterilization)' 
+           || dispensationDetailsForm.value.typeOfContraceptivePrescribed == 'IUCD 375' || dispensationDetailsForm.value.typeOfContraceptivePrescribed == 'IUCD 380A' "
+          (change)="onValueChange()"
+        />
+      </md-form-field>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box">
+      <md2-datepicker
+        [openOnFocus]="true"
+        style="width: 100%"
+        name="nextVisitForRefill"
+        formControlName="nextVisitForRefill"
+        placeholder="{{ current_language_set?.nextVisitRefill }}"
+        [min]="futureDate"
+        (change)="onValueChange()"
+      >
+      </md2-datepicker>
+    </div>
+
+    <div
+      class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box"
+      *ngIf="enableDoseFields"
+    >
+      <md-form-field class="input-full-width">
+        <input
+          autocomplete="off"
+          allowText="number" 
+          mdInput
+          defaultNull
+          [min]="1"
+          allowMax="180"
+          placeholder="{{ current_language_set?.doseTake }}"
+          name="dosesTaken"
+          formControlName="dosesTaken"
+          (change)="onValueChange()"
+        />
+      </md-form-field>
+    </div>
+
+    <div
+      class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box"
+      *ngIf="enableDoseFields"
+    >
+      <md2-datepicker
+        [openOnFocus]="true"
+        style="width: 100%"
+        [max]="pastDate"
+        name="dateOfLastDoseTaken"
+        formControlName="dateOfLastDoseTaken"
+        (change)="onValueChange()"
+        placeholder="{{ current_language_set?.lastDateDoseTaken }}"
+      >
+      </md2-datepicker>
+    </div>
+
+    <div
+      class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box"
+      *ngIf="enableIucdFields"
+    >
+      <md-select
+        class="select-full-width"
+        name="typeOfIUCDInserted"
+        formControlName="typeOfIUCDInserted"
+        placeholder="{{ current_language_set?.typeOfIUCDInserted }}"
+        (change)="typeOfIucdInserteredID()"
+      >
+        <md-option
+          *ngFor="let iucdInserted of typeOfIucdInsertedList"
+          [value]="iucdInserted.name"
+          >{{ iucdInserted.name }}</md-option
+        >
+      </md-select>
+    </div>
+
+    <div
+      class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box"
+      *ngIf="enableIucdFields"
+    >
+      <md2-datepicker
+        [openOnFocus]="true"
+        style="width: 100%"
+        [max]="pastDate"
+        name="dateOfIUCDInsertion"
+        formControlName="dateOfIUCDInsertion"
+        (change)="onValueChange()"
+        placeholder="{{ current_language_set?.dateOfIUCDInsertion }}"
+      >
+      </md2-datepicker>
+    </div>
+
+    <div
+      class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box"
+      *ngIf="enableIucdFields"
+    >
+      <md-select
+        class="select-full-width"
+        name="iucdInsertionDoneBy"
+        formControlName="iucdInsertionDoneBy"
+        (change)="onValueChange()"
+        placeholder="{{ current_language_set?.iucdInsertionDone }}"
+      >
+        <md-option
+          *ngFor="let iucdInsertedBy of iucdInsertionByList"
+          [value]="iucdInsertedBy.name"
+          >{{ iucdInsertedBy.name }}</md-option
+        >
+      </md-select>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+.tcell {
+  height: 50px;
+  line-height: 50px;
+}
+
+.mat-expansion-panel-header {
+  background: rgba(37, 55, 70, 0.2);
+}
+
+h5 {
+  font-weight: bold;
+}
+@media only screen and (max-width: 600px){
+  .referreason{
+    width: 100%;
+  }
+}
+.alignment {
+  padding-left: 0px;
+  margin-top: 20px;
+}
+.inputFieldWidth {
+  width: 250px;
+}
+
+button#PreviousReferralHistory .mat-icon.material-icons {
+  color: #52575C !important;
+}
+.dropdownHeight {
+  display: block;
+  line-height: 28px;
+  padding: 10px 15px;
+  text-align: left;
+  text-decoration: none;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  height: inherit;
+  white-space: inherit;
+  overflow: visible;
+  text-overflow: unset;
+  width: 350px;
+}

@@ -1,0 +1,24 @@
+<md-accordion [formGroup]='patientImmunizationServicesForm'>
+  <md-expansion-panel expanded="true">
+    <md-expansion-panel-header>
+      <h5>{{currentLanguageSet?.immunizationService}}</h5>
+    </md-expansion-panel-header>
+    <app-neonatal-immunization-service *ngIf="showNeonatalImmunization || showChildAndAdolescentImmunization"
+    [mode]="mode" [visitCategory]="visitCategory" 
+    [neonatalImmunizationServicesForm]="patientImmunizationServicesForm.controls.immunizationServicesForm"
+    >
+  </app-neonatal-immunization-service>
+  </md-expansion-panel>
+
+  <md-expansion-panel *ngIf="beneficiaryAge <= 5 && this.visitCategory.trim().toLowerCase() == 'childhood & adolescent healthcare services'">
+    <md-expansion-panel-header>
+      <h5>{{currentLanguageSet?.oralVitaminAProphylaxis}}</h5>
+    </md-expansion-panel-header>
+    <app-childhood-oral-vitamin *ngIf="showChildAndAdolescentImmunization"
+    [mode]="mode" [visitCategory]="visitCategory" 
+    [oralVitaminAForm]="patientImmunizationServicesForm.controls.oralVitaminAForm"
+  >
+  </app-childhood-oral-vitamin>
+  </md-expansion-panel>
+
+</md-accordion> 

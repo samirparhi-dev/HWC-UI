@@ -1,0 +1,56 @@
+<div class="row m-t-10" *ngIf="beneficiaryAge <= 5 && visitCategory == 'Childhood & Adolescent Healthcare Services'" >
+  <div class="col-xs-12">
+    <fieldset>
+    <legend>{{currentLanguageSet?.oralVitaminAProphylaxis}}:</legend>
+      <table class="table table-no-border casesheet-table" aria-describedby="oralVitaminAProphylaxisTable">
+        <tbody>
+            <tr>
+              <th id="dateOfVisit">
+                {{currentLanguageSet?.dateOfVisit}}:
+              </th>
+              <td>
+                  {{ oralVitaminACasesheet?.dateOfVisit }}
+              </td>
+
+              <th id="oralVitaminA">
+                {{currentLanguageSet?.oralVitaminA}}:
+              </th>
+              <td>
+                  {{ oralVitaminACasesheet?.oralVitaminAStatus }}
+              </td>
+
+              <th id="noOfOralVitaminADose" *ngIf="enableOralVitaminAData">
+                {{currentLanguageSet?.noOfOralVitaminADose}}:
+              </th>
+              <td *ngIf="enableOralVitaminAData">
+                  {{ oralVitaminACasesheet?.noOfOralVitaminADose }}
+              </td>
+
+            </tr>
+            <tr>
+              <th id="dose" *ngIf="enableOralVitaminAData">
+                {{currentLanguageSet?.dose}}:
+              </th>
+              <td *ngIf="enableOralVitaminAData">
+                  {{ oralVitaminACasesheet?.dose }}
+              </td>
+
+              <th id="batchNo" *ngIf="enableOralVitaminAData">
+                {{ currentLanguageSet?.batchNo }}:
+              </th>
+              <td *ngIf="enableOralVitaminAData">
+                  {{ oralVitaminACasesheet?.batchNo }}
+              </td>
+
+              <th id="route" *ngIf="enableOralVitaminAData">
+                {{ currentLanguageSet?.route }}:
+              </th>
+              <td *ngIf="enableOralVitaminAData">
+                  {{ oralVitaminACasesheet?.route }}
+              </td>
+            </tr>
+        </tbody>
+        </table>
+    </fieldset>
+  </div>
+</div>

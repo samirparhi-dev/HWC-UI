@@ -1,0 +1,54 @@
+<md-card class="m-t-10 m-b-5">
+  <div
+    class="row"
+    [formGroup]="cervicalScreeningForm"
+    [hidden]="hideCervicalForm"
+  >
+  <div class="pull-right" [hidden] = "hideRemoveFunctionalityInDoctorIfSuspected">
+  <button md-icon-button (click)="hideCervicalScreeningForm()">
+    <md-icon mdTooltip="Remove" class="md-24 mdIcon-button-style"
+      >close</md-icon
+    >
+    </button>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
+      <h5>
+       <strong>{{ currentLanguageSet?.cervicalCancer }}</strong>       
+      </h5>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 pull-right">
+      <md-checkbox
+      [disabled]="disableCheckbox"
+      [checked]="visualExaminationSuspected"
+      (change)="markAsUnsuspected($event.checked)"
+      ></md-checkbox>
+      <label style="color: grey; margin-bottom: 15px">Mark as suspected</label>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+       <label
+          *ngIf="visualExaminationSuspected"
+          style="color: red; margin-bottom: 15px"
+          >* {{ currentLanguageSet?.cervicalCancerScreeningSuspected }}</label
+        >
+      </div>
+    <div class="m-t-10">
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5 box" style="white-space: nowrap;">
+        <md-select
+          class="input-full-width"
+          placeholder="{{ currentLanguageSet?.visualExamination }}"
+          formControlName="visualExaminationId"
+          (change)="checkCervicalCancerSuspect()"
+          required
+        >
+          <md-option
+            *ngFor="let visualExamination of visualExaminations"
+            [value]="visualExamination.id"
+          >
+          {{ visualExamination.name }}
+          </md-option>
+        </md-select>
+      </div>
+    </div>
+  </div>
+</md-card>

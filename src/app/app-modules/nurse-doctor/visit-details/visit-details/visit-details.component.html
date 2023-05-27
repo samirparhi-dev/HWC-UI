@@ -1,0 +1,305 @@
+<!-- {{patientVisitDetailsForm.value | json}} -->
+
+<div class="row m-t-20" [formGroup]="patientVisitDetailsForm">
+  <ng-container
+    *ngIf="cbacData != undefined && cbacData != null && cbacData.length > 0"
+  >
+    <div
+      class="col-xs-12 col-lg-12 col-md-12 col-sm-12"
+      style="margin-top: 15px; margin-bottom: 10px"
+    >
+      This patient is <strong>suspected </strong> to have the following health
+      conditions as per the preliminary screening done by the ASHA:
+    </div>
+    <div
+      class="col-xs-12 col-lg-12 col-md-12 col-sm-12"
+      *ngFor="let data of cbacData; let i = index"
+    >
+      {{ i + 1 }}.{{ data }}
+    </div>
+    <br />
+    <div
+      class="col-xs-12 col-lg-12 col-md-12 col-sm-12"
+      style="margin-bottom: 20px; margin-top: 10px"
+    >
+      Please perform the necessary examinations to confirm.
+    </div>
+  </ng-container>
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box" *ngIf="mode == 'view'">
+    <md-form-field class="input-full-width">
+      <input
+        autocomplete="off"
+        mdInput
+        defaultNull
+        placeholder="{{ currentLanguageSet?.Reports?.visitcode }}"
+        name="visitCode"
+        formControlName="visitCode"
+      />
+    </md-form-field>
+  </div>
+
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box">
+    <md-select
+      class="input-full-width"
+      placeholder="{{
+        currentLanguageSet?.nurseData?.visitDetailsForm?.reasonForVisit
+      }}"
+      name="visitReason"
+      formControlName="visitReason"
+      (change)="reasonSelected(visitReason)"
+      [disabled]="disableVisit"
+      required
+    >
+      <md-option
+        *ngFor="let visitReasons of templateVisitReasons"
+        [value]="visitReasons.visitReason"
+      >
+        {{ visitReasons.visitReason }}
+      </md-option>
+    </md-select>
+  </div>
+
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box" *ngIf="visitReason">
+    <md-select
+      class="input-full-width"
+      placeholder="{{
+        currentLanguageSet?.nurseData?.visitDetailsForm?.visitCategory
+      }}"
+      name="visitCategory"
+      formControlName="visitCategory"
+      (change)="checkCategoryDependent(visitCategory)"
+      [disabled]="disableVisit"
+      required
+    >
+      <md-option class="dropdownValue"
+        *ngFor="let VisitCategories of templateFilterVisitCategories"
+        [value]="VisitCategories.visitCategory"
+      >
+        {{ VisitCategories.visitCategory }}
+      </md-option>
+    </md-select>
+  </div>
+
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box" *ngIf=" visitCategory == 'General OPD' ">
+    <md-select
+      class="input-full-width"
+      placeholder="{{
+        currentLanguageSet?.nurseData?.visitDetailsForm?.subVisitCategory
+      }}"
+      name="subVisitCategory"
+      formControlName="subVisitCategory"
+      required
+    >
+      <md-option class="dropdownValueSubVisitCategory"
+        *ngFor="let SubVisitCategories of templateSubVisitCategories"
+        [value]="SubVisitCategories.name"
+      >
+        {{ SubVisitCategories.name }}
+      </md-option>
+    </md-select>
+  </div>
+
+  <div
+    class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box"
+    *ngIf="
+      showPregnancyStatus &&
+      visitCategory != null &&
+      visitCategory != undefined &&
+      visitCategory != 'PNC' && visitCategory != 'Neonatal and Infant Health Care Services'
+    "
+  >
+    <md-select
+      class="input-full-width"
+      placeholder="{{
+        currentLanguageSet?.nurseData?.visitDetailsForm?.pregnancyStatus
+      }}"
+      id="pregnancyStatus"
+      name="pregnancyStatus"
+      formControlName="pregnancyStatus"
+      [attr.readonly]="visitCategory == 'ANC'"
+      [disabled]="disableVisit"
+    >
+      <md-option
+        *ngFor="let pregnancyStatus of templatePregnancyStatus"
+        [value]="pregnancyStatus"
+      >
+        {{ pregnancyStatus }}
+      </md-option>
+    </md-select>
+  </div>
+
+  <div
+    class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box"
+    *ngIf=" visitCategory != null &&
+    visitCategory != undefined && 
+    pregnancyStatus && pregnancyStatus == 'Yes' && visitCategory != 'PNC' && visitCategory != 'Neonatal and Infant Health Care Services'
+    "
+  >
+    <md-form-field class="input-full-width">
+      <input
+        autocomplete="off"
+        mdInput
+        defaultNull
+        allowText="number"
+        placeholder="{{
+          currentLanguageSet?.nurseData?.visitDetailsForm?.MCTSOrRCHID
+        }}"
+        maxlength="12"
+        name="rCHID"
+        formControlName="rCHID"
+        [disabled]="disableVisit"
+        class="text-field-disabled"
+      />
+    </md-form-field>
+  </div>
+
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box"  
+  *ngIf="visitCategory === 'FP & Contraceptive Services' && visitReason === 'Follow Up' && attendant == 'nurse'">
+    <md-select
+    class="input-full-width"
+      name="followUpForFpMethod"
+      formControlName="followUpForFpMethod"
+      placeholder="{{
+        currentLanguageSet?.followUpFpMethod
+      }}"
+      (change) = "checkForOtherFpMethodOption(patientVisitDetailsForm.controls.followUpForFpMethod.value)"
+      multiple
+      required
+    >
+      <ng-container
+        *ngFor="let methods of fpMethodList"
+      >
+        <md-option
+          class="dropdownHeight"
+          [value]="methods.name"
+          [disabled]="
+          (( disableAllFpOptions !== null) && ((!disableAllFpOptions &&
+          methods.name == 'None') ||
+            (disableAllFpOptions &&
+            methods.name != 'None')))
+        "
+        >
+          {{ methods.name }}
+        </md-option>
+      </ng-container>
+    </md-select>
+  </div>
+
+<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box"  *ngIf="enableOtherFpTextField && attendant == 'nurse'">
+  <md-form-field class="input-full-width">
+    <input autocomplete="off" mdInput defaultNull  placeholder="{{currentLanguageSet?.other}}"
+      maxlength="100" allowText="alphaspace" name="otherFollowUpForFpMethod" formControlName="otherFollowUpForFpMethod" />
+  </md-form-field>
+</div>
+
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box"  
+  *ngIf="visitCategory === 'FP & Contraceptive Services' && visitReason === 'Follow Up' && attendant == 'nurse'">
+    <md-select
+    class="input-full-width"
+      name="sideEffects"
+      formControlName="sideEffects"
+      placeholder="{{
+        currentLanguageSet?.sideEffect
+      }}"
+      multiple
+      (change) = "checkForOtherSideEffectsOption(patientVisitDetailsForm.controls.sideEffects.value)"
+    >
+      <ng-container
+        *ngFor="let effects of sideEffectsList"
+      >
+        <md-option
+        class="dropdownHeight"
+          [value]="effects.name"
+        >
+          {{ effects.name }}
+        </md-option>
+      </ng-container>
+    </md-select>
+  </div>
+
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box" *ngIf = "enableOtherSideEffectTextField && attendant == 'nurse'">
+    <md-form-field class="input-full-width">
+      <input autocomplete="off" mdInput defaultNull  placeholder="{{currentLanguageSet?.other}}"
+        maxlength="100" allowText="alphaspace" name="otherSideEffects" formControlName="otherSideEffects" />
+    </md-form-field>
+  </div>
+
+
+
+  <div
+    class="col-xs-6 col-sm-6 align"
+    *ngIf="
+      visitCategory != null &&
+      visitCategory != undefined &&
+      visitCategory == 'NCD screening'
+    "
+  >
+    <md-radio-group
+      formControlName="IdrsOrCbac"
+      (change)="enableHistoryScreenOnIdrs(IdrsOrCbac)"
+      [(ngModel)]="keyType"
+    >
+      <md-radio-button color="primary" class="radio-button" value="IDRS">{{currentLanguageSet?.idrsInCaps}}</md-radio-button>
+      <md-radio-button color="primary" class="radio-button" value="CBAC">{{currentLanguageSet?.cbacForm}}</md-radio-button>
+    </md-radio-group>
+  </div>
+
+
+
+</div>
+
+
+
+
+  <div class="row m-t-20" *ngIf="visitCategory === 'FP & Contraceptive Services' && visitReason === 'Follow Up' && attendant != 'nurse'">
+ 
+        <div  class="col-xs-12">
+       
+                <table class="table table-no-border family-table" aria-describedby="visitDetailsTbl">
+                   
+                    <tr>
+                    <th class="alignTableFollow" id="followUpForFpMethod">
+                        {{ currentLanguageSet?.followUpFpMethod }}:
+                    </th>
+                    <td class="alignTable">
+                        {{ patientVisitDetailsForm.controls.followUpForFpMethod.value }}
+                    </td>
+
+                    <th class="alignTableSide" id="sideEffects">
+                        {{ currentLanguageSet?.sideEffect }}:
+                    </th>
+                    <td class="alignTableSide">
+                      {{ patientVisitDetailsForm.controls.sideEffects.value }}
+                    </td>
+                    </tr>
+
+                    <tr>
+                    <th class="alignTableFollow" id="otherFollowUpForFpMethod" *ngIf="enableOtherFpTextField && attendant != 'nurse'">
+                        {{ currentLanguageSet?.otherFollowUp }}:
+                    </th>
+                    <td class="alignTable" *ngIf="enableOtherFpTextField && attendant != 'nurse'">
+                      {{ patientVisitDetailsForm.controls.otherFollowUpForFpMethod.value }}
+                    </td>
+
+                    <th class="alignTableSide" id="otherSideEffects" *ngIf = "enableOtherSideEffectTextField && attendant != 'nurse'">
+                        {{ currentLanguageSet?.otherSideEffect }}:
+                    </th>
+                    <td  class="alignTable" *ngIf = "enableOtherSideEffectTextField && attendant != 'nurse'">
+                      {{ patientVisitDetailsForm.controls.otherSideEffects.value }}
+                    </td>
+                    </tr>
+                </table>
+              </div>
+   
+</div>
+
+<div class="row m-t-20" *ngIf="enableConfirmedDiseases" >
+  <div  class="col-xs-12">
+<label> {{ currentLanguageSet?.existingNCDDisease }}: &nbsp;&nbsp;</label>
+{{previousConfirmedDiseasesList}}
+</div>
+
+
+
+</div>
+

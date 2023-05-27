@@ -1,0 +1,16 @@
+.testReport {
+    padding: 24px;
+}
+
+.title_background {
+    background: #336CFB !important;
+    color: white;
+}
+
+.procedureHead{
+    text-align: center;
+    font-weight: bold;
+}
+h3{
+    block-size: 10px;
+}

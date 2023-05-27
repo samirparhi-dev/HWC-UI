@@ -1,0 +1,134 @@
+<div class="container-fluid" >
+  <button md-mini-fab class="example-fab" color="primary" (click)="sideNavModeChange(sidenav)">
+    <md-icon>account_box</md-icon>
+  </button>
+  <md-sidenav-container class="example-sidenav-fab-container">
+    <md-sidenav #sidenav mode="side" opened="true">
+      <div class="example-scrolling-content">
+        <app-beneficiary-details></app-beneficiary-details>
+      </div>
+    </md-sidenav>
+    <div [ngClass]="sidenav._opened == true ? 'example-scrolling-content content' : 'example-scrolling-content contentNav'">
+<section class="row" style="margin-top: 1.0%;">
+  <section class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <div class="row" style="margin-left: 2%;">
+        <h3 class="modal-title"><strong>{{currentLanguageSet?.familyTagging}}</strong></h3>
+      </div>
+  </section>
+  <section class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <section class="row search-button-container" >
+        <button  class="btn pull-right full-width-login background-overall" (click)="backToRegistration()">
+          Back to Registration</button>
+        <button md-raised-button class="btn btn-default full-width-login background-overall pull-right adv-button" (click)="openSearchFamily()" data-toggle="modal"> Search Family</button>
+        <button md-raised-button class="btn btn-default full-width-login background-overall button-overall-disabled cu-btn-default pull-right adv-button" (click)="CreateFamilyDialog()" 
+        data-toggle="modal" [disabled]="(benFamilyId !== null && benFamilyId !== undefined)">{{currentLanguageSet?.createFamily}}</button>
+    </section>
+
+        </section>
+      </section>
+
+      <div class="row m-t-10 m-b-40">
+      <div class="col-sm-12">
+      <md-card>
+    <div class="table-responsive" *ngIf="enableFamilyCreateTable">
+      <table class="table table-striped" aria-describedby="newFamilyTag" [md2Data]="createdFamilyList" #md2="md2DataTable" >
+        <thead>
+
+          <tr style="text-align:center;">
+            <th style="padding-left: 100px;" id="familyID">{{currentLanguageSet?.familyId}}</th>
+            <th style="padding-left: 100px;" id="familyName">{{currentLanguageSet?.familyName}}</th>
+            <th style="padding-left: 100px;" id="headOfTheFamily">{{currentLanguageSet?.headOfTheFamily}}</th>
+            <th style="padding-left: 100px;" id="beneficiaryRelationWithHeadOfFamily">{{currentLanguageSet?.benRelationWithHeadOfFamily}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-template [ngIf]="createdFamilyList.length === 0">
+            <tr *ngFor="let row of blankTable">
+              <td> &nbsp; </td>
+              <td> &nbsp; </td>
+              <td> &nbsp; </td>
+              <td> &nbsp; </td>
+              <td> &nbsp; </td>
+              <td> &nbsp; </td>
+              <td> &nbsp; </td>
+              <td> &nbsp; </td>
+              <td> &nbsp; </td>
+              <td> &nbsp; </td>
+              <td> &nbsp; </td>
+            </tr>
+          </ng-template>
+        
+            <tr class="table-striped" *ngFor="let item of md2.data" >
+              <td style="padding-left: 100px;">{{item.familyId}}</td>
+              <td style="padding-left: 100px;">{{item.familyName | titlecase}}</td>
+              <td style="padding-left: 100px;">{{((item.familyHeadName !== undefined && item.familyHeadName !== null) ? item.familyHeadName : "Not Declared") | titlecase}}</td>
+              <td style="padding-left: 100px;">{{item.headofFamily_Relation}}</td>
+          </tr>  
+      </tbody>
+
+      </table>
+    </div>
+
+    <div class="table-responsive" *ngIf="!enableFamilyCreateTable">
+      <table class="table table-striped" aria-describedby="searchResultFamilyTag" [md2Data]="familySearchList" #md2="md2DataTable" >
+        <thead>
+
+          <tr style="text-align:center">
+            <th id="sNo">{{currentLanguageSet?.coreComponents?.sno}}</th>
+            <th id="familyId">{{currentLanguageSet?.familyId}}</th>
+            <th id="headOfTheFamily">{{currentLanguageSet?.headOfTheFamily}}</th>
+            <th id="familyName">{{currentLanguageSet?.familyName}}</th> 
+            <th id="noOfMembers">{{currentLanguageSet?.members}}</th>
+            <th id="action">{{currentLanguageSet?.bendetails?.action}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-template [ngIf]="familySearchList?.length === 0">
+            <tr *ngFor="let row of blankTable">
+              <td> &nbsp; </td>
+              <td> &nbsp; </td>
+              <td> &nbsp; </td>
+              <td> &nbsp; </td>
+              <td> &nbsp; </td>
+              <td> &nbsp; </td>
+              <td> &nbsp; </td>
+              <td> &nbsp; </td>
+              <td> &nbsp; </td>
+              <td> &nbsp; </td>
+              <td> &nbsp; </td>
+            </tr>
+          </ng-template>
+            <tr class="table-hover table-striped" *ngFor="let element of md2.data" >
+              <td>{{familySearchList.indexOf(element)+1}}</td>
+              <td>{{element.familyId}}</td>
+              <td>{{(element.familyHeadName !== undefined && element.familyHeadName !== null && element.familyHeadName !== "" ? element.familyHeadName : "Not Declared") | titlecase}}</td>
+              <td>{{element.familyName | titlecase}}</td>
+              <td>{{element.noOfmembers}}</td>
+              <td>
+                <md-icon mdTooltip="Edit" class="mat-icon material-icons" *ngIf="benFamilyId !== null && benFamilyId == element.familyId" (click)="getFamilyMembers(true,element)" role="img" aria-hidden="true" style="cursor: pointer" 
+                >edit</md-icon>
+                <md-icon mdTooltip="Add Member" class="mat-icon material-icons" *ngIf="benFamilyId == null" (click)="getFamilyMembers(false,element)" role="img" aria-hidden="true" style="cursor: pointer"
+                >add</md-icon>
+              </td>
+
+          </tr>  
+      </tbody>
+
+  <tfoot>
+    <tr>
+      <td colspan="7" style="text-align:right;">
+        <md2-pagination class="colorpagination"></md2-pagination>
+      </td>
+    </tr>
+  </tfoot>
+
+
+
+      </table>
+    </div>
+    </md-card>
+    </div>
+      </div>
+    </div>
+  </md-sidenav-container>
+</div>

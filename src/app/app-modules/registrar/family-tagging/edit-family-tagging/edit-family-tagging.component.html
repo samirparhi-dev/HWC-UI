@@ -1,0 +1,88 @@
+<section id="editFamilyTaggingDialog" class="container-fluid">
+
+  <div class="row title info">
+      <h4>{{currentLanguageSet?.EditTheFamilyDetails}}</h4>
+      <button class="pull-right close-btn" (click)="mdDialogRef.close(false)" md-icon-button>
+          <md-icon class="md-24">close</md-icon>
+      </button>
+  </div>
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-t-10">
+    <h5 class="pull-left m-r-10"><strong>{{currentLanguageSet?.familyId}}: {{memberFamilyId}}</strong></h5>
+<h5 class="pull-right"><strong>{{currentLanguageSet?.headOfTheFamily}}: {{ (headInFamily !== undefined && headInFamily !== null ? headInFamily : "Not Declared") | titlecase}}</strong></h5>
+  </div>
+  <md-dialog-content>
+
+    <div class="table-responsive m-t-10">
+      <table aria-describedby="FamilyTaggingDetails" class="table table-striped" [md2Data]="familyDetails.familyMembers" #md2="md2DataTable" [rowsPerPage]="5" [activePage]="1">
+        <thead>
+          <tr>
+            <th id="sno">{{currentLanguageSet?.coreComponents?.sno}}</th>
+            <th id="memberId">{{currentLanguageSet?.memberId}}</th>
+            <th id="memberName">{{currentLanguageSet?.memberName}}</th>
+            <th id="relationWithHead">{{currentLanguageSet?.relationshipWthHead}}</th>
+            <th id="check" *ngIf="showCheckbox">{{currentLanguageSet?.bendetails?.action}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="familyDetails.familyMembers.length == 0">
+            <td colspan="5" class="text-center text-field-color" style="text-align: center;">{{currentLanguageSet?.casesheet?.noRecordFound}}</td>
+          </tr>
+          <tr *ngFor="let item of md2.data">
+            <td data-title="sno">{{familyDetails.familyMembers.indexOf(item)+1}}</td>
+            <td data-title="Member ID">{{ item?.memberId}} </td>
+            <td data-title="Member Name">{{ item?.memberName}} </td>
+            <td data-title="Relation with head">{{ item?.relationWithHead}} </td>
+            <td *ngIf="showCheckbox">
+              <md-checkbox (change)="selectMember($event, item)" [checked]="uncheckMember && item.selected" ></md-checkbox>
+            </td>
+          </tr>
+        </tbody>  
+        <tfoot>
+          <tr>
+            <td colspan="5" style="text-align:right;">
+              <md2-pagination class="colorpagination"></md2-pagination>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+      <form #editFamilyTaggingForm="ngForm">
+        <section class="row m-t-10">
+              <div class="col-xs-12 inputAlign box">
+                  <div class="select-container">
+                      <md-select class="p-t-12 text-field-disabled" required [style.width]="'100%'" placeholder="{{currentLanguageSet?.isTheBeneficaryHeadOfTheFamily}}" name="familyHead" [(ngModel)]="familyHead" (change)="populateRelation(familyHead)" [disabled]="disableForm">
+                          <md-option value="Yes">Yes</md-option>
+                          <md-option value="No">No</md-option>
+                      </md-select>
+                  </div>
+              </div>
+              <div class="col-xs-12 inputAlign box">
+                  <div class="select-container">
+                      <md-select class="p-t-12 text-field-disabled" required [style.width]="'100%'" placeholder="{{currentLanguageSet?.beneficiaryRelationWithHeadOfTheFamily}}" name="relationWithHead" [(ngModel)]="relationWithHead" (change)="checkOtherRelation(relationWithHead)" [disabled]="disableForm">
+                          <md-option *ngFor="let relationType of relationShipList" [value]="relationType.benRelationshipID">{{relationType.benRelationshipType}} </md-option>
+                      </md-select>
+                  </div>
+              </div>
+
+              <div class="col-xs-12 inputAlign box" *ngIf="enableOther">
+                <md-input-container [style.width]="'100%'">
+                    <input autocomplete="off" mdInput allowText="alphaspace" placeholder="{{currentLanguageSet?.other}}"  name="other" [(ngModel)]="other" required
+                    #othersValue="ngModel"  minlength="2" maxlength="50">
+                    <md-error *ngIf="othersValue?.errors?.required">{{currentLanguageSet?.otherRequired}}</md-error>
+                    <md-error *ngIf="othersValue?.errors?.minlength">{{currentLanguageSet?.common?.pleaseprovideatleast2character}}</md-error>
+                </md-input-container>
+            </div>
+          </section>
+      </form>
+
+  </md-dialog-content>
+
+  <md-dialog-actions  class="padding15 margin15 pull-right">
+      <button md-raised-button class="full-width-login button-reset" type="button" (click)="resetEditFamilyTaggingorm()">{{currentLanguageSet?.common?.clear}}</button>
+      <button *ngIf="showCheckbox" [disabled]="disableUntag" (click)="untagFamilyMember()" md-raised-button class="full-width-login button-reset button-untag-disabled" type="button">{{currentLanguageSet?.untag}}</button>
+      <button  [disabled]="disableForm || editFamilyTaggingForm.invalid" (click)="saveFamilyTagging()" md-raised-button color="accent" class="full-width-login background-overall button-save-disabled" type="button">{{currentLanguageSet?.coreComponents?.save}}</button>
+  </md-dialog-actions>
+  <div class="clearfix"></div>
+</section>

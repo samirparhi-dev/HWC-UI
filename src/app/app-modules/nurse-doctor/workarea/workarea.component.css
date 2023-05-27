@@ -1,0 +1,121 @@
+.stepper {
+  margin-bottom: 100px;
+}
+
+.mat-stepper-horizontal {
+  padding: 0px;
+  background: #f2f2f0 !important;
+}
+
+.mat-horizontal-stepper-header-container {
+  background: #f2f2f0 !important;
+}
+
+.step-btn button {
+  float: right;
+  margin-left: 5px;
+}
+
+md-card {
+  min-height: 425px;
+}
+
+.example-sidenav-fab-container {
+  width: 100%;
+  overflow: auto;
+}
+
+.example-sidenav-fab-container md-sidenav {
+  max-width: 250px;
+}
+
+.example-sidenav-fab-container .mat-sidenav-content, .example-sidenav-fab-container md-sidenav {
+  display: flex;
+}
+
+.example-scrolling-content {
+  flex: auto;
+  /* overflow: auto; */
+  background: #f2f2f0 !important;
+  min-height: 500px;
+}
+
+.sidenav {
+  padding: 16px;
+}
+
+.content {
+  padding: 20px 20px 20px 62px;
+}
+
+.contentNav {
+  padding: 20px 0px;
+}
+
+.example-fab.mat-mini-fab {
+  position: fixed;
+  left: 20px;
+  bottom: 50px;
+  z-index: 3;
+}
+
+.previousIcon {
+  position: fixed;
+  left: 65px;
+  bottom: 45px;
+  z-index: 3;
+  height: 44px;
+  width: 49px;
+  border: none;
+}
+
+@media only screen and (max-width: 700px) {
+  .container-fluid {
+    padding: 0px !important;
+  }
+
+  .example-sidenav-fab-container{
+    height: stretch;
+  }
+
+  .example-sidenav-fab-container md-sidenav {
+    max-width: unset;
+    width: 50%;
+  }
+
+  .example-sidenav-fab-container .content {
+    height: stretch;
+  }
+}
+
+.m-b-40{
+  margin-bottom: 40px;
+}
+
+.button-update-disabled[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.full-width-login {
+  width: 13%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 35px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+img {
+  width: 40px;
+  height: 40px;
+}
+
+.iconStyle{
+  font-size: 35px;
+  margin-right: 15px;
+  color: #336CFB;
+}

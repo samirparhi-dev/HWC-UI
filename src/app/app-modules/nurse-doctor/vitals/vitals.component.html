@@ -1,0 +1,6 @@
+<div class="row m-t-10">
+    <div class="col-xs-12">
+        <nurse-general-patient-vitals *ngIf="showGeneralOPD" [mode]="mode" [visitCategory]="visitCategory" [patientVitalsForm]='patientVitalsForm'></nurse-general-patient-vitals>
+        <nurse-neonatal-patient-vitals *ngIf="showNeonatal || showChildAndAdolescent" [mode]="mode" [visitCategory]="visitCategory" [patientVitalsForm]='patientVitalsForm' >  </nurse-neonatal-patient-vitals>
+    </div>
+</div>

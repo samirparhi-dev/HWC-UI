@@ -1,0 +1,37 @@
+.checkbox-margin {
+    margin-top: 12px;
+}
+
+.select-full-width {
+    width: 100%;
+}
+
+.input-full-width {
+    width: 100%;
+}
+
+.mat-form-field {
+    line-height: unset;
+}
+
+.box {
+    height: 60px;
+}
+
+.checkbox {
+    padding: 15px 25px;
+}
+
+.checkOthers {
+  margin-left: -44px;
+  margin-top: -20px;
+}
+
+.checkStyle {
+    margin-top: -5px;
+    padding: 1px;
+  }
+
+button#previousANCComorbidityHistory .mat-icon.material-icons {
+    color: #52575C !important;
+}

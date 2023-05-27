@@ -1,0 +1,19 @@
+.select-full-width {
+    width: 100%;
+}
+
+.input-full-width {
+    width: 100%;
+}
+
+.mat-form-field {
+    line-height: unset;
+}
+
+.box {
+    height: 60px;
+}
+
+button#previousANCFamilyHistory .mat-icon.material-icons {
+    color: #52575C !important;
+}

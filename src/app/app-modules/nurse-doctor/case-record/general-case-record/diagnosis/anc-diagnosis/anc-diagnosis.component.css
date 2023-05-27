@@ -1,0 +1,25 @@
+.input-full-width {
+    width: 100%;
+  }
+  
+  .mat-expansion-panel-header {
+    /* background: #E1EAFF !important; */
+    padding: 0 15px;
+  }
+  
+  .box {
+    height: 60px;
+  }
+
+  md-icon.search-btn {
+    color: #52575C !important;
+    cursor: pointer;
+  }
+  
+ .tabcolor {
+    background: #E1EAFF !important;
+  }
+
+  .input-full-width-complication {
+    width: 275px;
+  }

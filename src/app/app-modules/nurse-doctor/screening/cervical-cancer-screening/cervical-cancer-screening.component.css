@@ -1,0 +1,43 @@
+.input-full-width {
+    width: 350px;
+}
+
+h5 {
+    font-weight: bold;
+}
+
+.mat-expansion-panel-header {
+    background: rgba(37, 55, 70, 0.2);
+}
+
+.mat-form-field {
+    line-height: unset;
+}
+
+.box {
+    height: 70px;
+}
+
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+md-expansion-panel {
+    margin: 0.5%;
+}
+
+ul li div i, ul li p {
+    display: inline-block;
+}
+
+ul li div i {
+    height: 15px;
+    width: 15px;
+}
+
+.span {
+    margin-left: 5px;
+}

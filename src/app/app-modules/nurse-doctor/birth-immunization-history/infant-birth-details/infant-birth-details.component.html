@@ -1,0 +1,205 @@
+<div class="row m-t-20" [formGroup]="infantBirthDetailsForm" >
+
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box"
+    *ngIf="visitType == 'Childhood & Adolescent Healthcare Services' "  >
+    <md2-datepicker
+      [openOnFocus]="true"
+      style="width: 100%"
+      [max]="today"
+      name="dateOfBirth"
+      formControlName="dateOfBirth"
+      placeholder="{{currentLanguageSet?.birthDate}}"
+      (change)="onValueChange()"
+    >
+    </md2-datepicker>
+  </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box"
+    *ngIf="visitType == 'Childhood & Adolescent Healthcare Services' "
+  >
+  <md-form-field class="input-full-width">
+    <input
+      style="width: 100%"
+      mdInput
+      type="time"
+      name="timeOfBirth"
+      formControlName="timeOfBirth"
+      placeholder="{{currentLanguageSet?.birthTime}}"  
+      (change)="onValueChange()"
+      >
+      
+  </md-form-field>
+  </div>
+
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box">
+    <md-select  
+      class="select-full-width" 
+      placeholder="{{currentLanguageSet?.placeOfDelivery}}" 
+      id="deliveryPlaceID" 
+      name="deliveryPlaceID" 
+      formControlName="deliveryPlaceID"
+      (change)="otherPlaceOfDelivery(true)"
+      >
+      <md-option
+      *ngFor="let place of deliveryPlaceList"
+      [value]="place.deliveryPlaceID"
+      >{{place.deliveryPlace}}
+      </md-option>
+    </md-select>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box" *ngIf="enableOtherDeliveryPlace">
+      <md-form-field class="input-full-width">
+        <input
+        autocomplete="off"
+        mdInput
+        allowText="alphaspace"
+        defaultNull
+        mdTextareaAutosize
+        id='otherDeliveryPlace'
+        name='otherDeliveryPlace'
+        formControlName="otherDeliveryPlace"
+        placeholder="{{currentLanguageSet?.other}}"
+        (change)="onValueChange()"
+        >
+      </md-form-field>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box">
+      <md-select  
+      class="select-full-width" 
+      placeholder="{{currentLanguageSet?.typeOfDelivery}}" 
+      id="deliveryTypeID" 
+      name="deliveryTypeID" 
+      formControlName="deliveryTypeID"
+      (change)="getDeliveryType()"
+      >
+      <md-option      
+      *ngFor="let type of deliveryTypeList"
+      [value]="type.deliveryTypeID"
+      >{{type.deliveryType}}
+      </md-option>
+      </md-select>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box"
+    *ngIf="visitType.toLowerCase() == 'neonatal and infant health care services'">
+      <md-select  
+      class="select-full-width" 
+      placeholder="{{currentLanguageSet?.complicationAtBirth}}" 
+      id="birthComplicationID" 
+      name="birthComplicationID" 
+      formControlName="birthComplicationID"
+      (change)="otherBirthComplication()"
+      >
+      <md-option
+      *ngFor="let complication of birthComplicationList"
+     [value]="complication.complicationID" 
+     > {{ complication.complicationValue }}
+      </md-option>
+      </md-select>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box" *ngIf="enableOtherBirthComplication">
+      <md-form-field class="input-full-width">
+        <input
+        autocomplete="off"
+        mdInput
+        allowText="alphaspace"
+        defaultNull
+        mdTextareaAutosize
+        id='otherDeliveryComplication'
+        name='otherDeliveryComplication'
+        formControlName="otherDeliveryComplication"
+        placeholder="{{currentLanguageSet?.other}}"
+        (change)="onValueChange()"
+        >
+      </md-form-field>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box">
+      <md-select  
+      class="select-full-width" 
+      placeholder="{{currentLanguageSet?.gestation}}" 
+      id="gestationID" 
+      name="gestationID" 
+      formControlName="gestationID"
+      (change)="getGestation()"
+      >
+      <md-option 
+      *ngFor="let item of gestationList"
+      [value]="item.gestationID"
+      > {{item.name}}
+      </md-option>
+      </md-select>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box">
+      <md-select  
+      class="select-full-width" 
+      placeholder="{{currentLanguageSet?.deliveryConductedBy}}" 
+      id="deliveryConductedByID" 
+      name="deliveryConductedByID" 
+      formControlName="deliveryConductedByID"
+      (change)="getDeliveryConductedBy()"
+      >
+      <md-option
+      *ngFor="let item of deliveryConductedByList"
+      [value]="item.deliveryConductedByID"
+      > {{ item.deliveryConductedBy }}
+      </md-option>
+      </md-select>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box">
+      <md-form-field class="input-full-width">
+        <input
+        autocomplete="off"
+        mdInput
+        allowText="number"
+        defaultNull
+        mdTextareaAutosize
+        [min]="500"
+        allowMax="6000"
+        id='birthWeightOfNewborn'
+        name='birthWeightOfNewborn'
+        formControlName="birthWeightOfNewborn"
+        placeholder="{{currentLanguageSet?.birthWeightOfNewBorn}}"
+        (change)="checkNewBornWeight()"
+        >
+      </md-form-field>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box"
+    *ngIf="visitType.toLowerCase() == 'neonatal and infant health care services'">
+      <md-select  
+      multiple class="select-full-width" 
+      placeholder="{{currentLanguageSet?.congentialAnomalies}}" 
+      id="congenitalAnomaliesList" 
+      name="congenitalAnomaliesList" 
+      formControlName="congenitalAnomaliesList"
+      (change)="onValueChange()"
+      >
+      <md-option 
+      *ngFor="let item of congenitalAnomaliesList"
+      [value]="item.name"
+      > {{item.name}}
+      </md-option>
+    </md-select>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box" 
+    *ngIf="visitType == 'Childhood & Adolescent Healthcare Services' "    
+    >
+      <md2-datepicker 
+        [openOnFocus]="true"
+        style="width: 100%"
+        name="dateOfUpdatingBirthDetails"
+        formControlName="dateOfUpdatingBirthDetails"
+        placeholder="{{currentLanguageSet?.dateOfUpdatingBirthDetails}}"
+        [max]="today"
+        (change)="onValueChange()"
+      >
+      </md2-datepicker>
+    </div>
+</div>

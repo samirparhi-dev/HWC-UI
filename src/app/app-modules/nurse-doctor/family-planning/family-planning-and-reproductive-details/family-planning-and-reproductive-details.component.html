@@ -1,0 +1,364 @@
+<div class="row m-t-20" [formGroup]="familyPlanningAndReproductiveForm">
+  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 box">
+      <div class="form-group">
+      <label class="control-label" for="familyPlanningAndReproductive">{{current_language_set?.fertilityStatus}}</label>
+      <div class="clearfix"></div>
+      <md-radio-group 
+        id='fertilityStatus' 
+        name='fertilityStatus' 
+        formControlName="fertilityStatus" 
+        (change)='checkWithFertilityStatus()'
+        >
+        <md-radio-button 
+          class="radio-button"
+          color='primary' 
+          [value]="fertility.name" 
+          *ngFor="let fertility of fertilityStatusOption"
+        >
+        {{fertility.name}}  
+        </md-radio-button>
+      </md-radio-group>
+      </div>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box" *ngIf="fertilityStatus == 'Fertile' && bengender !== 'male'">
+      <div class="form-group">
+        <md-form-field class="input-full-width">
+          <input 
+          autocomplete="off" 
+          mdInput 
+          allowText="number" 
+          defaultNull 
+          mdTextareaAutosize 
+          id='parity' 
+          name='parity' 
+          formControlName="parity" 
+          placeholder="{{current_language_set?.parity}}"
+          allowMax="15"
+          (change)="checkParity()"
+          >
+        </md-form-field>
+      </div>
+    </div>
+    
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box" *ngIf="fertilityStatus == 'Fertile'">
+      <div class="form-group">
+        <md-form-field class="input-full-width">
+          <input 
+          autocomplete="off" 
+          mdInput 
+          allowText="number" 
+          allowMax="15"
+          defaultNull 
+          mdTextareaAutosize 
+          id='totalNoOfChildrenBornFemale' 
+          name='totalNoOfChildrenBornFemale' 
+          formControlName="totalNoOfChildrenBornFemale" 
+          placeholder="{{current_language_set?.totalNoOfChildrenBornFemale}}"
+          (change)="validateNoOfChildrenBorn(totalNoOfChildrenBornFemale)"
+          (blur)="
+          checktotalFemaleChildrenBorn(
+            totalNoOfChildrenBornFemale,
+            numberOfLiveChildrenFemale
+          )
+        "
+          >
+        </md-form-field>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box" *ngIf="fertilityStatus == 'Fertile'">
+      <div class="form-group">
+        <md-form-field class="input-full-width">
+          <input 
+          autocomplete="off" 
+          mdInput 
+          allowText="number" 
+          allowMax="15"
+          defaultNull 
+          mdTextareaAutosize 
+          id='totalNoOfChildrenBornMale' 
+          name='totalNoOfChildrenBornMale' 
+          formControlName="totalNoOfChildrenBornMale" 
+          placeholder="{{current_language_set?.totalNoOfChildrenBornMale}}"
+          (change)="validateNoOfChildrenBorn(totalNoOfChildrenBornMale)"
+          (blur)="
+          checktotalMaleChildrenBorn(
+            totalNoOfChildrenBornMale,
+            numberOfLiveChildrenMale
+          )
+        "
+          >
+        </md-form-field>
+      </div>
+    </div>
+    
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box" *ngIf="fertilityStatus == 'Fertile'">
+      <div class="form-group">
+        <md-form-field class="input-full-width">
+          <input 
+          autocomplete="off" 
+          mdInput 
+          allowText="number" 
+          defaultNull 
+          mdTextareaAutosize
+          allowMax="30" 
+          id='totalNoOfChildrenBorn' 
+          name='totalNoOfChildrenBorn' 
+          formControlName="totalNoOfChildrenBorn" 
+          placeholder="{{current_language_set?.totalNoOfChildrenBorn}}"
+          readonly
+          >
+        </md-form-field>
+      </div>
+    </div>
+    
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box" *ngIf="fertilityStatus == 'Fertile'">
+      <div class="form-group">
+        <md-form-field class="input-full-width">
+          <input 
+          autocomplete="off" 
+          mdInput 
+          allowText="number" 
+          allowMax="15"
+          defaultNull 
+          mdTextareaAutosize 
+          id='numberOfLiveChildrenFemale' 
+          name='numberOfLiveChildrenFemale' 
+          formControlName="numberOfLiveChildrenFemale" 
+          placeholder="{{current_language_set?.numberOfLiveChildrenFemale}}"
+          (change)="validateNoOfChildrenBorn(numberOfLiveChildrenFemale)"
+          (blur)="
+          checkLiveNoOfChildrenBornFemale(
+            totalNoOfChildrenBornFemale,
+            numberOfLiveChildrenFemale
+          )
+        "
+          >
+        </md-form-field>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box" *ngIf="fertilityStatus == 'Fertile'">
+      <div class="form-group">
+        <md-form-field class="input-full-width">
+          <input 
+          autocomplete="off" 
+          mdInput 
+          allowText="number" 
+          allowMax="15"
+          defaultNull 
+          mdTextareaAutosize 
+          id='numberOfLiveChildrenMale' 
+          name='numberOfLiveChildrenMale' 
+          formControlName="numberOfLiveChildrenMale" 
+          placeholder="{{current_language_set?.numberOfLiveChildrenMale}}"
+          (change)="validateNoOfChildrenBorn(numberOfLiveChildrenMale)"
+          (blur)="
+          checkLiveNoOfChildrenBornMale(
+            totalNoOfChildrenBornMale,
+            numberOfLiveChildrenMale
+          )
+        "
+          >
+        </md-form-field>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box" *ngIf="fertilityStatus == 'Fertile'">
+      <div class="form-group">
+        <md-form-field class="input-full-width">
+          <input 
+          autocomplete="off" 
+          mdInput 
+          allowText="number" 
+          allowMax="30"
+          defaultNull 
+          mdTextareaAutosize 
+          id='numberOfLiveChildren' 
+          name='numberOfLiveChildren' 
+          formControlName="numberOfLiveChildren" 
+          placeholder="{{current_language_set?.numberOfLiveChildren}}"
+          readonly
+          >
+        </md-form-field>
+      </div>
+    </div>
+    
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box" *ngIf="fertilityStatus == 'Fertile'">
+      <div class="form-group">
+        <md-form-field class="input-full-width">
+          <input 
+          autocomplete="off" 
+          mdInput 
+          allowText="number"
+          defaultNull
+          mdTextareaAutosize 
+          id='ageOfYoungestChild' 
+          name='ageOfYoungestChild'
+          placeholder="{{current_language_set?.ageOfYoungestChild}}"
+          formControlName="ageOfYoungestChild"
+          (change)="checkAgeOfYoungestChildValidation(ageOfYoungestChild)"
+          maxlength="2"
+          >
+        </md-form-field>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box" *ngIf="fertilityStatus == 'Fertile'">
+      <md-select
+        [style.width]="'100%'"
+        placeholder="{{ current_language_set?.unitOfAge }}"
+        formControlName="unitOfAge"
+        (change)="checkAgeOfYoungestChildValidation(familyPlanningAndReproductiveForm.controls.ageOfYoungestChild.value)"
+        >
+        <md-option
+        *ngFor="let ageUnit of ageUnitMasterData"
+        [value]="ageUnit.name"
+        >
+        {{ ageUnit.name }}
+        </md-option>
+      </md-select>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box" *ngIf="fertilityStatus == 'Fertile'">
+      <md-select
+        [style.width]="'100%'"
+        placeholder="{{ current_language_set?.youngestChildGender }}"
+        formControlName="youngestChildGender"
+        (change)="onValueChange()"
+      >
+      <md-option
+        *ngFor="let youngestChildGender of genderMasterData"
+        [value]="youngestChildGender.genderName"
+        >{{ youngestChildGender.genderName }}
+      </md-option>
+      </md-select>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box" *ngIf="fertilityStatus == 'Fertile'">
+      <md-select
+        multiple
+        class="select-full-width"
+        name="currentFPMethod"
+        formControlName="currentlyUsingFpMethod"
+        placeholder="{{ current_language_set?.currentlyUsingFPMethod }}"
+        (change)="populateSterilizationForTubectomyOrVasectomy();
+                  populateDosesFieldForAntara();
+                  currentlyUsingFPOther();
+                  resetcurrentlyUsingFPOptions(familyPlanningAndReproductiveForm.controls.currentlyUsingFpMethod.value);"
+      >
+      <ng-container 
+      *ngFor="let currentFPMethod of currentlyFPMethod"
+      >
+        <md-option
+          class="dropdownHeight"
+          [value]="currentFPMethod.name"
+          [disabled]="
+          (( disableCurrentlyUsingFPNone !== null) && ((!disableCurrentlyUsingFPNone &&
+          currentFPMethod.name == 'None') ||
+            (disableCurrentlyUsingFPNone &&
+            currentFPMethod.name != 'None')))
+        "
+          >
+          {{ currentFPMethod.name }}
+        </md-option>
+      </ng-container>
+      </md-select>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box" 
+          *ngIf="fertilityStatus == 'Fertile' && enableSterilizationFields">
+      <md2-datepicker 
+      [openOnFocus]="true" 
+      style="width:100%" 
+      name='dateOfSterilization' 
+      formControlName="dateOfSterilization" 
+      placeholder="{{current_language_set?.dateOfSterilization}}" 
+      [max]='maxEndDate'
+      ng-readonly="true"
+      (change)="onValueChange()"
+      >
+    </md2-datepicker>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box" 
+          *ngIf="fertilityStatus == 'Fertile' && enableSterilizationFields">
+      <div class="form-group">
+        <md-form-field class="input-full-width">
+          <input 
+          autocomplete="off" 
+          mdInput 
+          allowText="alphaspace" 
+          defaultNull 
+          mdTextareaAutosize 
+          id='placeOfSterilization' 
+          name='placeOfSterilization' 
+          formControlName="placeOfSterilization" 
+          placeholder="{{current_language_set?.placeOfSterilization}}"
+          (change)="onValueChange()"
+          >
+        </md-form-field>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box" 
+          *ngIf="fertilityStatus == 'Fertile' && enableDoseFields">
+      <div class="form-group">
+        <md-form-field class="input-full-width">
+          <input 
+          autocomplete="off" 
+          mdInput 
+          allowText="number" 
+          defaultNull 
+          mdTextareaAutosize 
+          id='dosesTaken' 
+          name='dosesTaken' 
+          formControlName="dosesTaken" 
+          placeholder="{{current_language_set?.dosesTaken}}"
+          [min]="1"
+          allowMax="180"
+          (change)="onValueChange()"
+          >
+        </md-form-field>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box" 
+          *ngIf="fertilityStatus == 'Fertile' && enableDoseFields">
+      <md2-datepicker 
+      [openOnFocus]="true" 
+      style="width:100%" 
+      name='dateOfLastDoseTaken' 
+      formControlName="dateOfLastDoseTaken" 
+      placeholder="{{current_language_set?.dateOfLastDoseTaken}}" 
+      [max]='maxEndDate'
+      ng-readonly="true"
+      (change)="onValueChange()"
+      >
+    </md2-datepicker>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box" 
+    *ngIf="fertilityStatus == 'Fertile' && enablecurrentlyUsingFPOther">
+    <div class="form-group">
+      <md-form-field class="input-full-width">
+        <input 
+        autocomplete="off" 
+        mdInput 
+        allowText="alphaspace" 
+        defaultNull 
+        mdTextareaAutosize 
+        id='otherCurrentlyUsingFpMethod' 
+        name='otherCurrentlyUsingFpMethod' 
+        formControlName="otherCurrentlyUsingFpMethod" 
+        placeholder="{{current_language_set?.other}}"
+        maxlength="100"
+        (change)="onValueChange()"
+        >
+      </md-form-field>
+    </div>
+  </div>
+    
+  </div>
+</div>

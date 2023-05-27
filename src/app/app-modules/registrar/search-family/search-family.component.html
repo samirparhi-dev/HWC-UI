@@ -1,0 +1,89 @@
+<section id="searchDialog" class="container-fluid">
+    <div class="row title info">
+        <h4> {{ currentLanguageSet?.familyTaggingSearch }}</h4>
+        <button class="pull-right close-btn" (click)="onClose()" md-icon-button>
+            <md-icon class="md-24">close</md-icon>
+        </button>
+    </div>
+
+        <div class="overlay" *ngIf="showProgressBar">
+          <div class="overlay-content">
+            <md-spinner></md-spinner>
+          </div>
+        </div>
+    <md-dialog-content style="padding-top: 2%;">
+        <form [formGroup]="familySearchForm">
+            <section class="row m-t-10">
+                <div class="col-xs-12 col-sm-6 box">
+                    <div class="select-container">
+                        <md-select class="p-t-12" required [style.width]="'100%'" (change)="onDistrictChange()"
+                            placeholder="{{currentLanguageSet?.district}}" name="districtID"
+                            formControlName="districtID">
+                            <md-option *ngFor="let district of districtList" [value]="district.districtID">{{
+                                district.districtName | titlecase }} </md-option>
+                        </md-select>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 box">
+                    <div class="select-container">
+                        <md-select class="p-t-12" required [style.width]="'100%'" (change)="onBlockChange()"
+                            placeholder="{{currentLanguageSet?.block}}" name="blockID" formControlName="blockID">
+                            <md-option *ngFor="let block of blockList" [value]="block.blockID">{{ block.blockName |
+                                titlecase }} </md-option>
+                        </md-select>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 box">
+                    <div class="select-container">
+                        <md-select class="p-t-12" required [style.width]="'100%'" (change)="onVillageChange()"
+                            type="select" placeholder="{{currentLanguageSet?.village}}" name="villageID"
+                            formControlName="villageID">
+                            <md-option *ngFor="let village of villageList" [value]="village.districtBranchID">{{
+                                village.villageName | titlecase }} </md-option>
+                        </md-select>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 box">
+                    <md-input-container [style.width]="'100%'">
+                        <input autocomplete="off" mdInput allowText="alphaspace" required
+                            placeholder="{{currentLanguageSet?.familyName}} " name="surname" formControlName="surname"
+                            minlength="2" maxlength="50">
+                            <md-error
+                            *ngIf="familySearchForm.controls.surname.errors?.required"
+                          >
+                            {{
+                              currentLanguageSet?.familyNameisrequired
+                            }}</md-error
+                          >
+                            <md-error
+                            *ngIf="familySearchForm.controls.surname.errors?.minlength"
+                          >
+                            {{
+                             currentLanguageSet?.benDetailsAlert?.minCharRequired
+                            }}</md-error
+                          >
+                    </md-input-container>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 box">
+                    <md-input-container [style.width]="'100%'">
+                        <input autocomplete="off" mdInput allowText="alphanumeric"
+                            placeholder="{{currentLanguageSet?.familyId}} " name="familyId" formControlName="familyId"
+                            minlength="2" maxlength="50">
+                    </md-input-container>
+                </div>
+
+            </section>
+
+        </form>
+    </md-dialog-content>
+    <md-dialog-actions align="right" class="padding15 margin15 pull-right">
+        <button class="full-width-login background-overall button-overall-disabled" type="button" [disabled]="familySearchForm.invalid"
+            (click)="getFamilySearchMaster()">Search</button>
+    </md-dialog-actions>
+    <div class="clearfix"></div>
+
+</section>

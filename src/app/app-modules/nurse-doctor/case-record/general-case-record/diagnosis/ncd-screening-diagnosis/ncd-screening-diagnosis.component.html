@@ -1,0 +1,235 @@
+<!-- {{ generalDiagnosisForm.value | json}} -->
+<div class="row" [formGroup]="generalDiagnosisForm">
+  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 m-t-6">
+    <header class="mat-expansion-panel-header">
+      <h4>{{ current_language_set?.casesheet?.provisionalDiag }}</h4>
+    </header>
+    <ng-container formArrayName="provisionalDiagnosisList">
+      <div *ngFor="
+          let diagnosis of generalDiagnosisForm.controls[
+            'provisionalDiagnosisList'
+          ]['controls'];
+          let i = index;
+          let isLast = last
+        ">
+        <ng-container [formGroupName]="i">
+          <div class="col-xs-12 col-sm-9">
+            <md-form-field class="input-full-width">
+              <input mdInput allowText="inputFieldValidator" appDiagnosisSearch [diagnosisListForm]="diagnosis" 
+                name="viewDiagnosisProvided" formControlName="viewProvisionalDiagnosisProvided" maxlength="100"
+                minlength="3" [previousSelected]="
+                  generalDiagnosisForm?.value?.provisionalDiagnosisList
+                "  />
+              <md-icon class="search-btn cursorPointer" *ngIf="
+                  !diagnosis.controls['viewProvisionalDiagnosisProvided']
+                    .disabled
+                " mdSuffix appDiagnosisSearch [diagnosisListForm]="diagnosis" [previousSelected]="
+                  generalDiagnosisForm?.value?.provisionalDiagnosisList
+                ">search</md-icon>
+            </md-form-field>
+          </div>
+          <div class="col-xs-12 col-sm-3 m-t-10" style="padding: 0px;">
+            <button md-mini-fab type="button" class="pull-left" color="warn" *ngIf="
+                (diagnosis.controls['viewProvisionalDiagnosisProvided']
+                  .disabled ||
+                (i != 0)) || (i==0 && generalDiagnosisForm.controls['provisionalDiagnosisList'].controls[i].controls.viewProvisionalDiagnosisProvided.value !== null && generalDiagnosisForm.controls['provisionalDiagnosisList'].controls[i].controls.viewProvisionalDiagnosisProvided.value !== '')
+              " (click)="removeDiagnosisFromList(i, diagnosis)">
+              <md-icon>close</md-icon>
+            </button>
+            <button md-mini-fab type="button" class="pull-right button-overall-disabled" color="primary" *ngIf="isLast"
+              [disabled]="checkProvisionalDiagnosisValidity(diagnosis)" (click)="addDiagnosis()">
+              <md-icon>add</md-icon>
+            </button>
+          </div>
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
+  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 m-t-6">
+    <header class="mat-expansion-panel-header tabcolor">
+      <h4>{{ current_language_set?.DiagnosisDetails?.specialistssdvice }}</h4>
+    </header>
+    <md-form-field class="input-full-width">
+      <textarea mdInput defaultNull mdTextareaAutosize maxlength="300" name="specialistAdvice"
+        formControlName="instruction">
+      </textarea>
+    </md-form-field>
+  </div>
+ <div *ngIf="designation === 'TC Specialist' && confirmDiseaseArray.length === 0">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 m-t-20">
+      <header class="mat-expansion-panel-header">
+        <h4>{{current_language_set?.finalDiagnosis}}*</h4>
+      </header>
+      <div class="col-xs-6 col-sm-6 align">
+        <label for="diabetesConfirmed">{{current_language_set?.isDiabetesConfirmed}}</label>
+      </div>
+      <div class="col-xs-6 col-sm-6 align" style="margin-left:-30px">
+        <md-radio-group
+          name="diabetesConfirmed"
+          formControlName="diabetesConfirmed"
+          id="diabetesConfirmed"
+          (change)="
+            addToConfirmDisease(
+              this.generalDiagnosisForm.value.diabetesConfirmed
+            )
+          "
+          required
+        >
+          <md-radio-button
+            color="primary"
+            [checked]="diabetesChecked"
+            [value]="true"
+            style="margin-left: 40px"
+            >{{ current_language_set?.common?.yes }}</md-radio-button
+          >
+          <md-radio-button color="primary" class="radio-btn" [value]="false">{{
+            current_language_set?.common?.no
+          }}</md-radio-button>
+        </md-radio-group>
+      </div>
+      <div class="col-xs-6 col-sm-6 align">
+        <label>{{current_language_set?.isHypertensionConfirmed}}</label>
+      </div>
+      <div class="col-xs-6 col-sm-6 align">
+        <md-radio-group
+          name="hypertensionConfirmed"
+          formControlName="hypertensionConfirmed"
+          id="hypertensionConfirmed"
+          (change)="
+            addHyperTensionToConfirmDisease(
+              this.generalDiagnosisForm.value.hypertensionConfirmed
+            )
+          "
+          required
+        >
+          <md-radio-button
+            color="primary"
+            [checked]="hyperTensionChecked"
+            style="margin-left: 10px"
+            [value]="true"
+            >{{ current_language_set?.common?.yes }}</md-radio-button
+          >
+          <md-radio-button color="primary" class="radio-btn" [value]="false">{{
+            current_language_set?.common?.no
+          }}</md-radio-button>
+        </md-radio-group>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 m-t-20">
+      <header class="mat-expansion-panel-header" *ngIf="(confirmDiseaseArray !== null && confirmDiseaseArray.length > 0) || diabetesSuspected || hypertensionSuspected
+        || oralSuspected || breastSuspected || cervicalSuspected">
+        <h4>{{current_language_set?.finalDiagnosis}}*</h4>
+      </header>
+
+      <div >
+        <ng-container *ngIf="diabetesSuspected || (confirmDiseaseArray2 !== null && confirmDiseaseArray2.includes(diabetes))">
+      <div class="col-xs-6 col-sm-6 align">
+        <label for="diabetesScreeningConfirmed">{{current_language_set?.isDiabetesConfirmed}}</label>
+      </div>
+      <div class="col-xs-6 col-sm-6 align" style="margin-left:-30px">
+        <md-radio-group name="diabetesScreeningConfirmed" formControlName="diabetesScreeningConfirmed" id="diabetesScreeningConfirmed" (change)="
+        addToConfirmScreeningDisease(
+          this.generalDiagnosisForm.value.diabetesScreeningConfirmed,diabetes
+            )"
+            [disabled]="confirmDiseaseArray.includes(diabetes)"  required>
+          <md-radio-button color="primary" [checked]="diabetesChecked" [value]="true" style="margin-left: 40px">{{
+            current_language_set?.common?.yes }}</md-radio-button>
+          <md-radio-button color="primary" class="radio-btn" [value]="false">{{
+            current_language_set?.common?.no
+            }}</md-radio-button>
+        </md-radio-group>
+      </div>
+    </ng-container>
+      <ng-container *ngIf="hypertensionSuspected || (confirmDiseaseArray2 !== null && confirmDiseaseArray2.includes(hypertension))">
+      <div class="col-xs-6 col-sm-6 align">
+        <label>{{current_language_set?.isHypertensionConfirmed}}</label>
+      </div>
+      <div class="col-xs-6 col-sm-6 align">
+        <md-radio-group name="hypertensionScreeningConfirmed" formControlName="hypertensionScreeningConfirmed" id="hypertensionScreeningConfirmed"
+          (change)="
+          addToConfirmScreeningDisease(
+              this.generalDiagnosisForm.value.hypertensionScreeningConfirmed,hypertension
+            )
+          " 
+          [disabled]="confirmDiseaseArray.includes(hypertension)"
+          required>
+          <md-radio-button color="primary" [checked]="hyperTensionChecked" style="margin-left: 10px" [value]="true">{{
+            current_language_set?.common?.yes }}</md-radio-button>
+          <md-radio-button color="primary" class="radio-btn" [value]="false">{{
+            current_language_set?.common?.no
+            }}</md-radio-button>
+        </md-radio-group>
+      </div>
+      </ng-container>
+        <!--  isOralConfirmed -->
+        <ng-container *ngIf="oralSuspected || (confirmDiseaseArray2 !== null && confirmDiseaseArray2.includes(oralCancer))">
+        <div class="clearfix"></div>
+        <div class="col-xs-6 col-sm-6 align">
+          <label for="oralCancerConfirmed">{{current_language_set?.isOralConfirmed}}</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 align" style="margin-left:-30px">
+          <md-radio-group name="oralCancerConfirmed" formControlName="oralCancerConfirmed" id="oralCancerConfirmed" (change)="
+          addToConfirmScreeningDisease(
+            this.generalDiagnosisForm.value.oralCancerConfirmed,oralCancer
+            )
+          " 
+          [disabled]="confirmDiseaseArray.includes(oralCancer)"
+          required>
+            <md-radio-button color="primary" [checked]="oralChecked" [value]="true" style="margin-left: 40px">{{
+              current_language_set?.common?.yes }}</md-radio-button>
+            <md-radio-button color="primary" class="radio-btn" [value]="false">{{
+              current_language_set?.common?.no
+              }}</md-radio-button>
+          </md-radio-group>
+        </div>
+        </ng-container>
+        <!-- isBreastConfirmed -->
+        <ng-container *ngIf="breastSuspected || (confirmDiseaseArray2 !== null && confirmDiseaseArray2.includes(breastCancer))">
+        <div class="clearfix"></div>
+        <div class="col-xs-6 col-sm-6 align">
+          <label for="breastCancerConfirmed">{{current_language_set?.isBreastConfirmed}}</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 align" style="margin-left:-30px">
+          <md-radio-group name="breastCancerConfirmed" formControlName="breastCancerConfirmed" id="breastCancerConfirmed" (change)="
+          addToConfirmScreeningDisease(
+            this.generalDiagnosisForm.value.breastCancerConfirmed,breastCancer
+            )
+          " 
+          [disabled]="confirmDiseaseArray.includes(breastCancer)"
+          required>
+            <md-radio-button color="primary" [checked]="breastChecked" [value]="true" style="margin-left: 40px">{{
+              current_language_set?.common?.yes }}</md-radio-button>
+            <md-radio-button color="primary" class="radio-btn" [value]="false">{{
+              current_language_set?.common?.no
+              }}</md-radio-button>
+          </md-radio-group>
+        </div>
+      </ng-container>
+        <!-- isCervicalConfirmed -->
+        <ng-container *ngIf="cervicalSuspected || (confirmDiseaseArray2 !== null && confirmDiseaseArray2.includes(cervicalCancer))">
+        <div class="clearfix"></div>
+        <div class="col-xs-6 col-sm-6 align" *ngIf="benGender.toLowerCase().trim() === 'female' || benGender.toLowerCase().trim() === 'transgender'">
+          <label for="cervicalCancerConfirmed">{{current_language_set?.isCervicalConfirmed}}</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 align" style="margin-left:-30px" *ngIf="benGender.toLowerCase().trim() === 'female' || benGender.toLowerCase().trim() === 'transgender'">
+          <md-radio-group name="cervicalCancerConfirmed" formControlName="cervicalCancerConfirmed" id="cervicalCancerConfirmed" (change)="
+          addToConfirmScreeningDisease(
+            this.generalDiagnosisForm.value.cervicalCancerConfirmed,cervicalCancer
+            )
+          " 
+          [disabled]="confirmDiseaseArray.includes(cervicalCancer)"
+          required>
+            <md-radio-button color="primary" [checked]="cervicalChecked" [value]="true" style="margin-left: 40px">{{
+              current_language_set?.common?.yes }}</md-radio-button>
+            <md-radio-button color="primary" class="radio-btn" [value]="false">{{
+              current_language_set?.common?.no
+              }}</md-radio-button>
+          </md-radio-group>
+        </div>
+        </ng-container>
+    </div>
+  </div>
+  </div>
+</div>

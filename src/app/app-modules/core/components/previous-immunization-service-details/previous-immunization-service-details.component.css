@@ -1,0 +1,47 @@
+md2-pagination {
+    margin-left: -18px;
+    margin-top: 15px;
+}
+
+.column {
+    white-space: nowrap;
+}
+
+.info {
+    background: #336CFB;
+}
+
+.title {
+    margin: 0px;
+    padding: 15px 24px 15px;
+    color: white;
+}
+
+.title h4 {
+    display: inline-block;
+    font-weight: bold;
+}
+
+.message {
+    padding: 24px 24px 24px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    border-top: none;
+    border-bottom: none;
+}
+
+.close-btn {
+    color: white !important;
+}
+.norecord {
+    text-align: center;
+}
+.enableScroll { 
+    height: 400px; 
+    flex: auto; 
+}
+
+table {
+    width: 100%;
+    color: #52575C !important;
+}

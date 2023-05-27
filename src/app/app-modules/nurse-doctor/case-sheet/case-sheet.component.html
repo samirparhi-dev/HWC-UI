@@ -1,0 +1,10 @@
+<div class="row title" *ngIf='previous'>
+  <h4>{{current_language_set?.nurseData?.visitDetails}}
+  </h4>
+  <button class="pull-right exit" [mdDialogClose]="false" md-icon-button>
+    <md-icon class="md-24">close</md-icon>
+  </button>
+</div>
+<div [ngClass]="{'scrolling-content': previous}">
+  <app-general-case-sheet *ngIf="General" [previous]='previous' [serviceType]='serviceType'></app-general-case-sheet>
+</div>

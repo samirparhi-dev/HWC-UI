@@ -1,0 +1,264 @@
+<div
+  class="row m-t-10"
+  *ngIf="
+    diabetesConfirmed ||
+    hypertensionConfirmed ||
+    oralCancerConfirmed ||
+    breastCancerConfirmed ||
+    cervicalCancerConfirmed ||
+    diabetesSuspected ||
+    hypertensionSuspected ||
+    oralSuspected ||
+    breastSuspected ||
+    cervicalSuspected
+  "
+>
+  <div class="col-xs-12">
+    <fieldset>
+      <legend>Screening</legend>
+
+      <div>
+        <strong>{{ currentLanguageSet?.cbacScore }}:</strong>
+        {{ cbacScore }}
+      </div>
+      <div
+        *ngIf="
+          diabetesConfirmed ||
+          hypertensionConfirmed ||
+          oralCancerConfirmed ||
+          breastCancerConfirmed ||
+          cervicalCancerConfirmed
+        "
+      >
+        <th id="ConfirmedD">
+          <h5>
+            <strong>{{ currentLanguageSet?.existingNCDDisease }} :</strong>
+          </h5>
+        </th>
+        <div class="btn-group">
+          <button md-raised-button disabled *ngIf="diabetesConfirmed">
+            Diabetes Mellitus
+          </button>
+          <button md-raised-button disabled *ngIf="hypertensionConfirmed">
+            Hypertension
+          </button>
+          <button md-raised-button disabled *ngIf="breastCancerConfirmed">
+            Breast cancer
+          </button>
+          <button md-raised-button disabled *ngIf="oralCancerConfirmed">
+            Oral cancer
+          </button>
+          <button md-raised-button disabled *ngIf="cervicalCancerConfirmed">
+            Cervical cancer
+          </button>
+        </div>
+      </div>
+      <div>
+        <th id="SuspectedD">
+          <h5>
+            <strong>{{ currentLanguageSet?.suspected }} :</strong>
+          </h5>
+        </th>
+        <div class="btn-suspected"
+          *ngIf="
+            diabetesSuspected ||
+            hypertensionSuspected ||
+            oralSuspected ||
+            breastSuspected ||
+            cervicalSuspected
+          "
+        >
+            <button md-raised-button disabled *ngIf="diabetesConfirmed === false && diabetesSuspected === true">
+              Diabetes Mellitus
+            </button>
+            <button md-raised-button disabled *ngIf="hypertensionConfirmed === false && hypertensionSuspected === true">
+              Hypertension
+            </button>
+            <button md-raised-button disabled *ngIf="breastCancerConfirmed === false && breastSuspected === true">
+              Breast cancer
+            </button>
+            <button md-raised-button disabled *ngIf="oralCancerConfirmed === false && oralSuspected === true">
+              Oral cancer
+            </button>
+            <button md-raised-button disabled *ngIf="cervicalCancerConfirmed === false && cervicalSuspected === true">
+              Cervical cancer
+            </button>
+        </div>
+      </div>
+      <!-- Diabetes Screening Starts-->
+      <div class="row m-t-10" *ngIf="enableDiabetesForm">
+        <div class="col-xs-12">
+          <h4>Diabetes Screening:</h4>
+        </div>
+        <div class="col-xs-12">
+          <table
+            class="table table-no-border casesheet-table"
+            aria-describedby="caseSheetScreeningTable"
+          >
+            <tr>
+              <th id="bloodGlucoseSampleType">
+                {{ currentLanguageSet?.bloodGlucoseSampleType }}:
+              </th>
+              <td>{{ diabetesCasesheet?.bloodGlucoseType }}</td>
+              <th id="bloodGlucoseMgDl">
+                {{ currentLanguageSet?.bloodGlucoseMgDl }}:
+              </th>
+              <td>{{ diabetesCasesheet?.bloodGlucose }}</td>
+            </tr>
+            <tr>
+              <th id="testRemarks">{{ currentLanguageSet?.testRemarks }}:</th>
+              <td>{{ diabetesCasesheet?.bloodGlucoseRemarks }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <!--Diabetes Screening Ends-->
+
+      <!-- Hypertension Screening Starts-->
+      <div class="row m-t-10" *ngIf="enableHypertensionForm">
+        <div class="col-xs-12">
+          <h4>Hypertension Screening:</h4>
+        </div>
+        <div class="col-xs-12">
+          <table
+            class="table table-no-border casesheet-table"
+            aria-describedby="caseSheetScreeningTable"
+          >
+            <tr>
+              <th id="sysBPOne">{{ currentLanguageSet?.systolicBPOne }}:</th>
+              <td>{{ hypertensionCasesheet?.systolicBP_1stReading }}</td>
+              <th id="diaBPOne">{{ currentLanguageSet?.diastolicBPOne }}:</th>
+              <td>{{ hypertensionCasesheet?.diastolicBP_1stReading }}</td>
+            </tr>
+            <tr>
+              <th id="sysBPTwo">{{ currentLanguageSet?.systolicBPTwo }}:</th>
+              <td>{{ hypertensionCasesheet?.systolicBP_2ndReading }}</td>
+              <th id="diaBPTwo">{{ currentLanguageSet?.diastolicBPTwo }}:</th>
+              <td>{{ hypertensionCasesheet?.diastolicBP_2ndReading }}</td>
+            </tr>
+            <tr>
+              <th id="sysBPThree">
+                {{ currentLanguageSet?.systolicBPThree }}:
+              </th>
+              <td>
+                {{ hypertensionCasesheet?.systolicBP_3rdReading }}
+              </td>
+              <th id="diaBPThree">
+                {{ currentLanguageSet?.diastolicBPThree }}:
+              </th>
+              <td>
+                {{ hypertensionCasesheet?.diastolicBP_3rdReading }}
+              </td>
+            </tr>
+            <tr>
+              <th id="avgSysBP">{{ currentLanguageSet?.averageSystolic }}:</th>
+              <td>{{ hypertensionCasesheet?.averageSystolicBP }}</td>
+              <th id="avgDiaBP">{{ currentLanguageSet?.averageDiastolic }}:</th>
+              <td>{{ hypertensionCasesheet?.averageDiastolicBP }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <!--Hypertension Screening Ends-->
+
+      <!-- Oral Cancer Screening Starts-->
+      <div class="row m-t-10" *ngIf="enableOralForm">
+        <div class="col-xs-12">
+          <h4>Oral Cancer Screening:</h4>
+        </div>
+        <div class="col-xs-12">
+          <table
+            class="table table-no-border casesheet-table"
+            aria-describedby="caseSheetScreeningTable"
+          >
+            <tr>
+              <th id="oralCavityFinding">
+                {{ currentLanguageSet?.oralCavityFinding }}:
+              </th>
+              <td>{{ oralCancerCasesheet?.oralCavityFinding }}</td>
+              <th id="temporomandibularJointRt">
+                {{ currentLanguageSet?.TemporomandibularJointRt }}:
+              </th>
+              <td>{{ oralCancerCasesheet?.temporomandibularJointRight }}</td>
+            </tr>
+
+            <tr>
+              <th id="mouthOpening">{{ currentLanguageSet?.mouthOpening }}:</th>
+              <td>{{ oralCancerCasesheet?.mouthOpening }}</td>
+              <th id="temporomandibularJointLt">
+                {{ currentLanguageSet?.TemporomandibularJointLt }}:
+              </th>
+              <td>{{ oralCancerCasesheet?.temporomandibularJointLeft }}</td>
+            </tr>
+
+            <tr>
+              <th id="palpationofOralCavity">
+                {{ currentLanguageSet?.palpationofOralCavity }}:
+              </th>
+              <td>{{ oralCancerCasesheet?.palpationofOralCavity }}</td>
+              <th id="cervicalLymphnodes">
+                {{ currentLanguageSet?.CervicalLymphnodes }}:
+              </th>
+              <td>{{ oralCancerCasesheet?.cervicalLymphnodes }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <!--Oral Cancer Screening Ends-->
+
+      <!-- Breast Cancer Screening Starts-->
+      <div class="row m-t-10" *ngIf="enableBreastForm">
+        <div class="col-xs-12">
+          <h4>Breast Cancer Screening:</h4>
+        </div>
+        <div class="col-xs-12">
+          <table
+            class="table table-no-border casesheet-table1"
+            aria-describedby="caseSheetScreeningTable"
+          >
+            <tr>
+              <th id="inspectionOfBreasts">
+                {{ currentLanguageSet?.inspectionOfBreasts }}:
+              </th>
+              <td>{{ breastCancerCasesheet?.inspectionBreasts }}</td>
+
+              <th id="palpationOfBreasts">
+                {{ currentLanguageSet?.palpationOfBreasts }}:
+              </th>
+              <td>{{ breastCancerCasesheet?.palpationBreasts }}</td>
+            </tr>
+
+            <tr>
+              <th id="palpationOfLymphNodes">
+                {{ currentLanguageSet?.palpationOfLymphNodes }}:
+              </th>
+              <td>{{ breastCancerCasesheet?.palpationLymphNodes }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <!--Breast Cancer Screening Ends-->
+
+      <!-- Cervical Cancer Screening Starts-->
+      <div class="row m-t-10" *ngIf="enableCervicalForm">
+        <div class="col-xs-12">
+          <h4>Cervical Cancer Screening:</h4>
+        </div>
+        <div class="col-xs-12">
+          <table
+            class="table table-no-border casesheet-table1"
+            aria-describedby="caseSheetScreeningTable"
+          >
+            <tr>
+              <th id="visualExamination">
+                {{ currentLanguageSet?.visualExamination }}:
+              </th>
+              <td>{{ cervicalCancerCasesheet?.visualExaminationVIA }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <!--Cervical Cancer Screening Ends-->
+    </fieldset>
+  </div>
+</div>

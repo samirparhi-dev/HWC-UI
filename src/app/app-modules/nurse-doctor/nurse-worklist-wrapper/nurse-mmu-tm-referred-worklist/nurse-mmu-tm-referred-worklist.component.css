@@ -1,0 +1,115 @@
+md2-pagination {
+    float: right;
+  }
+  
+  md-card {
+    min-height: 400px;
+    padding: 15px;
+  }
+  
+  .norecord {
+    text-align: center;
+  }
+  
+  md-input-container {
+    width: 60%;
+  }
+  
+  @media (max-width: 481px) {
+    md-input-container {
+      width: 100%;
+    }
+    #caseSheetButton {
+      width: 100%;
+    }
+  }
+  
+  :host /deep/ .pagination {
+    margin: 0;
+  }
+  
+  .visitStatus {
+    position: relative;
+    text-align: center;
+  }
+  
+  .visitStatus.first-visit::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 1px;
+    width: 4px;
+    background: #336CFB !important;
+  }
+  
+  .visitStatus.revisit::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 1px;
+    width: 4px;
+    background: #ff9900;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0px;
+  }
+  
+  ul li {
+    display: inline-block;
+    padding: 0 8px;
+  }
+  
+  ul li div,
+  ul li p {
+    display: inline-block;
+  }
+  
+  ul li div {
+    height: 15px;
+    width: 15px;
+  }
+  
+  .first-visit-marker {
+    background: #43760f;
+  }
+  
+  .revisit-marker {
+    background: #ff9900;
+  }
+  
+  .totalCount,
+  .description {
+    padding-top: 15px;
+  }
+
+  .full-width-login {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 35px;
+    border-radius: 16px;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 8px;
+    max-width: 110px;
+  }
+
+  table {
+    width: 100%;
+    color: #52575C !important;
+  }
+
+  .full-width-refresh {
+      width: 100%;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      height: 35px;
+      border-radius: 16px;
+      font-size: 15px;
+      font-weight: bold;
+      max-width: 110px;
+  }
