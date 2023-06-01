@@ -34,9 +34,10 @@ jobs:
         with:
           node-version: 16
           
+      - name: Create tsconfig.json
+        run: echo '{ "exclude": ["node_modules/@angular/http"] }' > tsconfig.json
       
-      
-      - name: Install Dependencies using npm 
+      - name: Build with NPM and Maven
         run: |
             npm config set legacy-peer-deps true
             npm install -g @angular/cli
