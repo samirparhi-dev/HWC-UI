@@ -34,8 +34,7 @@ jobs:
         with:
           node-version: 16
           
-      - name: Create tsconfig.json
-        run: echo '{ "exclude":["node_modules/@angular/http"] }'>tsconfig.json
+     
 
       
       - name: Build with NPM and Maven
@@ -47,11 +46,10 @@ jobs:
             npm install ng2-smart-table@1.2.1
             npm install node-sass
             npm install --force
-            sed -i 's/Http/Http | any/g' node_modules/@angular/http/src/http.d.ts
             npm run build
             mvn clean install
       
-      
+      #sed -i 's/Http/Http | any/g' node_modules/@angular/http/src/http.d.ts
           
         #sudo yarn global add  @angular/cli
               #sudo yarn global add  @angular/common
