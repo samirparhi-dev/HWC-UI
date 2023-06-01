@@ -46,23 +46,13 @@ jobs:
             npm install node-sass
             npm install --force
             sed -i 's/Property '"'"'postForSwaasa'"'"' does not exist on type '"'"'Http'"'"'./postForSwaasa(url:string, body:any, options?:RequestOptionsArgs):Observable<Response>;/' src/app/app-modules/nurse-doctor/shared/services/audio-recording.service.ts
+            cat test-HWC-UI/node_modules/@angular/http/src/http.d.ts
             npm run build
             mvn clean install
       
       #sed -i 's/Http/Http | any/g' node_modules/@angular/http/src/http.d.ts
           
-        #sudo yarn global add  @angular/cli
-              #sudo yarn global add  @angular/common
-              #sudo yarn add typescript@2.7.2 
-              #sudo yarn add node-sass --force
-              #sudo yarn install --force
-              #sudo  yarn run build 
-              #sudo mvn clean install -B
-              
-  
-          
-                
-          
+   
       #- name: Perform CodeQL Analysis
       #  uses: github/codeql-action/analyze@v2
       #  with:
