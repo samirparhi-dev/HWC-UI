@@ -42,6 +42,7 @@ jobs:
         run: |
             npm config set legacy-peer-deps true
             npm install -g @angular/cli
+            npm install @angular/core
             npm install typescript@2.7.2 --save-dev
             npm install ng2-smart-table@1.2.1
             npm install node-sass
