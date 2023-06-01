@@ -11,7 +11,7 @@ yarn.lock
 /src/assets/git-version.json
 
 # dependencies
-/node_modules
+
 
 # IDEs and editors
 /.idea
