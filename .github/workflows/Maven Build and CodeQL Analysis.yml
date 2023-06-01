@@ -34,26 +34,21 @@ jobs:
         with:
           node-version: 16
           
-      - name: Modify http.d.ts file
-        run: |
-          echo "postForSwaasa(url: string, body: any, options?: RequestOptionsArgs): Observable<Response>;" >> hwc-ui/node_modules/@angular/http/src/http.d.ts
-
-      - name: Push changes
-        run: |
-          git add hwc-ui/node_modules/@angular/http/src/http.d.ts
-          git -c user.name="${GITHUB_ACTOR}" -c user.email="${GITHUB_ACTOR}@users.noreply.github.com" commit -m "Update http.d.ts file with custom method"
-          git push
-          
+      
+      
       - name: Build with NPM and Maven
         run: |
-              npm config set legacy-peer-deps true
-              npm install -g  @angular/cli
-              npm install typescript@2.7.2 --save-dev
-              npm install ng2-smart-table@1.2.1
-              npm install node-sass
-              npm install --force
-              npm run build
-              mvn clean install
+            npm config set legacy-peer-deps true
+            npm install -g @angular/cli
+            npm install typescript@2.7.2 --save-dev
+            npm install ng2-smart-table@1.2.1
+            npm install node-sass
+            npm install --force
+            echo "postForSwaasa(url: string, body: any, options?: RequestOptionsArgs): Observable<Response>;" >> hwc-ui/node_modules/@angular/http/src/http.d.ts
+            npm run build
+            mvn clean install
+      
+      
           
         #sudo yarn global add  @angular/cli
               #sudo yarn global add  @angular/common
