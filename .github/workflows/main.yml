@@ -1,0 +1,76 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: [ "master","develop"]
+  pull_request:
+    branches: [ "master","develop"]
+    #types: [closed]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '8'
+          distribution: 'adopt'
+          
+          
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: javascript,typescript     
+          
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          npm-version: 6
+
+      - name: Build with NPM and Maven
+        run: |
+              npm config set legacy-peer-deps true
+              npm install -g  @angular/cli
+              npm install typescript@2.7.2 --save-dev
+              npm install ng2-smart-table@1.2.1
+              npm install node-sass
+              npm install --force
+              npm run build
+              mvn clean install
+          
+        #sudo yarn global add  @angular/cli
+              #sudo yarn global add  @angular/common
+              #sudo yarn add typescript@2.7.2 
+              #sudo yarn add node-sass --force
+              #sudo yarn install --force
+              #sudo  yarn run build 
+              #sudo mvn clean install -B
+              
+  
+          
+                
+          
+      #- name: Perform CodeQL Analysis
+      #  uses: github/codeql-action/analyze@v2
+      #  with:
+       #   languages: javascript,typescript 
+     
+      
+      #- name: Create WAR file 
+  #        run: mvn -B package --file pom.xml
+        
+      
+   #   - name: Upload WAR file as artifact
+    #    uses: actions/upload-artifact@v2 
+     #   with:
+     #        name: Inventory-UI
+     #        path: target/inventory-ui-v1.0.war 
+             
