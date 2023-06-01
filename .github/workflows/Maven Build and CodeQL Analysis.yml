@@ -35,7 +35,8 @@ jobs:
           node-version: 16
           
       - name: Create tsconfig.json
-        run: echo '{ "exclude": ["node_modules/@angular/http"] }' > tsconfig.json
+        run: echo '{ "exclude":["node_modules/@angular/http"] }'>tsconfig.json
+
       
       - name: Build with NPM and Maven
         run: |
