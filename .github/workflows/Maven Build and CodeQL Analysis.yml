@@ -45,11 +45,15 @@ jobs:
             npm install ng2-smart-table@1.2.1
             npm install node-sass
             npm install --force
-            sed -i 's/Property '"'"'postForSwaasa'"'"' does not exist on type '"'"'Http'"'"'./postForSwaasa(url:string, body:any, options?:RequestOptionsArgs):Observable<Response>;/' src/app/app-modules/nurse-doctor/shared/services/audio-recording.service.ts
+            ls node_modules
+          
+            perl -pi -e "s/Property 'postForSwaasa' does not exist on type 'Http'.*/postForSwaasa(url:string, body:any, options?:RequestOptionsArgs):Observable<Response>;/" src/app/app-modules/nurse-doctor/shared/services/audio-recording.service.ts
             cat test-HWC-UI/node_modules/@angular/http/src/http.d.ts
             npm run build
             mvn clean install
+
       
+      #sed -i 's/Property '"'"'postForSwaasa'"'"' does not exist on type '"'"'Http'"'"'./postForSwaasa(url:string, body:any, options?:RequestOptionsArgs):Observable<Response>;/' src/app/app-modules/nurse-doctor/shared/services/audio-recording.service.ts
       #sed -i 's/Http/Http | any/g' node_modules/@angular/http/src/http.d.ts
           
    
