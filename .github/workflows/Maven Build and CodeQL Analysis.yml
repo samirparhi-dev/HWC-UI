@@ -46,24 +46,20 @@ jobs:
             npm run build
             mvn clean install
 
-      
-      #npm install @angular/core@5.2.11
-      #sed -i 's/Http/Http | any/g' node_modules/@angular/http/src/http.d.ts
-          
    
-      #- name: Perform CodeQL Analysis
-      #  uses: github/codeql-action/analyze@v2
-      #  with:
-       #   languages: javascript,typescript 
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
+        with:
+          languages: javascript,typescript 
      
       
-      #- name: Create WAR file 
-  #        run: mvn -B package --file pom.xml
+      - name: Create WAR file 
+        run: mvn -B package --file pom.xml
         
       
-   #   - name: Upload WAR file as artifact
-    #    uses: actions/upload-artifact@v2 
-     #   with:
-     #        name: Inventory-UI
-     #        path: target/inventory-ui-v1.0.war 
+      - name: Upload WAR file as artifact
+        uses: actions/upload-artifact@v2 
+        with:
+             name: HWC-UI
+             path: target/tmui-v1.0.war 
              
