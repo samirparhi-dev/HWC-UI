@@ -77,3 +77,4 @@ jobs:
       with:
         name: HWC-UI
         path: target/tmui-v1.0.war  
+        
