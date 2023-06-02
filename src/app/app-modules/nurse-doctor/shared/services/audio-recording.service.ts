@@ -1,11 +1,9 @@
-
 import { Injectable } from "@angular/core";
 import { Http } from "@angular/http";
 import { environment } from "environments/environment";
 import * as moment from "moment";
 import * as RecordRTC from "recordrtc";
 import { Observable, Subject } from "rxjs";
-
 
 interface RecordedAudioOutput {
   blob: Blob;
@@ -22,8 +20,7 @@ export class AudioRecordingService {
   private _recordingTime = new Subject<string>();
   private _recordingFailed = new Subject<string>();
 
-  constructor(
-    private http: Http) { }
+  constructor(private http: Http) {}
 
   getRecordedBlob(): Observable<RecordedAudioOutput> {
     return this._recorded.asObservable();
@@ -46,11 +43,11 @@ export class AudioRecordingService {
     this._recordingTime.next("00:00");
     navigator.mediaDevices
       .getUserMedia({ audio: true })
-      .then(s => {
+      .then((s) => {
         this.stream = s;
         this.record();
       })
-      .catch(error => {
+      .catch((error) => {
         this._recordingFailed.next();
       });
   }
@@ -62,7 +59,7 @@ export class AudioRecordingService {
   private record() {
     this.recorder = new RecordRTC.StereoAudioRecorder(this.stream, {
       type: "audio",
-      mimeType: "audio/webm"
+      mimeType: "audio/webm",
     });
 
     this.recorder.record();
@@ -88,7 +85,7 @@ export class AudioRecordingService {
   stopRecording() {
     if (this.recorder) {
       this.recorder.stop(
-        blob => {
+        (blob) => {
           if (this.startTime) {
             const mp3Name = encodeURIComponent(
               "audio_" + new Date().getTime() + ".wav"
@@ -111,7 +108,7 @@ export class AudioRecordingService {
       clearInterval(this.interval);
       this.startTime = null;
       if (this.stream) {
-        this.stream.getAudioTracks().forEach(track => track.stop());
+        this.stream.getAudioTracks().forEach((track) => track.stop());
         this.stream = null;
       }
     }
@@ -119,11 +116,11 @@ export class AudioRecordingService {
 
   getResultStatus(formData: FormData) {
     return this.http
-  .postForSwaasa(environment.getResultStatusURL, formData)
-  .map((res) => res.json());
-    
+      .post(environment.getResultStatusURL, formData)
+      .map((res) => res.json());
   }
 }
+
 
 /*import { Injectable } from "@angular/core";
 import { Http } from "@angular/http";
