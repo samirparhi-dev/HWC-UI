@@ -34,7 +34,8 @@ export class LoginComponent implements OnInit {
     private dialog: MdDialog,
     private authService: AuthService,
     private confirmationService: ConfirmationService
-  ) {this._keySize = 256;
+  ) {
+    this._keySize = 256;
     this._ivSize = 128;
     this._iterationCount = 1989;
 }
@@ -104,8 +105,10 @@ export class LoginComponent implements OnInit {
 
 
   login() {
-    this.password = this.encrypt(this.Key_IV, this.password)
-    this.authService.login(this.userName, this.password, false)
+
+let encriptPassword = this.encrypt(this.Key_IV, this.password)
+    
+   this.authService.login(this.userName, encriptPassword, false)
       .subscribe(res => {
         if (res.statusCode === 200) {
           if (res.data.previlegeObj && res.data.previlegeObj[0]) {
@@ -121,7 +124,7 @@ export class LoginComponent implements OnInit {
             if (confirmResponse){
               this.authService.userLogoutPreviousSession(this.userName).subscribe((logOutFromPreviousSession) => {
                 if (logOutFromPreviousSession.statusCode === 200){
-              this.authService.login(this.userName, this.password, true).subscribe((userLoggedIn) => {
+              this.authService.login(this.userName, encriptPassword, true).subscribe((userLoggedIn) => {
                 if (userLoggedIn.statusCode === 200) {
                 if (userLoggedIn.data.previlegeObj && userLoggedIn.data.previlegeObj[0] && userLoggedIn.data.previlegeObj != null && userLoggedIn.data.previlegeObj != undefined) {
                   localStorage.setItem('loginDataResponse', JSON.stringify(userLoggedIn.data));

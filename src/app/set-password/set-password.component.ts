@@ -12,6 +12,7 @@ import * as CryptoJS from 'crypto-js';
   styleUrls: ["./set-password.component.css"],
 })
 export class SetPasswordComponent {
+
   key: any;
   iv: any;
   SALT: string = "RandomInitVector";
@@ -20,6 +21,7 @@ export class SetPasswordComponent {
   _keySize: any;
   _ivSize: any;
   _iterationCount: any;
+
   password:any;
   encryptedConfirmPwd: any;
   newpwd: any;
@@ -32,9 +34,9 @@ export class SetPasswordComponent {
     private authService: AuthService,
     private confirmationService: ConfirmationService
   ) {
-    this._keySize = 256;
-      this._ivSize = 128;
-      this._iterationCount = 1989;
+     this._keySize = 256;
+       this._ivSize = 128;
+       this._iterationCount = 1989;
 
   }
 
@@ -100,8 +102,8 @@ export class SetPasswordComponent {
   updatePassword(new_pwd) {
 
     const transactionId = this.authService.transactionId;
+     
     this.password = this.encrypt(this.Key_IV, new_pwd)
-
     this.encryptedConfirmPwd=this.encrypt(this.Key_IV, this.confirmpwd)
 
     if (new_pwd === this.confirmpwd) {
