@@ -185,6 +185,9 @@ export class RegisterPersonalDetailsComponent implements OnInit {
           ) {
             return maritalStatus;
           }
+          
+          
+
         }
       );
     }
@@ -455,17 +458,19 @@ export class RegisterPersonalDetailsComponent implements OnInit {
       this.maritalStatusMaster = this.masterData.maritalStatusMaster.filter(
         (maritalStatus) => {
           if (
-            this.personalDetailsForm.value.gender == "1" &&
-            maritalStatus.maritalStatusID != "5"
+                this.personalDetailsForm.value.gender == "1" && maritalStatus.maritalStatusID != "5"
           ) {
             return maritalStatus;
           }
-          if (
-            this.personalDetailsForm.value.gender == "2" &&
-            maritalStatus.maritalStatusID != "6"
-          ) {
+          
+          
+        if (
+              this.personalDetailsForm.value.gender == "2" && maritalStatus.maritalStatusID != "6"
+          )  {
             return maritalStatus;
           }
+
+
         }
       );
     }
@@ -723,47 +728,84 @@ export class RegisterPersonalDetailsComponent implements OnInit {
   }
 
  
+  
 
   /**
    *
    * Marital Status Changed
    */
-  enableMarriageDetails: Boolean = false;
-  onMaritalStatusChanged() {
-    if (
-      this.personalDetailsForm.value.maritalStatus == 1 ||
-      this.personalDetailsForm.value.maritalStatus == 7
-    ) {
-      this.enableMarriageDetails = false;
-      this.clearMarriageDetails();
-    } else {
-      this.enableMarriageDetails = true;
-    }
 
-    const maritalMaster = this.masterData.maritalStatusMaster;
-    maritalMaster.forEach((element, i) => {
-      if (
-        element.maritalStatusID === this.personalDetailsForm.value.maritalStatus
-      ) {
-        this.personalDetailsForm.patchValue({
-          maritalStatusName: element.status,
-        });
-      }
-    });
+  // enableMarriageDetails: Boolean = false;
+  // onMaritalStatusChanged() {
+  //   if (
+  //     this.personalDetailsForm.value.maritalStatus == 1 ||
+  //     this.personalDetailsForm.value.maritalStatus == 7  
+
+  //   ) {
+  //     this.enableMarriageDetails = false;
+  //     this.clearMarriageDetails();
+  //   } else {
+  //     this.enableMarriageDetails = true;
+  //   }
+
+  //   const maritalMaster = this.masterData.maritalStatusMaster;
+  //   maritalMaster.forEach((element, i) => {
+  //     if (
+  //       element.maritalStatusID === this.personalDetailsForm.value.maritalStatus
+  //     ) {
+  //       this.personalDetailsForm.patchValue({
+  //         maritalStatusName: element.status,
+  //       });
+  //     }
+  //   });
+  // }
+
+/**
+  *
+  * Marital Status Changed
+  */
+enableMarriageDetails: Boolean = false;
+enableSpouseMandatory:Boolean = false;
+onMaritalStatusChanged() {
+  if (this.personalDetailsForm.value.maritalStatus == 1 ||
+     this.personalDetailsForm.value.maritalStatus == 7) {
+    this.enableMarriageDetails = false;
+    this.clearMarriageDetails();
+
+  } else { this.enableMarriageDetails = true; }
+  if(this.personalDetailsForm.value.maritalStatus == 2){
+   this.enableSpouseMandatory = true;
+   this.clearMarriageDetails();
+  }else{
+    this.enableSpouseMandatory = false;
+    this.clearMarriageDetails();
   }
 
-  /**
-   * Clear Marriage Details if Entered
-   *
-   */
-  clearMarriageDetails() {
-    if (this.personalDetailsForm.value.spouseName != null) {
-      this.personalDetailsForm.patchValue({ spouseName: null });
+  const maritalMaster = this.masterData.maritalStatusMaster;
+  maritalMaster.forEach((element, i) => {
+    if (element.maritalStatusID === this.personalDetailsForm.value.maritalStatus) {
+      this.personalDetailsForm.patchValue({
+        maritalStatusName: element.status
+      })
     }
-    if (this.personalDetailsForm.value.ageAtMarriage != null) {
-      this.personalDetailsForm.patchValue({ ageAtMarriage: null });
-    }
+
+  });
+
+}
+
+/**
+* Clear Marriage Details if Entered
+*
+*/
+clearMarriageDetails() {
+  if (this.personalDetailsForm.value.spouseName != null) {
+    this.personalDetailsForm.patchValue({ spouseName: null })
   }
+  if (this.personalDetailsForm.value.ageAtMarriage != null) {
+    this.personalDetailsForm.patchValue({ ageAtMarriage: null });
+  }
+}
+
 
   /**
    *

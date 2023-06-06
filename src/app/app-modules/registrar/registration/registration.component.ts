@@ -374,8 +374,8 @@ export class RegistrationComponent implements OnInit, AfterViewChecked, OnDestro
               required.push(this.currentLanguageSet.ro.personalInfo.ageAtMarriage)
           }
           else if (control == 'spouseName') {
-            if (personalForm.value.age >= 12 && personalForm.value.ageUnit == 'Years' && personalForm.value.maritalStatus != 1 && personalForm.value.maritalStatus != 7)
-              required.push(this.currentLanguageSet.ro.personalInfo.spouseName)
+            if (personalForm.value.age >= 12 && personalForm.value.ageUnit == 'Years' && personalForm.value.maritalStatus == 2)
+             required.push(this.currentLanguageSet.ro.personalInfo.spouseName)
           }
           else if (control == 'occupationOther') { required.push(this.currentLanguageSet.ro.personalInfo.otherOccupation) }
           else if (control == 'educationQualification') {

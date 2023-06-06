@@ -145,7 +145,7 @@
             "ok": "Ok",
             "enterDigitAadharNumber": "Enter 12 Digit Aadhar Number",
             "enterCharacterVoterID": "Enter 10 Character Voter ID",
-            "enterCharacterDrivingLicenseID": "Enter 18 Character Driving License ID",
+            "enterCharacterDrivingLicenseID": "Enter min 8 Character Driving License ID",
             "EnterCharacterPanID": "Enter 10 Character Pan ID",
             "EnterCharacterPassport": "Enter 15 Character Passport",
             "EnterCharacterRationcardID": "Enter 15 Character Rationcard  ID",
