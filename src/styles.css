@@ -299,6 +299,7 @@ hr {
   flex-grow: 1;
   /* line-height: 55px; */
   padding-bottom: 10px;
+  margin-bottom: 15px !important;
 }
 
 .mat-expansion-panel-header {
