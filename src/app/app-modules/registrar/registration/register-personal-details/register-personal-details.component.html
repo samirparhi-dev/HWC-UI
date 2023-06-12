@@ -248,6 +248,9 @@
         </div>
       </ng-container>
 
+      
+      
+      
       <ng-container *ngIf="enableMaritalStatus && enableMarriageDetails">
         <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 box">
           <md-form-field [style.width]="'100%'">
@@ -255,7 +258,7 @@
               autocomplete="off"
               mdInput
               allowText="alphaspace"
-              [required]="enableMarriageDetails"
+              [required]="enableSpouseMandatory"
               placeholder="{{
                 current_language_set?.ro?.personalInfo?.spouseName
               }}"
@@ -270,6 +273,13 @@
           </md-form-field>
         </div>
       </ng-container>
+
+
+
+     
+
+
+
 
       <div
         *ngIf="enableMaritalStatus && enableMarriageDetails"

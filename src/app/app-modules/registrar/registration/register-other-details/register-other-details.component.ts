@@ -160,13 +160,9 @@ export class RegisterOtherDetailsComponent implements OnInit, OnDestroy {
         identityType: "Voter ID",
       },
       {
-        govtIdentityTypeID: 3,
-        allow: "alphanumerichyphen",
-        error: this.currentLanguageSet.common.enterCharacterDrivingLicenseID,
-        minLength: 15,
-        maxLength: 18,
-        pattern: /^([A-Za-z]+[0-9]|[0-9]+[A-Za-z])[A-Za-z0-9]*$/,
-        identityType: "Driving License",
+        'govtIdentityTypeID': 3, error: this.currentLanguageSet.common.enterCharacterDrivingLicenseID,
+        minLength: 8,
+        maxLength: 20, 'identityType': 'Driving License'
       },
       {
         govtIdentityTypeID: 4,
