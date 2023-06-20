@@ -479,9 +479,9 @@ export class VisitDetailsComponent implements OnInit {
       if(this.beneficiary.ageVal < 30){
       this.templateFilterVisitCategories = this.templateFilterVisitCategories.filter(item => item.visitCategory.toLowerCase() != "ncd screening")
       }
-      if(this.beneficiary.ageVal < 30) {
-        this.templateFilterVisitCategories = this.templateFilterVisitCategories.filter(item => item.visitCategory.toLowerCase() != "ncd care")
-      }
+      // if(this.beneficiary.ageVal < 30) {
+      //   this.templateFilterVisitCategories = this.templateFilterVisitCategories.filter(item => item.visitCategory.toLowerCase() != "ncd care")
+      // }
 
       if (this.beneficiary.genderName == "Male" || this.beneficiary.ageVal < 12) {
         this.templateFilterVisitCategories = this.templateFilterVisitCategories.filter(item => (item.visitCategory.toLowerCase() != "anc" && item.visitCategory.toLowerCase() != "pnc"
@@ -498,10 +498,10 @@ export class VisitDetailsComponent implements OnInit {
           )
           )
           );
-          if(this.beneficiary.ageVal < 30) {
-            this.templateFilterVisitCategories = this.templateFilterVisitCategories.filter(item => item.visitCategory.toLowerCase() != "ncd care")
-          }
-          if(this.beneficiary.ageVal <= 12) {
+          // if(this.beneficiary.ageVal < 30) {
+          //   this.templateFilterVisitCategories = this.templateFilterVisitCategories.filter(item => item.visitCategory.toLowerCase() != "ncd care")
+          // }
+           if(this.beneficiary.ageVal <= 12) {
             this.templateFilterVisitCategories = this.templateFilterVisitCategories.filter(item => item.visitCategory.toLowerCase() != "fp & contraceptive services")
           }
           if(this.beneficiaryAge > 1) {
@@ -529,7 +529,9 @@ export class VisitDetailsComponent implements OnInit {
       if (this.beneficiary.genderName == "Male" || this.beneficiary.ageVal < 12)
         this.templateFilterVisitCategories = this.templateFilterVisitCategories.filter(item => (item.visitCategory.toLowerCase() != "anc" && item.visitCategory.toLowerCase() != "pnc"
         &&  item.visitCategory.toLowerCase() != "synctest"
-        && item.visitCategory.toLowerCase() != "ncd care"));
+        
+        //&& item.visitCategory.toLowerCase() != "ncd care"
+        ));
       else
         this.templateFilterVisitCategories = this.templateFilterVisitCategories.slice();
 
