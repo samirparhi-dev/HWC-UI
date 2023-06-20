@@ -1,3 +1,24 @@
+/*
+* AMRIT – Accessible Medical Records via Integrated Technology 
+* Integrated EHR (Electronic Health Records) Solution 
+*
+* Copyright (C) "Piramal Swasthya Management and Research Institute" 
+*
+* This file is part of AMRIT.
+*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see https://www.gnu.org/licenses/.
+*/
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, FormArray } from '@angular/forms';
 
@@ -458,9 +479,9 @@ export class VisitDetailsComponent implements OnInit {
       if(this.beneficiary.ageVal < 30){
       this.templateFilterVisitCategories = this.templateFilterVisitCategories.filter(item => item.visitCategory.toLowerCase() != "ncd screening")
       }
-      if(this.beneficiary.ageVal < 30) {
-        this.templateFilterVisitCategories = this.templateFilterVisitCategories.filter(item => item.visitCategory.toLowerCase() != "ncd care")
-      }
+      // if(this.beneficiary.ageVal < 30) {
+      //   this.templateFilterVisitCategories = this.templateFilterVisitCategories.filter(item => item.visitCategory.toLowerCase() != "ncd care")
+      // }
 
       if (this.beneficiary.genderName == "Male" || this.beneficiary.ageVal < 12) {
         this.templateFilterVisitCategories = this.templateFilterVisitCategories.filter(item => (item.visitCategory.toLowerCase() != "anc" && item.visitCategory.toLowerCase() != "pnc"
@@ -477,10 +498,10 @@ export class VisitDetailsComponent implements OnInit {
           )
           )
           );
-          if(this.beneficiary.ageVal < 30) {
-            this.templateFilterVisitCategories = this.templateFilterVisitCategories.filter(item => item.visitCategory.toLowerCase() != "ncd care")
-          }
-          if(this.beneficiary.ageVal <= 12) {
+          // if(this.beneficiary.ageVal < 30) {
+          //   this.templateFilterVisitCategories = this.templateFilterVisitCategories.filter(item => item.visitCategory.toLowerCase() != "ncd care")
+          // }
+           if(this.beneficiary.ageVal <= 12) {
             this.templateFilterVisitCategories = this.templateFilterVisitCategories.filter(item => item.visitCategory.toLowerCase() != "fp & contraceptive services")
           }
           if(this.beneficiaryAge > 1) {
@@ -508,7 +529,9 @@ export class VisitDetailsComponent implements OnInit {
       if (this.beneficiary.genderName == "Male" || this.beneficiary.ageVal < 12)
         this.templateFilterVisitCategories = this.templateFilterVisitCategories.filter(item => (item.visitCategory.toLowerCase() != "anc" && item.visitCategory.toLowerCase() != "pnc"
         &&  item.visitCategory.toLowerCase() != "synctest"
-        && item.visitCategory.toLowerCase() != "ncd care"));
+        
+        //&& item.visitCategory.toLowerCase() != "ncd care"
+        ));
       else
         this.templateFilterVisitCategories = this.templateFilterVisitCategories.slice();
 

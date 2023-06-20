@@ -598,17 +598,17 @@
           <th id="nCDCareConditionTypeOfNCD" > {{current_language_set?.casesheet?.typeOfNcd}}:</th>
           <td> {{ caseRecords && caseRecords.diagnosis && caseRecords.diagnosis.ncdCareType}} </td>
         </tr>
-        <tr>
+        <tr style="display: none;">
           <th colspan="4" id="typeOfComplication"> {{current_language_set?.casesheet?.typeOfComplication}}: </th>
         </tr>
-        <tr>
+        <tr style="display: none;">
           <td colspan="4">
             <div class="textarea">
               {{ caseRecords && caseRecords.diagnosis && caseRecords.diagnosis.ncdComplication }}
             </div>
           </td>
         </tr>
-        <tr>
+        <tr *ngIf="visitCategory !== 'NCD care'">
           <th id="specialistdignosis">{{ current_language_set?.DiagnosisDetails?.specialistdignosis}}:</th>
           <td > {{ caseRecords && caseRecords.diagnosis && caseRecords.diagnosis.specialistDiagnosis }}</td>
         </tr>
