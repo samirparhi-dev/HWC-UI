@@ -53,6 +53,7 @@ export class NcdCareDiagnosisComponent implements OnInit, OnDestroy {
   specialist: boolean;
   isNcdScreeningConditionOther: boolean = false;
   temp: any = [];
+  visitCategory: string;
   constructor(
     private fb: FormBuilder,
     private masterdataService: MasterdataService,
@@ -73,6 +74,7 @@ export class NcdCareDiagnosisComponent implements OnInit, OnDestroy {
       this.generalDiagnosisForm.controls["specialistDiagnosis"].disable();
       this.specialist = false;
     }
+    this.visitCategory = localStorage.getItem('visitCategory');
   }
 
   ngDoCheck() {
