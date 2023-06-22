@@ -2490,6 +2490,11 @@ export class WorkareaComponent implements OnInit, CanComponentDeactivate {
         if (diagnosisForm1 != undefined) {
           const temp =
             diagnosisForm1.controls["ncdScreeningConditionArray"].value;
+            if (diagnosisForm1.controls["ncdScreeningConditionArray"].errors) {
+              required.push(
+                this.current_language_set.casesheet.ncdCondition
+              );
+            }
           let flag = false;
 
           if (temp != undefined && temp != null && temp.length > 0) {
