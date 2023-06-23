@@ -91,7 +91,7 @@
       </ng-container>
     </div>
 
-    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" *ngIf="visitCategory !== 'NCD care'">
       <header class="mat-expansion-panel-header tabcolor m-t-5">
         <h4>{{ current_language_set?.DiagnosisDetails?.specialistdignosis }}</h4>
       </header>
