@@ -1,11 +1,28 @@
 <!-- {{ generalDiagnosisForm.value | json }} -->
 <div class="m-t-10" [formGroup]="generalDiagnosisForm">
   <div class="row">
-    <div class="col-xs-12 col-xs-6 box">
+    <div class="col-xs-12 col-xs-6 box" *ngIf="enableNCDCondition">
       <md-select
         class="input-full-width"
         name="ncdScreeningCondition"
-        *ngIf="enableNCDCondition"
+        placeholder="{{ current_language_set?.casesheet?.ncdCondition }}*"
+        multiple
+        (change)="changeNcdScreeningCondition($event.value,$event)"
+        [(ngModel)]="temp" [ngModelOptions]="{standalone: true}"
+      >
+        <md-option
+          *ngFor="let ncdCareCondition of ncdCareConditions"
+          [value]="ncdCareCondition.screeningCondition"
+        >
+          {{ ncdCareCondition.screeningCondition }}</md-option
+        >
+      </md-select>
+    </div>
+
+    <div class="col-xs-12 col-xs-6 box" *ngIf="!enableNCDCondition">
+      <md-select
+        class="input-full-width"
+        name="ncdScreeningCondition"
         placeholder="{{ current_language_set?.casesheet?.ncdCondition }}*"
         multiple
         (change)="changeNcdScreeningCondition($event.value,$event)"
