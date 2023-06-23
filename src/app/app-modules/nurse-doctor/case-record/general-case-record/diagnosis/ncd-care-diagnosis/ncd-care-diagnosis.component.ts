@@ -28,6 +28,7 @@ import { SetLanguageComponent } from "app/app-modules/core/components/set-langua
 import { Subscription } from "rxjs/Subscription";
 import { ConfirmationService } from "app/app-modules/core/services/confirmation.service";
 import { GeneralUtils } from "app/app-modules/nurse-doctor/shared/utility";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-ncd-care-diagnosis",
@@ -54,12 +55,15 @@ export class NcdCareDiagnosisComponent implements OnInit, OnDestroy {
   isNcdScreeningConditionOther: boolean = false;
   temp: any = [];
   visitCategory: string;
+  attendantType: any;
+  enableNCDCondition: boolean = false;
   constructor(
     private fb: FormBuilder,
     private masterdataService: MasterdataService,
     public httpServiceService: HttpServiceService,
     private doctorService: DoctorService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -75,6 +79,10 @@ export class NcdCareDiagnosisComponent implements OnInit, OnDestroy {
       this.specialist = false;
     }
     this.visitCategory = localStorage.getItem('visitCategory');
+    this.attendantType = this.route.snapshot.params['attendant'];
+    if(this.attendantType == "doctor"){
+      this.enableNCDCondition= true;
+    }
   }
 
   ngDoCheck() {
