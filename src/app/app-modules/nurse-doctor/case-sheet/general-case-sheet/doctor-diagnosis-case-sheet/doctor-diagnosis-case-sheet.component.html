@@ -340,7 +340,7 @@
         <thead>
           <tr>
             <th style="width : 5%" id="serialNo">{{current_language_set?.casesheet?.serialNo}}</th>
-            <th style="width: 10%" id="SCTID">{{current_language_set?.nurseData?.chiefComplaintsDetails?.SCTID}}</th>
+            <!-- <th style="width: 10%" id="SCTID">{{current_language_set?.nurseData?.chiefComplaintsDetails?.SCTID}}</th> -->
             <th style="width: 25%" id="chiefComplaints">{{current_language_set?.nurseData?.chiefComplaintsDetails?.chiefComplaints}}</th>
             <th style="width: 10%" *ngIf="visitCategory != 'General OPD (QC)'" id="duration">{{current_language_set?.nurseData?.chiefComplaintsDetails?.duration}}</th>
             <th style="width: 10%" *ngIf="visitCategory != 'General OPD (QC)'" id="unitOfDuration">{{current_language_set?.nurseData?.chiefComplaintsDetails?.unitOfDuration}}</th>
@@ -355,7 +355,7 @@
         <tbody *ngIf="caseRecords && caseRecords.findings && caseRecords.findings.complaints">
           <tr *ngFor="let complaints of caseRecords.findings.complaints; let i = index">
             <td>{{ i + 1 }}</td>
-            <td>{{complaints.conceptID}}</td>
+            <!-- <td>{{complaints.conceptID}}</td> -->
             <td>{{ complaints.chiefComplaint }}</td>
             <td *ngIf="visitCategory != 'General OPD (QC)'">{{ complaints.duration }}</td>
             <td *ngIf="visitCategory != 'General OPD (QC)'">{{(((complaints.unitOfDuration) == 'Hours')? 'Hour(s)' : ((complaints.unitOfDuration) == 'Days')? 'Day(s)' : ((complaints.unitOfDuration) == 'Weeks')? 'Week(s)' : ((complaints.unitOfDuration) == 'Months')? 'Month(s)' : ((complaints.unitOfDuration)
