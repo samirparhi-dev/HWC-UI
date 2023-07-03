@@ -130,7 +130,7 @@ export class ServicePointComponent implements OnInit {
     this.serviceProviderId = localStorage.getItem('providerServiceID');
     this.userId = localStorage.getItem('userID');
     this.getServicePoint();
-    // this.getDemographics();
+     //this.getDemographics();
     // console.log( "language",this.appLanguage.appCurrentLanguge.value);
     // this.httpServiceService.currentLangugae$.subscribe(response =>this.current_language_set = response);
     console.log("here at three",this.current_language_set);
@@ -262,13 +262,13 @@ export class ServicePointComponent implements OnInit {
     if (data) {
       if (data.stateMaster && data.stateMaster.length >= 1) {
         localStorage.setItem('location', JSON.stringify(data));
-        // this.goToWorkList();
-        this.statesList = data.stateMaster;
-        this.stateID = data.otherLoc.stateID;
-        this.fetchDistrictsOnStateSelection(this.stateID);
-        this.districtID = null;
-        this.blockID = null;
-        this.districtBranchID = null;
+        this.goToWorkList();
+        // this.statesList = data.stateMaster;
+        // this.stateID = data.otherLoc.stateID;
+        // this.fetchDistrictsOnStateSelection(this.stateID);
+        // this.districtID = null;
+        // this.blockID = null;
+        // this.districtBranchID = null;
       } else {
         this.locationGathetingIssues();
       }
@@ -336,7 +336,7 @@ this.stateName = stateName;
   }
 
   saveLocationDataToStorage(){
-var locationData = {
+  var locationData = {
   stateID: this.stateID,
   stateName : this.stateName,
   districtID: this.districtID.districtID,
