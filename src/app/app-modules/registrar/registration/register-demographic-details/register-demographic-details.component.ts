@@ -513,7 +513,7 @@ export class RegisterDemographicDetailsComponent implements OnInit, OnDestroy {
       stateName: this.demographicsMaster.otherLoc.stateName,
     });
 
-   // this.registrarService.stateIdFamily = this.locationData.stateID;
+    this.registrarService.stateIdFamily = this.demographicsMaster.otherLoc.stateID;
 
     // this.demographicDetailsForm.patchValue({
     //   stateID: this.demographicsMaster.otherLoc.stateID,
