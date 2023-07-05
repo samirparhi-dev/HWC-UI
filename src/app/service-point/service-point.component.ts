@@ -216,7 +216,7 @@ export class ServicePointComponent implements OnInit {
       localStorage.setItem('servicePointName', serviceLineDetails.servicePointName);
     if (serviceLineDetails.vanSession)
       localStorage.setItem('sessionID', serviceLineDetails.vanSession);
-      this.getDemographics();
+     // this.getDemographics();
   }
 
   routeToDesignation(designation) {
