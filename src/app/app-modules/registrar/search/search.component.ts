@@ -134,7 +134,7 @@ export class SearchComponent implements OnInit {
       searchTerm.trim() == "" || searchTerm.trim().length <= 0) {
       this.resetWorklist();
       this.confirmationService.alert(
-        "Please enter a valid input",
+        this.currentLanguageSet.pleaseEnterValidInput,
         "info"
       );
     } else {
@@ -242,11 +242,11 @@ export class SearchComponent implements OnInit {
     }
     
     else {
-      this.confirmationService.alert("Please enter valid input for " + searchObject, 'info')
+      this.confirmationService.alert(this.currentLanguageSet.pleaseEnterValidInputFor + searchObject, 'info')
     }
   }
   else {
-    this.confirmationService.alert("Please enter a valid input", 'info');
+    this.confirmationService.alert(this.currentLanguageSet.pleaseEnterValidInput, 'info');
   }
 }
 
@@ -302,7 +302,7 @@ export class SearchComponent implements OnInit {
     ) {
       this.resetWorklist();
       this.confirmationService.alert(
-        "Please enter a valid input",
+        this.currentLanguageSet.pleaseEnterValidInput,
         "info"
       );
       return false;
@@ -318,7 +318,7 @@ export class SearchComponent implements OnInit {
         
       } else {
         this.resetWorklist();
-          this.confirmationService.alert("Please enter a valid input", 'info');
+          this.confirmationService.alert(this.currentLanguageSet.pleaseEnterValidInput, 'info');
         return false;
       }
     }
@@ -374,7 +374,7 @@ export class SearchComponent implements OnInit {
      return true;
     } else {
       this.resetWorklist();
-      this.confirmationService.alert("Please enter a valid input", 'info');
+      this.confirmationService.alert(this.currentLanguageSet.pleaseEnterValidInput, 'info');
       return false;
     }
   }
@@ -814,7 +814,7 @@ export class SearchComponent implements OnInit {
         }
       },
       (err) => {
-        this.confirmationService.alert("Error in fetching states", "error");
+        this.confirmationService.alert(this.currentLanguageSet.errorInfetchingStates, "error");
       }
     );
   }
@@ -935,7 +935,7 @@ export class SearchComponent implements OnInit {
           if (result) this.sendToNurseWindow(result, benObject);
         });
     } else {
-      this.confirmationService.alert('Please register the beneficiary in AMRIT', 'info');
+      this.confirmationService.alert(this.currentLanguageSet.pleaseRegisterBeneficiaryInAMRIT, 'info');
     }
    
   }
@@ -992,7 +992,7 @@ nextPage()
             else
             {
               this.confirmationService.alert(
-                "No further records to show",
+                this.currentLanguageSet.noFurtherRecordsToShow,
                 "info"
               );
               this.pageNo=this.pageNo - 1;

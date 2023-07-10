@@ -164,6 +164,7 @@
             "InvalidValue": "Invalid Value",
             "temperature": "Temperature",
             "Success": "Success",
+            "info": "Info",
             "DiastolicBPLessThan": "Diastolic BP should be less than Systolic BP",
             "bluetoothDevice": "Bluetooth Device",
             "proceed": "Proceed",
@@ -1956,6 +1957,7 @@
         "enteratLeast3Characters": "Enter atleast 3 Characters",
         "max300CharectorsAllowed": "Maximum 300 characters are allowed",
         "max20CharectorsAllowed": "Maximum 20 characters are allowed",
+
         "enterMin3CharactersAndSearch":"Enter min 3 characters and search",
         "CDSS":"CDSS",
         "voice_chat": "voice_chat",
@@ -2039,7 +2041,7 @@
          "ThispatientissuspectedtohavethefollowinghealthconditionsasperthepreliminaryscreeningdonebytheASHA:":"This patient is <strong>suspected </strong> to have the following health conditions as per the preliminary screening done by the ASHA:",
          "pleaseperformthenecessaryexaminationstoconfirm.":"Please perform the necessary examinations to confirm.",
          "lungAssessment:":"Lung Assessment:",
-         "randomGlucoseTest":"Random Glucose Test"
+         "randomGlucoseTest":"Random Glucose Test",
 
 
 
@@ -2047,19 +2049,40 @@
 
         
 
-
-
-
-           
-
-
-
-
-
-          
-
-
-
+        "performNecessaryExaminationConfirm": "Please perform the necessary examinations to confirm.",
+        "fetosenseDevice": "Fetosense Device",
+        "vitalDetails": "Vital Details",
+        "diagnosisProvided": "Diagnosis Provided",
+        "provisionalDiagnosisList": "Provisional Diagnosis List",
+        "versionDetails": "Version Details",
+        "api": "API",
+        "ui": "UI",
+        "commit": "Commit",
+        "confirmYourIdentityPerformAction": "Confirm your identity to perform this action",
+        "errorfetchingVanDetails": "Error in fetching Van Details",
+        "vanID": "Van ID",
+        "vehicalNo": "Vehical No",
+        "downloadMasters": "Download Masters",
+        "welcome": "Welcome",
+        "clickonServiceToProceed": "Click on service to proceed",
+        "done": "done",
+        "consentFormText": "To provide you with better service, we would,request your personal information. The information that you will providewill be kept confidential and will only be used for research and analysis.",
+        "HeadOfTheFamilyAlreadyPresentRemoveExistingAndContinue": "Head of the Family is already present. Please, remove the existing head to continue",
+        "HeadOfTheFamilyAlreadyPresentRemoveExisting": "Head of the Family is already present. Please, remove the existing head.",
+        "backToRegistration":"Back to Registration",
+        "searchFamily": "Search Family",
+        "deactivateMandatoryFields": "Deactivate Mandatory Fields",
+        "amritID": "Amrit ID",
+        "externalID": "External ID",
+        "registertoAMRIT": "Register to AMRIT",
+        "pleaseEnterValidInput": "Please enter a valid input",
+        "pleaseEnterValidInputFor": "Please enter a valid input for",
+        "errorInfetchingStates": "Error in fetching states",
+        "pleaseRegisterBeneficiaryInAMRIT": "Please register the beneficiary in AMRIT",
+        "noFurtherRecordsToShow": "No further records to show",
+        "mobile": "Mobile",
+        "ageOnlyBeSetBetweenTodayTo": "Age can only be set between Today to",
+        "view": "View"
 
     }  
 

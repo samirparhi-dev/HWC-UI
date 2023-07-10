@@ -24,6 +24,8 @@ import { Router } from '@angular/router';
 import { ConfirmationService } from '../app-modules/core/services/confirmation.service';
 import { TelemedicineService } from '../app-modules/core/services/telemedicine.service';
 import { ServicePointService } from './../service-point/service-point.service';
+import { HttpServiceService } from 'app/app-modules/core/services/http-service.service';
+import { SetLanguageComponent } from 'app/app-modules/core/components/set-language.component';
 @Component({
   selector: 'app-service',
   templateUrl: './service.component.html',
@@ -34,21 +36,34 @@ export class ServiceComponent implements OnInit {
   servicesList: any;
   serviceIDs: any;
   fullName: any;
+  currentLanguageSet: any;
+  
 
   constructor(
     private router: Router,
     private telemedicineService: TelemedicineService,
     private servicePointService: ServicePointService,
-    private confirmationService: ConfirmationService) { }
+    private confirmationService: ConfirmationService,
+    public httpServiceService: HttpServiceService) { }
 
   ngOnInit() {
+    this.assignSelectedLanguage();
     localStorage.removeItem('providerServiceID');
     this.servicesList = JSON.parse(localStorage.getItem('services'));
     this.fullName = localStorage.getItem('fullName');
-
+  }
+  loginDataResponse: any;
+  ngDoCheck() {
+    this.assignSelectedLanguage();
   }
 
-  loginDataResponse: any;
+  assignSelectedLanguage() {
+    const getLanguageJson = new SetLanguageComponent(this.httpServiceService);
+    getLanguageJson.setLanguage();
+    this.currentLanguageSet = getLanguageJson.currentLanguageObject;
+    }
+
+  
   selectService(service) {
     localStorage.setItem('providerServiceID', service.providerServiceID);
     console.log(localStorage.getItem('provideServiceID'));
@@ -89,13 +104,13 @@ export class ServiceComponent implements OnInit {
           localStorage.setItem('role', JSON.stringify(this.roleArray));
           this.checkMappedDesignation(this.loginDataResponse);
         } else {
-          this.confirmationService.alert('Role features are not mapped for user , Please map a role feature', 'error');
+          this.confirmationService.alert(this.currentLanguageSet.alerts.info.mapRoleFeature, 'error');
         }
       } else {
-        this.confirmationService.alert('Role features are not mapped for user , Please map a role feature', 'error');
+        this.confirmationService.alert(this.currentLanguageSet.alerts.info.mapRoleFeature, 'error');
       }
     } else {
-      this.confirmationService.alert('Role features are not mapped for user , Please map a role feature', 'error');
+      this.confirmationService.alert(this.currentLanguageSet.alerts.info.mapRoleFeature, 'error');
     }
   }
 
@@ -106,10 +121,10 @@ export class ServiceComponent implements OnInit {
       if (this.designation != null) {
         this.checkDesignationWithRole();
       } else {
-        this.confirmationService.alert('Designation is not available for user , Please map the designation', 'error');
+        this.confirmationService.alert(this.currentLanguageSet.alerts.info.mapDesignation, 'error');
       }
     } else {
-      this.confirmationService.alert('Designation is not available for user , Please map the designation', 'error');
+      this.confirmationService.alert(this.currentLanguageSet.alerts.info.mapDesignation, 'error');
     }
   }
 
@@ -119,7 +134,7 @@ export class ServiceComponent implements OnInit {
       this.getSwymedMailLogin();
       this.routeToDesignation(this.designation);
     } else {
-      this.confirmationService.alert('Designation is not matched with your roles , Please map the designation or include more roles', 'error');
+      this.confirmationService.alert(this.currentLanguageSet.alerts.info.rolesNotMatched, 'error');
     }
   }
   getSwymedMailLogin() {
