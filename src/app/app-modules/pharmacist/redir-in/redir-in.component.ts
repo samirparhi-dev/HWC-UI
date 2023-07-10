@@ -66,7 +66,7 @@ export class RedirInComponent implements OnInit {
         
 
         if (resolve) {
-            this.confirmationService.alert("Item Dispensed", 'info');
+            this.confirmationService.alert(this.current_language_set.itemDispensed, 'info');
         }
         sessionStorage.setItem('setLanguage', language)
         this.router.navigate(['/pharmacist/pharmacist-worklist']);
