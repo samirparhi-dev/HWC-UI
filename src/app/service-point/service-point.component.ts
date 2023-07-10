@@ -276,7 +276,7 @@ export class ServicePointComponent implements OnInit {
       this.locationGathetingIssues();
     }
     console.log("statesList",this.statesList);
-    // this.stateID = data.stateMaster.stateID;
+    this.stateID = data.stateMaster.stateID;
   }
 
   setStateName(stateName) {
