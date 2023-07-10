@@ -235,7 +235,7 @@
             <td> {{ currentVitalsCasesheet && currentVitalsCasesheet.temperature }} </td>
           </tr>
           <tr *ngIf="beneficiaryDetails && beneficiaryDetails.ben_age_val >= 18">
-            <th style="text-decoration: underline;"><em>Lung Assessment:</em></th>
+            <th style="text-decoration: underline;"><em>{{ currentLanguageSet?.lungAssessment }}:</em></th>
           </tr>
           <tr *ngIf="beneficiaryDetails && beneficiaryDetails.ben_age_val >= 18">
             <th>Severity:</th>
