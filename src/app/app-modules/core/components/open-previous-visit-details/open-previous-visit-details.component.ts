@@ -105,7 +105,11 @@ export class OpenPreviousVisitDetailsComponent implements OnInit {
     const endItem = event.page * event.itemsPerPage;
     // this.previousHistoryPagedList = this.previousVisitData.slice(startItem, endItem);
     // this.previousHistoryPagedList = this.previousVisitData[0].benPreviousData;
-    this.previousHistoryPagedList.push(this.previousVisitData[0]);
+    // this.previousHistoryPagedList.push(this.previousVisitData[0]);
+    for(let i=0 ; i<5 && i<this.previousVisitData.length; i++){
+      this.previousHistoryPagedList.push(this.previousVisitData[i]);
+
+    }
     
     console.log('list', this.previousHistoryPagedList)
   }
