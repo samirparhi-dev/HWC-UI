@@ -1512,7 +1512,7 @@
             "start": "ಪ್ರಾರಂಭಿಸಿ",
             "range": "ಶ್ರೇಣಿ:",
             "files": "ಕಡತಗಳನ್ನು",
-            "to": "ಗೆ",
+            "to": "to",
             "mandatory": "ಕಡ್ಡಾಯ",
             "belowExternalTestRequired": "ಅಗತ್ಯವಿರುವ ಬಾಹ್ಯ ಪರೀಕ್ಷೆಗಳ ವಿವರವನ್ನು ಕೆಳಗೆ ನೀಡಲಾಗಿದೆ, ದಯವಿಟ್ಟು ಅದನ್ನು ಫಲಾನುಭವಿಯೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಿ",
             "issuesInGettingLocationTryToReLogin": "ನಿಮ್ಮ ಸ್ಥಳವನ್ನು ಪಡೆಯುವಲ್ಲಿ ಸಮಸ್ಯೆಗಳಿವೆ, ದಯವಿಟ್ಟು ಮರು-ಲಾಗಿನ್ ಮಾಡಲು ಪ್ರಯತ್ನಿಸಿ"
@@ -2002,7 +2002,7 @@
          "difficultyInHoldingObjectsWithFingers":"ಬೆರಳುಗಳಿಂದ ವಸ್ತುಗಳನ್ನು ಹಿಡಿದಿಟ್ಟುಕೊಳ್ಳುವಲ್ಲಿ ತೊಂದರೆ",
          "weaknessinFeetThatCausesDifficultyInWalking":"ಪಾದಗಳ ದೌರ್ಬಲ್ಯವು ನಡೆಯಲು ಕಷ್ಟವಾಗುತ್ತದೆ",
          "lumpintheBreast":"ಎದೆಯಲ್ಲಿ ಉಂಡೆ",
-         "blood-StainedDischargeFromTheNipple":"ಮೊಲೆತೊಟ್ಟುಗಳಿಂದ ರಕ್ತ-ಬಣ್ಣದ ವಿಸರ್ಜನೆ",
+         "bloodStainedDischargeFromTheNipple":"ಮೊಲೆತೊಟ್ಟುಗಳಿಂದ ರಕ್ತ-ಬಣ್ಣದ ವಿಸರ್ಜನೆ",
          "bleedingBetweenPeriods":"ಅವಧಿಗಳ ನಡುವೆ ರಕ್ತಸ್ರಾವ",
          "bleedingAfterMenopause":"ಋತುಬಂಧದ ನಂತರ ರಕ್ತಸ್ರಾವ",
          "bleedingAfterIntercourse":"ಸಂಭೋಗದ ನಂತರ ರಕ್ತಸ್ರಾವ",
@@ -2092,7 +2092,8 @@
         "swollen": "ಊದಿಕೊಂಡ",
         "perDay":"ಪ್ರತಿ ದಿನಕ್ಕೆ",
         "perWeek": "ವಾರಕ್ಕೆ",
-        "presentNewbornHealth": "ನವಜಾತ ಶಿಶುವಿನ ಆರೋಗ್ಯ ಸ್ಥಿತಿಯನ್ನು ಪ್ರಸ್ತುತಪಡಿಸಿ"
+        "presentNewbornHealth": "ನವಜಾತ ಶಿಶುವಿನ ಆರೋಗ್ಯ ಸ್ಥಿತಿಯನ್ನು ಪ್ರಸ್ತುತಪಡಿಸಿ",
+        "confirmSubmitBeneficiary": "ನರ್ಸ್ ವರ್ಕ್‌ಲಿಸ್ಟ್‌ಗೆ ಫಲಾನುಭವಿಯನ್ನು ಸಲ್ಲಿಸಲು ದಯವಿಟ್ಟು ಖಚಿತಪಡಿಸಿ"
 
     }  
 

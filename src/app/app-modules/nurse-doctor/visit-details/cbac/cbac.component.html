@@ -139,7 +139,7 @@
           <ng-container>
             <tr>
               <td>1.</td>
-              <td class="onHover">{{currentLanguageSet?.shortnessofbreath}}</td>
+              <td class="onHover">{{currentLanguageSet?.ExaminationData?.cancerScreeningExamination?.symptoms?.shortnessofbreath}}</td>
               <td>
                 <md-radio-group formControlName="cbacShortnessBreath"  name="cbacShortnessBreath">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -165,7 +165,7 @@
 
             <tr>
               <td>3.</td>
-              <td class="onHover">{{currentLanguageSet?.bloodinsputum}}</td>
+              <td class="onHover">{{currentLanguageSet?.ExaminationData?.cancerScreeningExamination?.symptoms?.bloodinsputum}}</td>
               <td>
                 <md-radio-group formControlName="cbacBloodsputum"  name="cbacBloodsputum">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -556,7 +556,7 @@
 
             <tr *ngIf="beneficiaryGender === 'female' || beneficiaryGender === 'transgender'">
               <td>33.</td>
-              <td class="onHover">{{currentLanguageSet?.blood-StainedDischargeFromTheNipple}}</td>
+              <td class="onHover">{{currentLanguageSet?.bloodStainedDischargeFromTheNipple}}</td>
               <td>
                 <md-radio-group formControlName="cbacBloodnippleDischarge"  name="cbacBloodnippleDischarge">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -569,7 +569,7 @@
 
             <tr *ngIf="beneficiaryGender === 'female' || beneficiaryGender === 'transgender'">
               <td>34.</td>
-              <td class="onHover">{{currentLanguageSet?.changeinshapeandsizeofbreasts}}</td>
+              <td class="onHover">{{currentLanguageSet?.ExaminationData?.cancerScreeningExamination?.symptoms?.changeinshapeandsizeofbreasts}}</td>
               <td>
                 <md-radio-group formControlName="cbacBreastsizechange"  name="cbacBreastsizechange">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
