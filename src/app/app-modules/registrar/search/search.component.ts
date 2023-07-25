@@ -557,7 +557,7 @@ export class SearchComponent implements OnInit {
       this.confirmationService
         .confirm(
           `info`,
-          this.currentLanguageSet.alerts.info.confirmSubmitBeneficiary
+          this.currentLanguageSet.confirmSubmitBeneficiary
         )
         .subscribe((result) => {
           if (result) this.sendToNurseWindow(result, benObject);
@@ -929,7 +929,7 @@ export class SearchComponent implements OnInit {
       this.confirmationService
         .confirm(
           `info`,
-          this.currentLanguageSet.alerts.info.confirmSubmitBeneficiary
+          this.currentLanguageSet.confirmSubmitBeneficiary
         )
         .subscribe((result) => {
           if (result) this.sendToNurseWindow(result, benObject);
@@ -1101,7 +1101,7 @@ prevPage()
       let vanID = JSON.parse(localStorage.getItem('serviceLineDetails')).vanID;
       benObject['providerServiceMapId'] = localStorage.getItem('providerServiceID');
       benObject['vanID'] = vanID
-      this.confirmationService.confirm(`info`, this.currentLanguageSet.alerts.info.confirmSubmitBeneficiary)
+      this.confirmationService.confirm(`info`, this.currentLanguageSet.confirmSubmitBeneficiary)
         .subscribe(result => {
           if (result) this.sendToNurseWindow(result, benObject);
         });
