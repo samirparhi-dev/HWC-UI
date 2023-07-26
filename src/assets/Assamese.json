@@ -1989,7 +1989,7 @@
          "difficultyInHoldingObjectsWithFingers":"Difficulty in holding objects with fingers",
          "weaknessinFeetThatCausesDifficultyInWalking":"Weakness in feet that causes difficulty in walking",
          "lumpintheBreast":"Lump in the breast",
-         "blood-StainedDischargeFromTheNipple":"Blood-stained discharge from the nipple",
+         "bloodStainedDischargeFromTheNipple":"Blood-stained discharge from the nipple",
          "bleedingBetweenPeriods":"Bleeding between periods",
          "bleedingAfterMenopause":"Bleeding after menopause",
          "bleedingAfterIntercourse":"Bleeding after intercourse",
@@ -2059,7 +2059,8 @@
         "noFurtherRecordsToShow": "No further records to show",
         "mobile": "Mobile",
         "ageOnlyBeSetBetweenTodayTo": "Age can only be set between Today to",
-        "view": "View"
+        "view": "View",
+        "confirmSubmitBeneficiary": "অনুগ্ৰহ কৰি নাৰ্চ ৱৰ্কলিস্টত হিতাধিকাৰী জমা দিয়াৰ বিষয়টো নিশ্চিত কৰক"
 
       
       }
