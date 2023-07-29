@@ -33,7 +33,7 @@
     "@angular/platform-browser-dynamic": "5.2.11",
     "@angular/platform-server": "5.2.11",
     "@angular/router": "5.2.11",
-    "@types/html2canvas": "0.0.33",
+    "@types/html2canvas": "0.5.35",
     "ack-angular-webcam": "1.9.3",
     "bootstrap": "3.4.1",
     "chart.js": "2.9.3",
